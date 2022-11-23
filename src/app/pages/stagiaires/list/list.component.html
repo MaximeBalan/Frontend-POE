@@ -43,7 +43,8 @@
       <ng-container *ngFor="let stagiaire of stagiaires">
         <tr *ngIf="(showLi === 'A') ? true: stagiaire.gender ===showLi">
           <td>
-            <span [ngClass]="{'bubble': true, 'male': stagiaire.gender === 'M', 'female': stagiaire.gender === 'F'}" (click)="goToDetail()">
+            <span [ngClass]="{'bubble': true, 'male': stagiaire.gender === 'M', 'female': stagiaire.gender === 'F'}" 
+            (click)="goToDetail(stagiaire.id)">
             {{ stagiaire | initials }} 
             </span>
           </td>

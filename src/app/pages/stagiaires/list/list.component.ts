@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { StagiaireModel } from 'src/app/core/models/stagiaire-model';
 import { StagiaireService } from 'src/app/core/services/stagiaire-service';
 
@@ -12,13 +13,14 @@ export class ListComponent implements OnInit {
 
   public showLi: string = 'M';
 
-  constructor() { 
+  //injection des dépendances (les services que l'on veut) dans les paramètres du constructeur
+  constructor(
+    private router: Router, // DI => Dependency Injection
+  ) { 
     const service:StagiaireService = new StagiaireService();
     service.deserialize();
     this.stagiaires = service.getStagiaires();
   }
-
-
 
   ngOnInit(): void {
 
@@ -57,8 +59,11 @@ export class ListComponent implements OnInit {
    * 
    */
 
-  public goToDetail():void{
-    console.log('Go to detail works')
+  public goToDetail(id:number):void{
+    //pour naviguer vers une autre page
+    console.log(`Got ${id} from list`);
+    this.router.navigate(['/detail']);
+
   }
 
 }
