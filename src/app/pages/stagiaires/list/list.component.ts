@@ -11,7 +11,7 @@ import { StagiaireService } from 'src/app/core/services/stagiaire-service';
 export class ListComponent implements OnInit {
   public stagiaires:StagiaireModel[] = [];
 
-  public showLi: string = 'M';
+  public showLi: string = 'A';
 
   //injection des dépendances (les services que l'on veut) dans les paramètres du constructeur
   constructor(
@@ -63,7 +63,8 @@ export class ListComponent implements OnInit {
     //pour naviguer vers une autre page
     console.log(`Got ${id} from list`);
     this.router.navigate(['/detail', id]);
-
   }
+
+  
 
 }

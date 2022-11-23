@@ -1,1 +1,15 @@
 <p>detail works!</p>
+
+<ng-container *ngIf="stagiaire">
+    <div class="container">
+        <h1>
+            {{ this.stagiaire.firstName}} {{ this.stagiaire.lastName}}
+        </h1>
+        <p>Gender : {{this.stagiaire.gender}}</p>
+        <p>Born in : {{this.stagiaire.birthDate | date :'dd/MM/YYYY'}}</p>
+        <p>Mail : {{this.stagiaire.email}}</p>
+        <p>Phone Number : {{this.stagiaire.phoneNumber}}</p>
+        <hr class="solid">
+        <button type="button" (click)="goToList()">Back</button>
+    </div>
+</ng-container>
