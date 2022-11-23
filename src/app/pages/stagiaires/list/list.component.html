@@ -1,0 +1,86 @@
+
+<!--pour les différents switchcase-->
+<div [ngSwitch]="showLi">
+    <div *ngSwitchCase="'A'">Tous les stagiaires:</div>
+    <div *ngSwitchCase="'F'">Féminin:</div>
+    <div *ngSwitchCase="'M'">Masculin:</div>
+  </div>
+  <ul>
+    <!-- Unordered List-->
+    <ng-container *ngFor="let stagiaire of stagiaires">
+  
+      <!--*ngFor = balise de structure-->
+      <li *ngIf="(showLi === 'A') ? true: stagiaire.gender ===showLi ">
+        <!--*ngIf = balise de structure qui injectera l'élément dans le DOM si c'est VRAI-->
+        <!-- si showLi est égale à A, alors c'est true, si c'est false alors afficher showLi-->
+        {{ stagiaire.firstName }} [{{ stagiaire.gender}}]
+      </li>
+    </ng-container>
+  </ul>
+  <!-- Solutions alternatives-->
+  <button type="button" (click)="showLi = 'F'" [ngClass]="{'is-selected': showLi === 'F'}">
+    Change to F
+  </button>
+  <button type="button" (click)="showLi = 'M'" [ngClass]="{'is-selected': showLi === 'M'}">
+    Change to M
+  </button>
+  <button type="button" (click)="showLi = 'A'" [ngClass]="{'is-selected': showLi === 'A'}">
+    Display All
+  </button>
+  <p>showLi vaut : {{ showLi }}</p>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>&nbsp;</th>
+        <th>Name</th>
+        <th>FirstName</th>
+        <th>Gender</th>
+        <th>Birthdate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let stagiaire of stagiaires">
+        <tr *ngIf="(showLi === 'A') ? true: stagiaire.gender ===showLi">
+          <td>
+            <span [ngClass]="{'bubble': true, 'male': stagiaire.gender === 'M', 'female': stagiaire.gender === 'F'}" (click)="goToDetail()">
+            {{ stagiaire | initials }} 
+            </span>
+          </td>
+          <td>
+            <!--on va passer les valeurs des paramètres pour la pipe-->
+            {{ stagiaire | initials :false :true }}
+          </td>
+          <td>
+            {{ stagiaire.lastName | uppercase}}
+          </td>
+          <td>
+            {{ stagiaire.firstName }}
+          </td>
+          <td>
+            {{ stagiaire.gender }}
+          </td>
+          <td>
+            {{ stagiaire.birthDate | date:'dd/MM/YYYY' }}
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  
+    <tfoot>
+      <td colspan="5">
+        Total = {{ displayNumber() }}/{{count()}} <!--on peut aussi mettre stagiaires.length à la place de count()-->
+      </td>
+      </tfoot>
+  </table>
+  
+  <button type="button" (click)="showLi = 'F'" [ngClass]="{'is-selected': showLi === 'F'}">
+    Filles
+  </button>
+  <button type="button" (click)="showLi = 'M'" [ngClass]="{'is-selected': showLi === 'M'}">
+    Garçons
+  </button>
+  <button type="button" (click)="showLi = 'A'" [ngClass]="{'is-selected': showLi === 'A'}">
+    Display All
+  </button>
+  <p>showLi vaut : {{ showLi }}</p>
