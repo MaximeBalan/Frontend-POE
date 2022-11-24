@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListComponent } from './pages/stagiaires/list/list.component';
-import { DetailComponent } from './pages/stagiaires/detail/detail.component';
+import { ListComponent } from './stagiaires/list/list.component';
+import { DetailComponent } from './stagiaires/detail/detail.component';
 
 //comme on est en objet, pas besoin de ce bout de code:
 //const routes: Routes = [];
