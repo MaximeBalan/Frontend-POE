@@ -16,14 +16,16 @@ export class ListComponent implements OnInit {
   //injection des dépendances (les services que l'on veut) dans les paramètres du constructeur
   constructor(
     private router: Router, // DI => Dependency Injection
-  ) { 
-    const service:StagiaireService = new StagiaireService();
-    service.deserialize();
-    this.stagiaires = service.getStagiaires();
-  }
+    private stagiaireService: StagiaireService
+  ) {}
 
   ngOnInit(): void {
-
+    this.stagiaireService.findAll()
+      .subscribe((stagiaires: StagiaireModel[])=> {
+        this.stagiaires = stagiaires;
+      });
+      
+    
   }
 
   public changeGender(): void {

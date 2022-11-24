@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
 
 import { StagiaireModel } from 'src/app/core/models/stagiaire-model';
 import { StagiaireService } from 'src/app/core/services/stagiaire-service';
@@ -11,11 +12,12 @@ import { StagiaireService } from 'src/app/core/services/stagiaire-service';
 })
 export class DetailComponent implements OnInit {
 
-  public stagiaire!:StagiaireModel | undefined;
+  public stagiaire: StagiaireModel |null = null;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private service: StagiaireService
   ) { }
 
   ngOnInit(): void {
@@ -23,11 +25,12 @@ export class DetailComponent implements OnInit {
     this.route.paramMap.subscribe(
       (routeParams) => {
         console.log(`Detail got ${routeParams.get('id')}`); //id est le même nom que dans le path de detail
-        const service: StagiaireService = new StagiaireService();
-        service.deserialize();
-        this.stagiaire = service.findOne(+ routeParams.get('id')!);
+        
         try {
-          this.stagiaire = service.findOne(+routeParams.get('id')!);
+          this.service.findOne(+routeParams.get('id')!)
+            .subscribe((stagiaire: StagiaireModel)=> {
+              this.stagiaire = stagiaire;
+            })
           console.log(JSON.stringify(this.stagiaire));
         } catch (error) {
           this.router.navigate(['/', 'stagiaires']);
