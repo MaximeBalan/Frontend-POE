@@ -31,6 +31,23 @@ button {
     }
 }
 
+a{
+    &.btn{ //pour rajouter une classe supplémentaire
+        display: block; 
+        text-decoration: none;
+        padding:0.5em;
+        border-radius: 0.4em;
+        width: fit-content;
+        margin:auto;
+        text-align: center;
+        text-transform: uppercase;
+        &.btn-primary{
+            background-color:$button-inactive-color;
+            color: $button-font-color;
+        }
+    }
+}
+
 @keyframes coolAppear {
     0%{
         background-color: lighten($button-inactive-color, 80%);

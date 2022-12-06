@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './stagiaires/list/list.component';
 import { DetailComponent } from './stagiaires/detail/detail.component';
+import { AddComponent } from './stagiaires/add/add.component';
 
 //comme on est en objet, pas besoin de ce bout de code:
 //const routes: Routes = [];
@@ -17,7 +18,7 @@ public static routes: Routes = [
     path:'', //chemin vide, doit toujours être la 1ère route
     redirectTo: 'stagiaires',
     //obligatoire quand il y a un redirectTo
-    pathMatch: 'full' //Angular va analyser l'intégralité de la route pour matcher avec le redirectTo
+    pathMatch: 'full' //Angular va analyser l'intégralité de la route pour matcher avec le path de l'url
   },
   {
     path:'stagiaires',
@@ -30,9 +31,14 @@ public static routes: Routes = [
   
   },
   {
+    path:'stagiaire/add',
+    component:AddComponent
+  
+  },
+  {
     //TOUJOURS EN DERNIER!!!!!!!
     path:'**', // route fallback
-    //pour emmener l'utilisateur qui veut accéder à une route qui n'existe pas pas à une autre route 
+    //pour emmener l'utilisateur qui veut accéder à une route qui n'existe pas par à une autre route 
     redirectTo:'stagiaires',
     pathMatch: 'full',
   }

@@ -1,9 +1,12 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { StagiaireModel } from "../models/stagiaire-model";
 import { environment } from "./../../../environments/environment";
 import { map, take } from 'rxjs/operators';
+
+
+
 
 //@Injectable la classe devient un service, injectable dans tous les constructors
 @Injectable({
@@ -11,15 +14,21 @@ import { map, take } from 'rxjs/operators';
     providedIn: 'root'
 })
 export class StagiaireService {
+
+    //constante de classe
+    //private static readonly CONTROLLER_PATH: string = `${environment.api}trainees`;
+    private static readonly CONTROLLER_PATH: string = `${environment.fakeApi}stagiaires`;
+
     public constructor(
         //service qui permet d'envoyer de la requete http
         private httpClient: HttpClient
+        
     ){  }
 
     //CRUD methods: Create, Read, Update, Delete
     public findAll():Observable<StagiaireModel[]>{
         return this.httpClient.get<any[]>(
-            `${environment.fakeApi}stagiaires`
+            StagiaireService.CONTROLLER_PATH
         )
         .pipe(
             take(1), //prends le 1er résultat et arrête d'observer
@@ -33,7 +42,7 @@ export class StagiaireService {
 
     public findOne(id: number): Observable<StagiaireModel> {
         return this.httpClient.get<any>(
-            `${environment.fakeApi}stagiaires/${id}` // http://localhost:3000/stagiaires/2
+            `${StagiaireService.CONTROLLER_PATH}/${id}` // http://localhost:3000/stagiaires/2
         )
         .pipe(
             take(1), //récupère l'objet qui vient de l'API
@@ -44,11 +53,50 @@ export class StagiaireService {
          
     }
 
-    public create(datas:any):void{}
+    public create(datas: any): Observable<StagiaireModel> {
+        console.log(`Values received by service : ${JSON.stringify(datas)}`);
+        /**
+         * {
+         *  lastName: "...",
+         *  firstName: "...",
+         *  gender: "...",
+         *  birthDate: "...",
+         *  phoneNumber: "...",
+         *  email: "..."
+         * }
+         */
+        // Get the next id before to send to backend
+        return this.findAll()
+        .pipe(
+            take(1),
+            map((stagiaires: StagiaireModel[]) => {
+                // Compute nextId
+                let nextId = 1;
+                if (stagiaires.length) {
+                    nextId = stagiaires.sort((s1: StagiaireModel, s2: StagiaireModel) => s2.id - s1.id)[0].id + 1
+                }
+                datas.id = nextId;
+                const stagiaire: StagiaireModel = this.deserialize(datas);
+                // POST the stagiaire completed
+                this.httpClient.post<StagiaireModel>(
+                    StagiaireService.CONTROLLER_PATH,
+                    datas
+                ).subscribe();
+                return stagiaire;
+            })
+        )
+    }
 
     public update(datas:any):void{}
 
-    public delete(datas:any):void{}
+    public delete(datas:StagiaireModel):Observable<HttpResponse<any>>{
+        return this.httpClient.delete<any>(
+            `${StagiaireService.CONTROLLER_PATH}/${datas.id}`,
+            {
+                observe:'response' // HttpResponse {status:200etqq pour ok, redirection: 300etqq, client error: 400etqq}
+            }
+        )
+    }
 
     public deserialize(anyStagiaire: any): StagiaireModel {
         const stagiaire: StagiaireModel = new StagiaireModel();
