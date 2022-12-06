@@ -16,8 +16,8 @@ import { map, take } from 'rxjs/operators';
 export class StagiaireService {
 
     //constante de classe
-    //private static readonly CONTROLLER_PATH: string = `${environment.api}trainees`;
-    private static readonly CONTROLLER_PATH: string = `${environment.fakeApi}stagiaires`;
+    private static readonly CONTROLLER_PATH: string = `${environment.api}trainees`;
+    //private static readonly CONTROLLER_PATH: string = `${environment.fakeApi}stagiaires`;
 
     public constructor(
         //service qui permet d'envoyer de la requete http
@@ -53,36 +53,54 @@ export class StagiaireService {
          
     }
 
+    // public create(datas: any): Observable<StagiaireModel> {
+    //     console.log(`Values received by service : ${JSON.stringify(datas)}`);
+    //     /**
+    //      * {
+    //      *  lastName: "...",
+    //      *  firstName: "...",
+    //      *  gender: "...",
+    //      *  birthDate: "...",
+    //      *  phoneNumber: "...",
+    //      *  email: "..."
+    //      * }
+    //      */
+    //     // Get the next id before to send to backend
+    //     return this.findAll()
+    //     .pipe(
+    //         take(1),
+    //         map((stagiaires: StagiaireModel[]) => {
+    //             // Compute nextId
+    //             let nextId = 1;
+    //             if (stagiaires.length) {
+    //                 nextId = stagiaires.sort((s1: StagiaireModel, s2: StagiaireModel) => s2.id - s1.id)[0].id + 1
+    //             }
+    //             datas.id = nextId;
+    //             const stagiaire: StagiaireModel = this.deserialize(datas);
+    //             // POST the stagiaire completed
+    //             this.httpClient.post<StagiaireModel>(
+    //                 StagiaireService.CONTROLLER_PATH,
+    //                 datas
+    //             ).subscribe();
+    //             return stagiaire;
+    //         })
+    //     )
+    // }
+
     public create(datas: any): Observable<StagiaireModel> {
-        console.log(`Values received by service : ${JSON.stringify(datas)}`);
-        /**
-         * {
-         *  lastName: "...",
-         *  firstName: "...",
-         *  gender: "...",
-         *  birthDate: "...",
-         *  phoneNumber: "...",
-         *  email: "..."
-         * }
-         */
-        // Get the next id before to send to backend
-        return this.findAll()
+        // console.log(Values received by service : ${JSON.stringify(datas)});
+        console.log("Values received by service:", datas);
+
+        // POST the stagiaire completed
+        return this.httpClient.post<StagiaireModel>(
+            StagiaireService.CONTROLLER_PATH,
+            // this.deserialize(datas)
+            datas
+        )
         .pipe(
-            take(1),
-            map((stagiaires: StagiaireModel[]) => {
-                // Compute nextId
-                let nextId = 1;
-                if (stagiaires.length) {
-                    nextId = stagiaires.sort((s1: StagiaireModel, s2: StagiaireModel) => s2.id - s1.id)[0].id + 1
-                }
-                datas.id = nextId;
-                const stagiaire: StagiaireModel = this.deserialize(datas);
-                // POST the stagiaire completed
-                this.httpClient.post<StagiaireModel>(
-                    StagiaireService.CONTROLLER_PATH,
-                    datas
-                ).subscribe();
-                return stagiaire;
+            take(1), // Récupère l'objet qui vient de l'API
+            map((anyStagiaire: any) => { // Transforme le any en StagiaireModel
+                return this.deserialize(anyStagiaire);
             })
         )
     }
@@ -103,7 +121,7 @@ export class StagiaireService {
         stagiaire.id = anyStagiaire.id;
         stagiaire.lastName = anyStagiaire.lastName;
         stagiaire.firstName = anyStagiaire.firstName;
-        stagiaire.birthDate = anyStagiaire.birthDate;
+        stagiaire.birthDate = new Date (anyStagiaire.birthDate);
         stagiaire.gender = anyStagiaire.gender;
         stagiaire.phoneNumber = anyStagiaire.phoneNumber;
         stagiaire.email = anyStagiaire.email
