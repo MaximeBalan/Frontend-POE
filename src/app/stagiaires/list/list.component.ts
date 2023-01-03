@@ -12,7 +12,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ListComponent implements OnInit {
   public stagiaires:StagiaireModel[] = [];
-
   public showLi: string = 'A';
 
   //injection des dépendances (les services que l'on veut) dans les paramètres du constructeur
@@ -26,9 +25,7 @@ export class ListComponent implements OnInit {
     this.stagiaireService.findAll()
       .subscribe((stagiaires: StagiaireModel[])=> {
         this.stagiaires = stagiaires;
-      });
-      
-    
+      }); 
   }
 
   public changeGender(): void {

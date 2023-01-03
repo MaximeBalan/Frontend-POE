@@ -46,7 +46,11 @@ export class AddComponent implements OnInit {
       
       ],
       phoneNumber: [
-        ''
+        '',
+        [
+          Validators.pattern(/^\+(?:[0-9]●?){6,14}[0-9]$/)
+        ]
+        
       ],
       email : [
         '',

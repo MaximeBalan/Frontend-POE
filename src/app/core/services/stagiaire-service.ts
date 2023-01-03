@@ -15,7 +15,7 @@ import { map, take } from 'rxjs/operators';
 })
 export class StagiaireService {
 
-    //constante de classe
+    //pour switcher entre fakeApi et api
     private static readonly CONTROLLER_PATH: string = `${environment.api}trainees`;
     //private static readonly CONTROLLER_PATH: string = `${environment.fakeApi}stagiaires`;
 
@@ -34,7 +34,7 @@ export class StagiaireService {
             take(1), //prends le 1er résultat et arrête d'observer
             map((httpResponseBody: any[]) => {
                 return httpResponseBody.map((anyStagiaire: any) => {
-                    return this.deserialize(anyStagiaire)
+                    return this.deserializeFromJson(anyStagiaire)
                 }) // transforme un tableau en un autre tableau
             }) //transforme un Observable(ici O<any[]>) en un autre Observable (O<StagiaireModel[]>)
         ) //pipeline
@@ -47,7 +47,7 @@ export class StagiaireService {
         .pipe(
             take(1), //récupère l'objet qui vient de l'API
             map((anyStagiaire: any) => { // transforme le any en StagiaireModel
-                    return this.deserialize(anyStagiaire); // deserialise pour le transformer en StagiaireModel
+                    return this.deserializeFromJson(anyStagiaire); // deserialise pour le transformer en StagiaireModel
                 }) 
         )
          
@@ -94,13 +94,13 @@ export class StagiaireService {
         // POST the stagiaire completed
         return this.httpClient.post<StagiaireModel>(
             StagiaireService.CONTROLLER_PATH,
-            // this.deserialize(datas)
-            datas
+            this.serializeJson(datas)
+            //datas
         )
         .pipe(
             take(1), // Récupère l'objet qui vient de l'API
             map((anyStagiaire: any) => { // Transforme le any en StagiaireModel
-                return this.deserialize(anyStagiaire);
+                return this.deserializeFromForm(anyStagiaire);
             })
         )
     }
@@ -115,8 +115,35 @@ export class StagiaireService {
             }
         )
     }
+//du back vers le front
+    public deserializeFromJson(anyStagiaire: any): StagiaireModel {
+        const stagiaire: StagiaireModel = new StagiaireModel();
+        stagiaire.id = anyStagiaire.id;
+        stagiaire.lastName = anyStagiaire.lastname;
+        stagiaire.firstName = anyStagiaire.firstname;
+        stagiaire.birthDate = new Date (anyStagiaire.birthdate);
+        stagiaire.gender = anyStagiaire.gender;
+        stagiaire.phoneNumber = anyStagiaire.phoneNumber;
+        stagiaire.email = anyStagiaire.email
 
-    public deserialize(anyStagiaire: any): StagiaireModel {
+        return stagiaire;
+    }
+//du front vers le back
+    public serializeJson(anyStagiaire: any): any {
+        const stagiaire: any = {
+            id : anyStagiaire.id,
+            lastname : anyStagiaire.lastName,
+            firstname : anyStagiaire.firstName,
+            birthdate : new Date (anyStagiaire.birthDate),
+            gender : anyStagiaire.gender,
+            phoneNumber : anyStagiaire.phoneNumber,
+            email : anyStagiaire.email
+        }
+        console.log("stagiaire à envoyer au back: ", stagiaire)
+        return stagiaire;
+    }
+//du formulaire au service
+    public deserializeFromForm(anyStagiaire: any): StagiaireModel {
         const stagiaire: StagiaireModel = new StagiaireModel();
         stagiaire.id = anyStagiaire.id;
         stagiaire.lastName = anyStagiaire.lastName;
@@ -128,5 +155,7 @@ export class StagiaireService {
 
         return stagiaire;
     }
+
+   
 }
 

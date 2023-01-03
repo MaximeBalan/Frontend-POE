@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  fakeApi: 'http://localhost:3000/', 
-  api: "http://localhost:8080/api/"
+  fakeApi: 'http://localhost:3000/', //dbJSON
+  api: "http://localhost:8080/api/" //db SpringBoot
 };
 
 /*

@@ -10,17 +10,17 @@ export class DateLessThan{
             if (!control.value) return null;
             
             const today: moment.Moment = moment(); // Récupère la date du jour
-            today.subtract(18, 'y');
+            today.subtract(18, 'y'); // enlever 18 ans
 
 
             // Récupérer la valeur saisie
             const enteredDate: moment.Moment = moment(control.value);
-            console.log('Date saisie : ' + enteredDate.format('DD/MM/YYYY'));
+            //console.log('Date saisie : ' + enteredDate.format('DD/MM/YYYY'));
             if (enteredDate.isAfter(today)) {
-                console.log('Validation ko');
+                //console.log('Validation ko');
                 return {dateLessThan: true};
             }
-            console.log('Validation ok');
+            //console.log('Validation ok');
             return null;
         }
     }
