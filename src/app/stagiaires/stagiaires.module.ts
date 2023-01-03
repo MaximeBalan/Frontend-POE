@@ -7,6 +7,7 @@ import { DetailComponent } from './detail/detail.component';
 import { InitialsPipe } from './pipes/initials.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { AddComponent } from './add/add.component';
+import { UpdateComponent } from './update/update.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { AddComponent } from './add/add.component';
     DetailComponent,
     InitialsPipe,
     AddComponent,
+    UpdateComponent,
   ],
   imports: [
     CommonModule,

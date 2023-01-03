@@ -85,4 +85,9 @@ export class ListComponent implements OnInit {
       })
   }
 
+  public update(id:number):void{
+    console.log(`Got ${id} from list and ready to update`);
+    this.router.navigate(['/update', id]);
+  }
+
 }
