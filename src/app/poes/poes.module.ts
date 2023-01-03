@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PoesRoutingModule } from './poes-routing.module';
-import { ListComponent } from './list/list.component';
 import { AddComponent } from './add/add.component';
+import { ListPoeComponent } from './list-poe/list-poe.component';
 
 
 @NgModule({
   declarations: [
-    ListComponent,
-    AddComponent
+    AddComponent,
+    ListPoeComponent
   ],
   imports: [
     CommonModule,
