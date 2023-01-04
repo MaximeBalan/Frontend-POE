@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PoesRoutingModule } from './poes-routing.module';
 import { AddComponent } from './add/add.component';
 import { ListPoeComponent } from './list-poe/list-poe.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ListPoeComponent } from './list-poe/list-poe.component';
   ],
   imports: [
     CommonModule,
-    PoesRoutingModule
+    PoesRoutingModule,
+    SharedModule
   ]
 })
 export class PoesModule { }

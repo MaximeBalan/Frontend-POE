@@ -2,35 +2,26 @@
   <table>
     <thead>
       <tr>
-        <th>&nbsp;</th>
         <th>Titre</th>
         <th>Type</th>
         <th>Date de début</th>
         <th>Date de fin</th>
-        <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
       <ng-container *ngFor="let poe of poes">
         <tr>
           <td>
-           <!--
-{{ poe.title | uppercase}}
-           --> 
-            {{ poe.title}}
+            {{ poe.title | uppercase}}
           </td>
           <td>
-            {{ poe.poe_type }}
+            {{ poe.poeType}}
           </td>
           <td>
-           <!--
-             {{ poe.begin_date  | date:'dd/MM/YYYY' }}
-           --> {{ poe.begin_date}}
+           {{ poe.beginDate | date:'dd/MM/YYYY'}}
           </td>
           <td>
-           <!--
-            {{ poe.end_date | date:'dd/MM/YYYY' }}
-           --> {{ poe.end_date }}
+          {{ poe.endDate | date:'dd/MM/YYYY' }}
           </td>
           <td>
            <!--

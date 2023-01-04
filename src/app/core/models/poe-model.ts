@@ -19,26 +19,26 @@ export class PoeModel{
         this._title=val
     }
 
-    get begin_date() : Date | undefined{
+    get beginDate() : Date | undefined{
         return this._beginDate
     }
 
-    set begin_date(val: Date | undefined) {
+    set beginDate(val: Date | undefined) {
         this._beginDate=val
     }
 
-    get end_date() : Date | undefined{
+    get endDate() : Date | undefined{
         return this._endDate
     }
 
-    set end_date(val: Date | undefined) {
+    set endDate(val: Date | undefined) {
         this._endDate=val
     }
 
-    get poe_type(){
+    get poeType(){
         return this._poeType
     }
-    set poe_type(val: string) {
+    set poeType(val: string) {
         this._poeType=val
     }
 

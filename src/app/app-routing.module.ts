@@ -38,7 +38,8 @@ public static routes: Routes = [
   },
   {
     path:'poes',
-    //quand Angular trouve le path, il chargera le component
+    loadChildren: () => import('./poes/poes.module')
+    .then((m)=> m.PoesModule),
     component: ListPoeComponent
   },
   {
