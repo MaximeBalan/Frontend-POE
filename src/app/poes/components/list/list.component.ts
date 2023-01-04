@@ -4,10 +4,10 @@ import { PoeService } from 'src/app/core/services/poe.service';
 
 @Component({
   selector: 'app-list-poe',
-  templateUrl: './list-poe.component.html',
-  styleUrls: ['./list-poe.component.scss']
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss']
 })
-export class ListPoeComponent implements OnInit {
+export class ListComponent implements OnInit {
   public poes:PoeModel[]=[];
   constructor(
    /* private router: Router, // DI => Dependency Injection

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './stagiaires/list/list.component';
 import { DetailComponent } from './stagiaires/detail/detail.component';
 import { AddComponent } from './stagiaires/add/add.component';
-import { ListPoeComponent } from './poes/list-poe/list-poe.component';
+
 
 //comme on est en objet, pas besoin de ce bout de code:
 //const routes: Routes = [];
@@ -40,7 +40,6 @@ public static routes: Routes = [
     path:'poes',
     loadChildren: () => import('./poes/poes.module')
     .then((m)=> m.PoesModule),
-    component: ListPoeComponent
   },
   {
     //TOUJOURS EN DERNIER!!!!!!!

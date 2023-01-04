@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListPoeComponent } from './list-poe.component';
+import { ListPoeComponent } from './list.component';
 
 describe('ListPoeComponent', () => {
   let component: ListPoeComponent;

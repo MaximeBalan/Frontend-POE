@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PoesRoutingModule } from './poes-routing.module';
-import { AddComponent } from './add/add.component';
-import { ListPoeComponent } from './list-poe/list-poe.component';
+import { AddComponent } from './components/add/add.component';
+import { ListComponent } from './components/list/list.component';
 import { SharedModule } from '../shared/shared.module';
+import { ManageComponent } from './components/manage/manage.component';
 
 
 @NgModule({
   declarations: [
     AddComponent,
-    ListPoeComponent
+    ListComponent,
+    ManageComponent
   ],
   imports: [
     CommonModule,
