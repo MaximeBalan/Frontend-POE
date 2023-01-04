@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PoeModel } from 'src/app/core/models/poe-model';
-import { PoeService } from 'src/app/core/services/poe.service';
+import { Poe } from 'src/app/core/models/poe';
+import { PoeService } from 'src/app/poes/services/poe/poe.service';
 
 @Component({
   selector: 'app-list-poe',
@@ -8,7 +8,7 @@ import { PoeService } from 'src/app/core/services/poe.service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  public poes:PoeModel[]=[];
+  public poes:Poe[]=[];
   constructor(
    /* private router: Router, // DI => Dependency Injection
     private PoesService: PoesService,
@@ -19,7 +19,7 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.poeService.findAll()
-    .subscribe((poes: PoeModel[])=> {
+    .subscribe((poes: Poe[])=> {
       this.poes = poes;
     }); 
   }
