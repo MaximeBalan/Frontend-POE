@@ -1,1 +1,59 @@
-<p>list-poe works!</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>&nbsp;</th>
+        <th>Titre</th>
+        <th>Type</th>
+        <th>Date de début</th>
+        <th>Date de fin</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let poe of poes">
+        <tr>
+          <td>
+           <!--
+{{ poe.title | uppercase}}
+           --> 
+            {{ poe.title}}
+          </td>
+          <td>
+            {{ poe.poe_type }}
+          </td>
+          <td>
+           <!--
+             {{ poe.begin_date  | date:'dd/MM/YYYY' }}
+           --> {{ poe.begin_date}}
+          </td>
+          <td>
+           <!--
+            {{ poe.end_date | date:'dd/MM/YYYY' }}
+           --> {{ poe.end_date }}
+          </td>
+          <td>
+           <!--
+<button mat-mini-fab color="warn" (click)="onDelete(stagiaire)">
+              <mat-icon>delete</mat-icon>
+            </button>
+           --> 
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  
+   <!--
+<tfoot>
+      <td colspan="5">
+        Total = {{ displayNumber() }}/{{count()}}
+        on peut aussi mettre stagiaires.length à la place de count()
+    </td>
+</tfoot>
+   --> 
+  </table>
+  
+  
+  <a class="btn btn-primary">
+    Ajouter une Poe
+  </a>

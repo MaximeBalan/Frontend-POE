@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './stagiaires/list/list.component';
 import { DetailComponent } from './stagiaires/detail/detail.component';
 import { AddComponent } from './stagiaires/add/add.component';
+import { ListPoeComponent } from './poes/list-poe/list-poe.component';
 
 //comme on est en objet, pas besoin de ce bout de code:
 //const routes: Routes = [];
@@ -36,12 +37,19 @@ public static routes: Routes = [
   
   },
   {
+    path:'poes',
+    //quand Angular trouve le path, il chargera le component
+    component: ListPoeComponent
+  },
+  {
     //TOUJOURS EN DERNIER!!!!!!!
     path:'**', // route fallback
     //pour emmener l'utilisateur qui veut accéder à une route qui n'existe pas par à une autre route 
     redirectTo:'stagiaires',
     pathMatch: 'full',
   }
+
+
 ];
 
 }
