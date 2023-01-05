@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './stagiaires/list/list.component';
 import { DetailComponent } from './stagiaires/detail/detail.component';
 import { AddComponent } from './stagiaires/add/add.component';
+import { UpdateComponent } from './stagiaires/update/update.component';
 
 
 //comme on est en objet, pas besoin de ce bout de code:
@@ -30,6 +31,10 @@ public static routes: Routes = [
     path:'detail/:id',
     component:DetailComponent
   
+  },
+  {
+    path:'stagiaires/update/:id',
+    component:UpdateComponent
   },
   {
     path:'stagiaire/add',

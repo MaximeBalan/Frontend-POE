@@ -1,0 +1,82 @@
+<h1>Modifier le stagiaire</h1>
+
+<ng-container *ngIf="stagiaire">
+<form [formGroup]="addStagiaireForm" (ngSubmit)="onSubmit()">
+    <!--[formGroup]="addStagiaireForm" => permet de lier le form au component correspondant dans le .ts-->
+    <!--form fields go here-->
+    <mat-form-field>
+        <!--formControlName="lastName"=> permet de lier cet input au controller correspondant dans le .ts -->
+        <!--matInput permet de contrôler l'input et de le transformer en input de material-->
+        <input matInput type="text" placeholder=  "Nom du stagiaire" formControlName="lastName">
+        <!--vérificateur d'erreur-->
+        <mat-error *ngIf="addStagiaireForm.controls['lastName'].errors">
+            <!--message en cas d'erreur-->
+            Le nom du stagiaire est obligatoire !
+        </mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field>
+        <input matInput type="text" placeholder="Prénom du stagiaire" formControlName="firstName">
+        <mat-error *ngIf="addStagiaireForm.controls['firstName'].errors">
+            Le prénom du stagiaire est obligatoire !
+        </mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="birthDate">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="addStagiaireForm.controls['birthDate'].errors 
+        && addStagiaireForm.controls['birthDate'].touched">
+            <!--touched => l'utilisateur a au moins touché une fois le formulaire-->
+            <span *ngIf="addStagiaireForm.controls['birthDate'].hasError('required')">
+                La date de naissance est obligatoire.
+            </span>
+            <span *ngIf="addStagiaireForm.controls['birthDate'].hasError('dateLessThan')">
+                Le stagiaire n'a pas 18 ans!
+            </span>
+        </mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field>
+        <input matInput type="email" placeholder="Email" formControlName="email">
+        <mat-error *ngIf="addStagiaireForm.controls['email'].errors">
+            L'adresse email est obligatoire ou n'a pas la bonne forme !
+        </mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field>
+        <input matInput type="text" placeholder="Numéro de téléphone" formControlName="phoneNumber">
+    </mat-form-field>
+
+    <br>
+
+    <mat-radio-group formControlName="Genre">
+        <mat-radio-button value="M">Masculin</mat-radio-button>
+        <br>
+        <mat-radio-button value="F">Féminin</mat-radio-button>
+    </mat-radio-group>
+
+    <br>
+    <button mat-raised-button color="primary" type="submit" [disabled]="addStagiaireForm.invalid">
+        Modifier
+    </button>
+  
+
+
+</form>
+</ng-container>
+
+<a [routerLink]="'/stagiaires'" class="btn btn-primary">
+    Retour à la liste
+</a>
