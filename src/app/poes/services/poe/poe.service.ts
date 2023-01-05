@@ -5,6 +5,7 @@ import { Poe } from 'src/app/core/models/poe';
 import { environment } from "./../../../../environments/environment";
 import { map, take } from 'rxjs/operators';
 import { Icrud } from './../../../core/interfaces/i_crud';
+import { ApiPoeType } from 'src/app/core/types/api-poe-types';
 
 
 @Injectable({
@@ -22,15 +23,23 @@ export class PoeService implements Icrud<Poe>{
       PoeService.CONTROLLER_PATH
     ).pipe(
       take(1),
-    map((dataApiPoe: any[])=>{
-      return dataApiPoe.map((dataApiPoe: any) => {
+    map((dataApiPoe: ApiPoeType[])=>{
+      return dataApiPoe.map((dataApiPoe: ApiPoeType) => {
         return this.deserializeFromJson(dataApiPoe)
       })
     }))
   }
 
   findOne(id: number): Observable<Poe> {
-    throw new Error('Method not implemented.');
+    return this.httpClient.get<any>(
+      `${PoeService.CONTROLLER_PATH}/${id}`
+    )
+    .pipe(
+      take(1),
+      map((anyPoe: any) => {
+        return this.deserializeFromJson(anyPoe);
+      })
+    )
   }
 
 
@@ -41,7 +50,7 @@ export class PoeService implements Icrud<Poe>{
         take(1),
         map((anyPoe:any)=>{
             return this.deserializeFromForm(anyPoe)
-          
+
         }))
   }
 
@@ -49,13 +58,16 @@ export class PoeService implements Icrud<Poe>{
   update(datas: Poe): void {
     throw new Error('Method not implemented.');
   }
-  delete(datas: Poe): void {
-    throw new Error('Method not implemented.');
+
+  delete(datas: Poe):Observable<HttpResponse<any>> {
+    return this.httpClient.delete<any>(
+      `${PoeService.CONTROLLER_PATH}/${datas.id}`,
+      {
+        observe:'response'
+      }
+    )
   }
 
-
-      
-  
 public deserializeFromJson(anyPoe: any): Poe {
   const poe: Poe = new Poe();
   poe.id = anyPoe.id;
