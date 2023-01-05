@@ -28,12 +28,17 @@
             <button mat-mini-fab color="warn" (click)="onDelete(stagiaire)">
               <mat-icon>delete</mat-icon>
             </button>
-           --> 
+           -->
+          </td>
+          <td>
+            <button mat-mini-fab color="warn" (click)="onDelete(poe)">
+              <mat-icon>delete</mat-icon>
+            </button>
           </td>
         </tr>
       </ng-container>
     </tbody>
-  
+
    <!--
 <tfoot>
       <td colspan="5">
@@ -41,10 +46,10 @@
         on peut aussi mettre stagiaires.length à la place de count()
     </td>
 </tfoot>
-   --> 
+   -->
   </table>
-  
-  
+
+
   <a [routerLink]="'/poes/add'" class="btn btn-primary">
     Ajouter une Poe
   </a>
