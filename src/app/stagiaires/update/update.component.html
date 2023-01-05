@@ -5,7 +5,8 @@
     <mat-form-field>
         <!--formControlName="lastName"=> permet de lier cet input au controller correspondant dans le .ts -->
         <!--matInput permet de contrôler l'input et de le transformer en input de material-->
-        <input matInput type="text" placeholder="Nom du stagiaire" formControlName="lastName">
+        <ng-container *ngIf="stagiaire"></ng-container>
+        <input matInput type="text" placeholder="Nom du stagiaire" formControlName="lastName"> {{lastName}}
         <!--vérificateur d'erreur-->
         <mat-error *ngIf="addStagiaireForm.controls['lastName'].errors">
             <!--message en cas d'erreur-->
