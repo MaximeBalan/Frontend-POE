@@ -31,7 +31,15 @@ export class PoeService implements Icrud<Poe>{
   }
 
   findOne(id: number): Observable<Poe> {
-    throw new Error('Method not implemented.');
+    return this.httpClient.get<any>(
+      `${PoeService.CONTROLLER_PATH}/${id}`
+    )
+    .pipe(
+      take(1),
+      map((anyPoe: any) => {
+        return this.deserializeFromJson(anyPoe);
+      })
+    )
   }
 
 
@@ -42,7 +50,7 @@ export class PoeService implements Icrud<Poe>{
         take(1),
         map((anyPoe:ApiPoeType)=>{
             return this.deserializeFromForm(anyPoe)
-          
+
         }))
   }
 
@@ -50,13 +58,19 @@ export class PoeService implements Icrud<Poe>{
   update(datas: Poe): void {
     throw new Error('Method not implemented.');
   }
-  delete(datas: Poe): void {
-    throw new Error('Method not implemented.');
+
+  delete(datas: Poe):Observable<HttpResponse<any>> {
+    return this.httpClient.delete<any>(
+      `${PoeService.CONTROLLER_PATH}/${datas.id}`,
+      {
+        observe:'response'
+      }
+    )
   }
 
 
-      
-  
+
+
 public deserializeFromJson(anyPoe: ApiPoeType): Poe {
   const poe: Poe = new Poe();
   poe.id = anyPoe.id;
