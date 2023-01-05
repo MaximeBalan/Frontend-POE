@@ -5,6 +5,7 @@ import { Poe } from 'src/app/core/models/poe';
 import { environment } from "./../../../../environments/environment";
 import { map, take } from 'rxjs/operators';
 import { Icrud } from './../../../core/interfaces/i_crud';
+import { ApiPoeType } from 'src/app/core/types/api-poe-type';
 
 
 @Injectable({
@@ -22,8 +23,8 @@ export class PoeService implements Icrud<Poe>{
       PoeService.CONTROLLER_PATH
     ).pipe(
       take(1),
-    map((dataApiPoe: any[])=>{
-      return dataApiPoe.map((dataApiPoe: any) => {
+    map((dataApiPoe: ApiPoeType[])=>{
+      return dataApiPoe.map((dataApiPoe: ApiPoeType) => {
         return this.deserializeFromJson(dataApiPoe)
       })
     }))
@@ -39,7 +40,7 @@ export class PoeService implements Icrud<Poe>{
       PoeService.CONTROLLER_PATH,
       this.serializeJson(datas)).pipe(
         take(1),
-        map((anyPoe:any)=>{
+        map((anyPoe:ApiPoeType)=>{
             return this.deserializeFromForm(anyPoe)
           
         }))
@@ -56,7 +57,7 @@ export class PoeService implements Icrud<Poe>{
 
       
   
-public deserializeFromJson(anyPoe: any): Poe {
+public deserializeFromJson(anyPoe: ApiPoeType): Poe {
   const poe: Poe = new Poe();
   poe.id = anyPoe.id;
   poe.title = anyPoe.title;
@@ -66,8 +67,8 @@ public deserializeFromJson(anyPoe: any): Poe {
   return poe;
 }
 
-public serializeJson(anyPoe: any): any {
-  const poe: any = {
+public serializeJson(anyPoe: any): ApiPoeType {
+  const poe: ApiPoeType = {
     id : anyPoe.id,
     title : anyPoe.title,
     beginDate : new Date (anyPoe.beginDate),
@@ -78,7 +79,7 @@ public serializeJson(anyPoe: any): any {
   return poe;
 }
 
-public deserializeFromForm(anyPoe: any): Poe {
+public deserializeFromForm(anyPoe: ApiPoeType): Poe {
   const poe: Poe = new Poe();
   poe.id = anyPoe.id;
   poe.title = anyPoe.title;
