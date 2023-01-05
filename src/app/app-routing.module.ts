@@ -32,7 +32,7 @@ public static routes: Routes = [
   
   },
   {
-    path:'update/:id',
+    path:'stagiaires/update/:id',
     component:UpdateComponent
   },
   {
