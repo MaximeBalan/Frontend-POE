@@ -1,11 +1,13 @@
 <h1>Modifier le stagiaire</h1>
+
+<ng-container *ngIf="stagiaire">
 <form [formGroup]="addStagiaireForm" (ngSubmit)="onSubmit()">
     <!--[formGroup]="addStagiaireForm" => permet de lier le form au component correspondant dans le .ts-->
     <!--form fields go here-->
     <mat-form-field>
         <!--formControlName="lastName"=> permet de lier cet input au controller correspondant dans le .ts -->
         <!--matInput permet de contrôler l'input et de le transformer en input de material-->
-        <input matInput type="text" placeholder="Nom du stagiaire" formControlName="lastName">
+        <input matInput type="text" placeholder=  "Nom du stagiaire" formControlName="lastName">
         <!--vérificateur d'erreur-->
         <mat-error *ngIf="addStagiaireForm.controls['lastName'].errors">
             <!--message en cas d'erreur-->
@@ -54,12 +56,12 @@
     <br>
 
     <mat-form-field>
-        <input matInput type="text" placeholder="Phone number" formControlName="phoneNumber">
+        <input matInput type="text" placeholder="Numéro de téléphone" formControlName="phoneNumber">
     </mat-form-field>
 
     <br>
 
-    <mat-radio-group formControlName="gender">
+    <mat-radio-group formControlName="Genre">
         <mat-radio-button value="M">Masculin</mat-radio-button>
         <br>
         <mat-radio-button value="F">Féminin</mat-radio-button>
@@ -67,12 +69,13 @@
 
     <br>
     <button mat-raised-button color="primary" type="submit" [disabled]="addStagiaireForm.invalid">
-        Add
+        Modifier
     </button>
   
 
 
 </form>
+</ng-container>
 
 <a [routerLink]="'/stagiaires'" class="btn btn-primary">
     Retour à la liste
