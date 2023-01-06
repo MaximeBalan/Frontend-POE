@@ -46,6 +46,7 @@ export class ListComponent implements OnInit {
         )
       })
   }
+  
 }
 
 @Component({
@@ -53,6 +54,29 @@ export class ListComponent implements OnInit {
   templateUrl: 'list.component.dialog.html',
 })
 export class DialogAnimationsExampleDialog {
-  constructor(public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>) {}
+
+  public poes:Poe[]=[];
+
+  constructor(public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>,
+    private poeService: PoeService,
+    private snackBar: MatSnackBar) {}
+
+  public onDelete(poe: Poe):void{
+    this.poeService.delete(poe)
+      .subscribe((response : HttpResponse<any>)=>{
+        //supprimer la ligne dans this.stagiaires
+        this.poes.splice(
+          this.poes.findIndex((obj: Poe) => obj.id === poe.id),
+          1
+        );
+        this.snackBar.open(
+          `la POE ${poe.title} a été supprimé`,
+          'Compris', //le nom à cliquer pour fermer la notification d'alerte
+          {
+            duration: 2500
+          }
+        )
+      })
+  }
 }
 
