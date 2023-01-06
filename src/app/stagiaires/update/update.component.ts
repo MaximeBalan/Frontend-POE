@@ -14,7 +14,8 @@ export class UpdateComponent implements OnInit {
 
   public stagiaire: StagiaireModel |null = null;
   public addStagiaireForm!: FormGroup; //Groupe de Contrôles de formulaire
-  
+  private id: any; // pour recup id dans onsubmit
+
   constructor(
     private formBuilder: FormBuilder, //permet de construire un formulaire
     private stagiaireService: StagiaireService,
@@ -24,12 +25,13 @@ export class UpdateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
       //pour récupérer des détails/données d'une autre page
       this.route.paramMap.subscribe(
         (routeParams) => {
-          console.log(`Detail got ${routeParams.get('id')}`); //id est le même nom que dans le path de detail
-          
+          console.log(`Detail got ${routeParams.get('id')}`); //id est le même nom que dans le path de detail, accessible que dans cette fontion
+          this.id = routeParams.get('id');
+
           try {
             this.service.findOne(+routeParams.get('id')!)
               .subscribe((stagiaire: StagiaireModel)=> {
@@ -39,7 +41,7 @@ export class UpdateComponent implements OnInit {
                 this.addStagiaireForm = this.formBuilder.group({
                   lastName: [
                     this.stagiaire.lastName, //Default value (here empty)mais ce n'est pas un placeholder!!!
-                    
+
                     //tableau pas obligatoire, sauf si on a plusieurs validators !
                     [
                       Validators.required //le contrôle doit impérativement être défini avec une valeur non nulle
@@ -58,14 +60,14 @@ export class UpdateComponent implements OnInit {
                       Validators.required,
                       DateLessThan.dateLessThan()
                     ]
-                  
+
                   ],
                   phoneNumber: [
                     this.stagiaire.phoneNumber,
                     [
                       Validators.pattern(/^\+(?:[0-9]●?){6,14}[0-9]$/)
                     ]
-                    
+
                   ],
                   email : [
                     this.stagiaire.email,
@@ -74,20 +76,22 @@ export class UpdateComponent implements OnInit {
                       Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)
                     ]
                   ]
-                })      
+                })
               })
             console.log(JSON.stringify(this.stagiaire));
           } catch (error) {
             this.router.navigate(['/', 'stagiaires']);
-  
+
           }
         }
-      ) 
+      )
   }
 
   public onSubmit(): void {
     console.log(`Values to send : ${JSON.stringify(this.addStagiaireForm.value)}`);
-    this.stagiaireService.create(this.addStagiaireForm.value)
+    let data = this.addStagiaireForm.value;
+    data.id = this.id;
+    this.stagiaireService.update(data)
         .subscribe((stagiaire: StagiaireModel)=>{
           console.log("Values received from backend", stagiaire)
           this.router.navigate(['/', 'stagiaires']);

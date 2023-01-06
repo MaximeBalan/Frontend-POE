@@ -22,7 +22,7 @@ export class StagiaireService {
     public constructor(
         //service qui permet d'envoyer de la requete http
         private httpClient: HttpClient
-        
+
     ){  }
 
     //CRUD methods: Create, Read, Update, Delete
@@ -48,9 +48,9 @@ export class StagiaireService {
             take(1), //récupère l'objet qui vient de l'API
             map((anyStagiaire: any) => { // transforme le any en StagiaireModel
                     return this.deserializeFromJson(anyStagiaire); // deserialise pour le transformer en StagiaireModel
-                }) 
+                })
         )
-         
+
     }
 
     // public create(datas: any): Observable<StagiaireModel> {
@@ -105,7 +105,20 @@ export class StagiaireService {
         )
     }
 
-    public update(datas:any):void{}
+    public update(data:StagiaireModel): Observable<StagiaireModel>{
+      console.log("Values received by service:", data.id);
+      return this.httpClient.put<StagiaireModel>(
+        `${StagiaireService.CONTROLLER_PATH}/${data.id}`,
+        this.serializeJson(data)
+        )
+        .pipe(
+            take(1), // Récupère l'objet qui vient de l'API
+            map((anyStagiaire: any) => { // Transforme le any en StagiaireModel
+                return this.deserializeFromForm(anyStagiaire);
+            })
+        )
+
+    }
 
     public delete(datas:StagiaireModel):Observable<HttpResponse<any>>{
         return this.httpClient.delete<any>(
@@ -156,6 +169,6 @@ export class StagiaireService {
         return stagiaire;
     }
 
-   
+
 }
 
