@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './stagiaires/list/list.component';
 import { DetailComponent } from './stagiaires/detail/detail.component';
 import { AddComponent } from './stagiaires/add/add.component';
+import { HomeComponent } from './home/home.component';
 
 
 //comme on est en objet, pas besoin de ce bout de code:
@@ -12,14 +13,18 @@ import { AddComponent } from './stagiaires/add/add.component';
   imports: [RouterModule.forRoot(AppRoutingModule.routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { 
+export class AppRoutingModule {
   //static = accès sans besoin d'instancier (cf. plus haut)
 public static routes: Routes = [
   {
     path:'', //chemin vide, doit toujours être la 1ère route
-    redirectTo: 'stagiaires',
+    redirectTo: 'home',
     //obligatoire quand il y a un redirectTo
     pathMatch: 'full' //Angular va analyser l'intégralité de la route pour matcher avec le path de l'url
+  },
+  {
+  path: 'home',
+  component: HomeComponent
   },
   {
     path:'stagiaires',
@@ -29,12 +34,12 @@ public static routes: Routes = [
   {
     path:'detail/:id',
     component:DetailComponent
-  
+
   },
   {
     path:'stagiaire/add',
     component:AddComponent
-  
+
   },
   {
     path:'poes',
@@ -44,7 +49,7 @@ public static routes: Routes = [
   {
     //TOUJOURS EN DERNIER!!!!!!!
     path:'**', // route fallback
-    //pour emmener l'utilisateur qui veut accéder à une route qui n'existe pas par à une autre route 
+    //pour emmener l'utilisateur qui veut accéder à une route qui n'existe pas par à une autre route
     redirectTo:'stagiaires',
     pathMatch: 'full',
   }
