@@ -1,6 +1,5 @@
 <header>
-  <mat-toolbar color="primary">
-
+  <mat-toolbar>
     <button mat-button [matMenuTriggerFor]="menus" mat-icon-button class="example-icon"
       aria-label="Example icon-button with menu icon">
       <mat-icon>
@@ -8,31 +7,26 @@
       </mat-icon>
     </button>
     <button mat-button [matMenuTriggerFor]="menus"></button>
-      <!--liste du menu-->
-    <mat-menu #menus="matMenu"> 
-          <!--titre de la 1ere partie-->
-      <button mat-menu-item [matMenuTriggerFor]="poec">POEC</button> 
-          <!--titre de la 2eme partie-->
-      <button mat-menu-item [matMenuTriggerFor]="poei">POEI</button> 
-      <button mat-menu-item [matMenuTriggerFor]="stagiaires">Stagiaires</button> 
-    </mat-menu>
-        <!--contenu de POEC-->
-    <mat-menu #poec="matMenu"> 
-      <button mat-menu-item>
-        <a [routerLink]="'/poes/list'">Liste des POES</a>
-      </button>
-    </mat-menu>
-        <!--contenu de POEI-->
-    <mat-menu #poei="matMenu">
-      <button mat-menu-item>Java FullStack</button>
-    </mat-menu>
-        <!--contenu de stagiaire-->
-    <mat-menu #stagiaires="matMenu">
-      <button mat-menu-item><a [routerLink]="'/stagiaires'">Liste des stagiaires</a></button>
-    </mat-menu>
-    
-    <span>My App</span>
-    <span class="example-spacer"></span>
+    <mat-menu #menus="matMenu" class="menu-content-list"> 
+      <ul class="inner-content">
+        <li><a [routerLink]="'/poes/list'">Liste des POES</a>
+          <ul>
+            <li>Java Fullstack</li>
+            <li>DevOps</li>
+          </ul>
+        </li>
+        <li><a [routerLink]="'/poes/list'">Liste des POES</a>
+          <ul>
+            <li>Java Fullstack</li>
+            <li>ABAP</li>
+          </ul>
+        </li>
+        <li>
+          <a [routerLink]="'/stagiaires'">Stagiaires</a>
+        </li>
+      </ul>
+    </mat-menu>   
+    <span class="title-app">J-L-App</span>
   </mat-toolbar>
 </header>
 
