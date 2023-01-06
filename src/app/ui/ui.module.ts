@@ -9,6 +9,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -30,8 +31,8 @@ export class UiModule {
     MatRadioModule,
     MatDatepickerModule,
     MatToolbarModule,
-    MatMenuModule
-  
+    MatMenuModule,
+    MatDialogModule
   ]
 
 }
