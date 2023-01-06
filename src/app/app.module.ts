@@ -5,10 +5,15 @@ import { AppComponent } from './app.component';
 import { StagiairesModule } from './stagiaires/stagiaires.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
+import { HomeComponent } from './home/home.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -16,7 +21,7 @@ import { SharedModule } from './shared/shared.module';
     StagiairesModule,
     BrowserAnimationsModule,
     SharedModule
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
