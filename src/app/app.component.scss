@@ -1,0 +1,10 @@
+header{
+    span {
+        margin-left: 3%;
+    }
+
+    button{
+        &.favoriteButton {margin-left: 80%;}
+        &.shareButton{margin-left: 2%;}
+    }
+}

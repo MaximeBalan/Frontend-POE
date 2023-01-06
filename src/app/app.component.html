@@ -1,15 +1,41 @@
-<h1>Hello {{ title }} !</h1>
+<header>
+  <mat-toolbar color="primary">
 
-<nav>
-  <ul>
-    <li>
-      <a [routerLink]="'/stagiaires'">Liste des stagiaires</a>
-    </li>
-    <li>
-      <a [routerLink]="'/detail'">Détails</a>
-    </li>
-  </ul>
-</nav>
+    <button mat-button [matMenuTriggerFor]="menus" mat-icon-button class="example-icon"
+      aria-label="Example icon-button with menu icon">
+      <mat-icon>
+        menu
+      </mat-icon>
+    </button>
+    <button mat-button [matMenuTriggerFor]="menus"></button>
+      <!--liste du menu-->
+    <mat-menu #menus="matMenu"> 
+          <!--titre de la 1ere partie-->
+      <button mat-menu-item [matMenuTriggerFor]="poec">POEC</button> 
+          <!--titre de la 2eme partie-->
+      <button mat-menu-item [matMenuTriggerFor]="poei">POEI</button> 
+      <button mat-menu-item [matMenuTriggerFor]="stagiaires">Stagiaires</button> 
+    </mat-menu>
+        <!--contenu de POEC-->
+    <mat-menu #poec="matMenu"> 
+      <button mat-menu-item>
+        <a [routerLink]="'/poes/list'">Liste des POES</a>
+      </button>
+    </mat-menu>
+        <!--contenu de POEI-->
+    <mat-menu #poei="matMenu">
+      <button mat-menu-item>Java FullStack</button>
+    </mat-menu>
+        <!--contenu de stagiaire-->
+    <mat-menu #stagiaires="matMenu">
+      <button mat-menu-item><a [routerLink]="'/stagiaires'">Liste des stagiaires</a></button>
+    </mat-menu>
+    
+    <span>My App</span>
+    <span class="example-spacer"></span>
+  </mat-toolbar>
+</header>
+
 <!--Etagère à routes: router-outlet-->
 <!--quand on va cliquer sur un des liens router, ça va accueillir les routes
 et charger les components, le contenu-->
