@@ -55,8 +55,19 @@ export class PoeService implements Icrud<Poe>{
   }
 
 
-  update(datas: Poe): void {
-    throw new Error('Method not implemented.');
+  public update(data:Poe): Observable<Poe>{
+    console.log("Values received by service:", data.id);
+    return this.httpClient.put<Poe>(
+      `${PoeService.CONTROLLER_PATH}/${data.id}`,
+      this.serializeJson(data)
+      )
+      .pipe(
+          take(1), // Récupère l'objet qui vient de l'API
+          map((anyPoe: any) => { // Transforme le any en StagiaireModel
+              return this.deserializeFromForm(anyPoe);
+          })
+      )
+
   }
 
   delete(datas: Poe):Observable<HttpResponse<any>> {

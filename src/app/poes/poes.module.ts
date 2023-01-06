@@ -5,14 +5,14 @@ import { PoesRoutingModule } from './poes-routing.module';
 import { AddComponent } from './components/add/add.component';
 import { ListComponent } from './components/list/list.component';
 import { SharedModule } from '../shared/shared.module';
-import { ManageComponent } from './components/manage/manage.component';
+import { UpdateComponent } from './components/update/update.component';
 
 
 @NgModule({
   declarations: [
     AddComponent,
     ListComponent,
-    ManageComponent
+    UpdateComponent
   ],
   imports: [
     CommonModule,

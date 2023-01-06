@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Poe } from 'src/app/core/models/poe';
 import { PoeService } from 'src/app/poes/services/poe/poe.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-poe',
@@ -16,7 +17,8 @@ export class ListComponent implements OnInit {
     private PoesService: PoesService,
     private snackBar: MatSnackBar*/
     private poeService: PoeService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
 
@@ -43,6 +45,10 @@ export class ListComponent implements OnInit {
           }
         )
       })
+  }
+  public update(poe:Poe):void{
+    console.log(`Got ${poe.id} from list and ready to update`);
+    this.router.navigate(['/poes/update', poe.id]);
   }
 
 }

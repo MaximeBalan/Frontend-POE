@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from '../poes/components/list/list.component';
 import { AddComponent } from './components/add/add.component';
-import { ManageComponent } from './components/manage/manage.component';
+import { UpdateComponent } from './components/update/update.component';
 
 const routes: Routes = [];
 
@@ -10,7 +10,7 @@ const routes: Routes = [];
   imports: [RouterModule.forChild(PoesRoutingModule.routes)],
   exports: [RouterModule]
 })
-export class PoesRoutingModule { 
+export class PoesRoutingModule {
   public static routes: Routes=[
     {
       path:'',
@@ -24,10 +24,13 @@ export class PoesRoutingModule {
     {
       path:'add',
       component: AddComponent
-    },{
-      path:'update/id',
-      component: ManageComponent
     },
+
+    {
+      path:'update/:id',
+      component: UpdateComponent
+    },
+
     {
       path: '**',
       redirectTo: 'list',

@@ -1,0 +1,68 @@
+<h1>Modifier une POE</h1>
+<form [formGroup]="addPoeForm" (ngSubmit)="onSubmit()">
+    <!--[formGroup]="addStagiaireForm" => permet de lier le form au component correspondant dans le .ts-->
+    <!--form fields go here-->
+    <mat-form-field>
+        <!--formControlName="lastName"=> permet de lier cet input au controller correspondant dans le .ts -->
+        <!--matInput permet de contrôler l'input et de le transformer en input de material-->
+        <input matInput type="text" placeholder="Nom de la poe" formControlName="title">
+        <!--vérificateur d'erreur-->
+        <mat-error *ngIf="addPoeForm.controls['title'].errors">
+            <!--message en cas d'erreur-->
+            Le nom de la POE est obligatoire !
+        </mat-error>
+    </mat-form-field>
+
+    <br>
+    <mat-form-field>
+        <input matInput type="text" placeholder="Type de Poe" formControlName="poeType">
+        <mat-error *ngIf="addPoeForm.controls['poeType'].errors">
+            Le type de poe est obligatoire ou n'a pas la bonne forme !
+        </mat-error>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Date de début</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="beginDate">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        <mat-error *ngIf="addPoeForm.controls['beginDate'].errors
+        && addPoeForm.controls['beginDate'].touched">
+            <!--touched => l'utilisateur a au moins touché une fois le formulaire-->
+            <span *ngIf="addPoeForm.controls['beginDate'].hasError('required')">
+                La date de début est obligatoire.
+            </span>
+        </mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Date de fin</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="endDate">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+        <mat-error *ngIf="addPoeForm.controls['endDate'].errors
+        && addPoeForm.controls['endDate'].touched">
+            <!--touched => l'utilisateur a au moins touché une fois le formulaire-->
+            <span *ngIf="addPoeForm.controls['endDate'].hasError('required')">
+                La date de fin est obligatoire.
+            </span>
+        </mat-error>
+    </mat-form-field>
+
+    <br>
+    <button mat-raised-button color="primary" type="submit" [disabled]="addPoeForm.invalid">
+        Modifier
+    </button>
+
+
+
+</form>
+
+<a [routerLink]="'/poes'" class="btn btn-primary">
+    Retour à la liste
+</a>
