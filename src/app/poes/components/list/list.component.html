@@ -24,17 +24,15 @@
           {{ poe.endDate | date:'dd/MM/YYYY' }}
           </td>
           <td>
+           
            <!--
-            <button mat-mini-fab color="warn" (click)="onDelete(stagiaire)">
+<button mat-mini-fab color="warn" (click)="onDelete(poe)">
               <mat-icon>delete</mat-icon>
             </button>
-           -->
+           --> 
+            <button mat-raised-button (click)="openDialog()">Open dialog without animation</button>
           </td>
-          <td>
-            <button mat-mini-fab color="warn" (click)="onDelete(poe)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
+         
         </tr>
       </ng-container>
     </tbody>

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Poe } from 'src/app/core/models/poe';
 import { PoeService } from 'src/app/poes/services/poe/poe.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-list-poe',
@@ -12,9 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ListComponent implements OnInit {
   public poes:Poe[]=[];
   constructor(
-   /* private router: Router, // DI => Dependency Injection
-    private PoesService: PoesService,
-    private snackBar: MatSnackBar*/
+    public dialog: MatDialog,
     private poeService: PoeService,
     private snackBar: MatSnackBar
   ) {}
@@ -27,6 +26,9 @@ export class ListComponent implements OnInit {
     });
   }
 
+  openDialog(): void {
+    this.dialog.open(DialogAnimationsExampleDialog);
+  }
   public onDelete(poe: Poe):void{
     this.poeService.delete(poe)
       .subscribe((response : HttpResponse<any>)=>{
@@ -36,7 +38,7 @@ export class ListComponent implements OnInit {
           1
         );
         this.snackBar.open(
-          `le stagiaire ${poe.id} a été supprimé`,
+          `la POE ${poe.title} a été supprimé`,
           'Compris', //le nom à cliquer pour fermer la notification d'alerte
           {
             duration: 2500
@@ -44,5 +46,13 @@ export class ListComponent implements OnInit {
         )
       })
   }
-
 }
+
+@Component({
+  selector: 'app-list-poe',
+  templateUrl: 'list.component.dialog.html',
+})
+export class DialogAnimationsExampleDialog {
+  constructor(public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>) {}
+}
+
