@@ -15,11 +15,13 @@ header {
     mat-icon {
         color: $menu-font-color;
     }
-
 }
 
 ul {
     &.inner-content {
-        padding-right: 1em;
+        padding-right: 2.5vw;
+    }
+    li{
+        list-style: none;
     }
 }
