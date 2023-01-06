@@ -1,0 +1,27 @@
+//variables
+$default-color: rgb(23, 23, 22);
+$menu-font-color: rgb(255, 255, 255);
+$purple: lighten(rgb(20, 20, 200), 30%);
+
+header {
+    mat-toolbar {
+        background-color: $purple;
+    }
+
+    .title-app {
+        color: $menu-font-color;
+    }
+
+    mat-icon {
+        color: $menu-font-color;
+    }
+}
+
+ul {
+    &.inner-content {
+        padding-right: 2.5vw;
+    }
+    li{
+        list-style: none;
+    }
+}

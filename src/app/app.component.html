@@ -1,15 +1,35 @@
-<h1>Hello {{ title }} !</h1>
+<header>
+  <mat-toolbar>
+    <button mat-button [matMenuTriggerFor]="menus" mat-icon-button class="example-icon"
+      aria-label="Example icon-button with menu icon">
+      <mat-icon>
+        menu
+      </mat-icon>
+    </button>
+    <button mat-button [matMenuTriggerFor]="menus"></button>
+    <mat-menu #menus="matMenu" class="menu-content-list"> 
+      <ul class="inner-content">
+        <li><a [routerLink]="'/poes/list'">POEC's</a>
+          <ul>
+            <li>Java Fullstack</li>
+            <li>DevOps</li>
+          </ul>
+        </li>
+        <li><a [routerLink]="'/poes/list'">POEI's</a>
+          <ul>
+            <li>Java Fullstack</li>
+            <li>ABAP</li>
+          </ul>
+        </li>
+        <li>
+          <a [routerLink]="'/stagiaires'">Stagiaires</a>
+        </li>
+      </ul>
+    </mat-menu>   
+    <span class="title-app">J-L-App</span>
+  </mat-toolbar>
+</header>
 
-<nav>
-  <ul>
-    <li>
-      <a [routerLink]="'/stagiaires'">Liste des stagiaires</a>
-    </li>
-    <li>
-      <a [routerLink]="'/detail'">Détails</a>
-    </li>
-  </ul>
-</nav>
 <!--Etagère à routes: router-outlet-->
 <!--quand on va cliquer sur un des liens router, ça va accueillir les routes
 et charger les components, le contenu-->
