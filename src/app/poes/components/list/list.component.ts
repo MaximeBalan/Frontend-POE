@@ -1,10 +1,10 @@
 import { HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Poe } from 'src/app/core/models/poe';
 import { PoeService } from 'src/app/poes/services/poe/poe.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {MatDialog, MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-list-poe',
@@ -28,26 +28,12 @@ export class ListComponent implements OnInit {
     });
   }
 
-  openDialog(): void {
-    this.dialog.open(DialogAnimationsExampleDialog);
+  openDialog(poe: Poe): void {
+    this.dialog.open(DialogAnimationsExampleDialog, {
+      data: poe 
+    });
   }
-  public onDelete(poe: Poe):void{
-    this.poeService.delete(poe)
-      .subscribe((response : HttpResponse<any>)=>{
-        //supprimer la ligne dans this.stagiaires
-        this.poes.splice(
-          this.poes.findIndex((obj: Poe) => obj.id === poe.id),
-          1
-        );
-        this.snackBar.open(
-          `la POE ${poe.title} a été supprimé`,
-          'Compris', //le nom à cliquer pour fermer la notification d'alerte
-          {
-            duration: 2500
-          }
-        )
-      })
-  }
+
   public update(poe:Poe):void{
     console.log(`Got ${poe.id} from list and ready to update`);
     this.router.navigate(['/poes/update', poe.id]);
@@ -61,22 +47,23 @@ export class ListComponent implements OnInit {
 })
 export class DialogAnimationsExampleDialog {
 
-  public poes:Poe[]=[];
+  public poes:Poe[] = [];
 
-  constructor(public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>,
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Poe ,public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>,
     private poeService: PoeService,
     private snackBar: MatSnackBar) {}
 
-  public onDelete(poe: Poe):void{
-    this.poeService.delete(poe)
+
+  public onDelete():void{
+    this.poeService.delete(this.data)
       .subscribe((response : HttpResponse<any>)=>{
-        //supprimer la ligne dans this.stagiaires
+        //supprimer la ligne dans this.poes
         this.poes.splice(
-          this.poes.findIndex((obj: Poe) => obj.id === poe.id),
+          this.poes.findIndex((obj: Poe) => obj.id === this.data.id),
           1
         );
         this.snackBar.open(
-          `la POE ${poe.title} a été supprimé`,
+          `la POE ${this.data.title} a été supprimé`,
           'Compris', //le nom à cliquer pour fermer la notification d'alerte
           {
             duration: 2500

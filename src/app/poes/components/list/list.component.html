@@ -23,14 +23,10 @@
           <td>
           {{ poe.endDate | date:'dd/MM/YYYY' }}
           </td>
-          <td>
-           
-           
-        <button mat-mini-fab color="warn" (click)="onDelete(poe)">
+          <td>    
+            <button mat-mini-fab color="warn" (click)="openDialog(poe)">
               <mat-icon>delete</mat-icon>
             </button>
-           
-            <button mat-raised-button (click)="openDialog()">Supprimer</button>
           </td>
           <td>
             <button mat-mini-fab class="btnEdit" (click)="update(poe)">
