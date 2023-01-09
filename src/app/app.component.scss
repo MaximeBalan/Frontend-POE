@@ -13,9 +13,10 @@ header {
     }
 
     mat-icon {
-        color: $menu-font-color;
+      color: $menu-font-color;
+       
     }
-}
+}  
 
 ul {
     &.inner-content {

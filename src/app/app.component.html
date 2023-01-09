@@ -6,6 +6,12 @@
         menu
       </mat-icon>
     </button>
+
+    <button class="btn-home">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home">
+        <a [routerLink]="'/home'">home</a>
+      </mat-icon>
+    </button>
     <button mat-button [matMenuTriggerFor]="menus"></button>
     <mat-menu #menus="matMenu" class="menu-content-list"> 
       <ul class="inner-content">
