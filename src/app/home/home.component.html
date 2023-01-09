@@ -1,4 +1,25 @@
 <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
   <h1>Welcome dear Jean-Luc <i class="em em-wink" aria-role="presentation" aria-label="WINKING FACE"></i></h1>
 
+
+  <div class="grid-container">
+  <ng-container *ngFor="let poe of poes">
+
+    <div class="grid-child {{poe.id}}">
+      <h1>
+        {{ this.poe.title}} {{ this.poe.poeType}}
+    </h1>
+    <p>Date début : {{this.poe.beginDate | date :'dd/MM/YYYY'}}</p>
+    <p>Date fin : {{this.poe.endDate | date :'dd/MM/YYYY'}}</p>
+    <hr class="solid">
+
+    <div class="buttonscontainer">
+    <button class="buttons" type="button" (click)="goToList()">1</button>
+    <button class="buttons" type="button" (click)="goToList()">6</button>
+    <button class="buttons" type="button" (click)="goToList()">12</button>
+    </div>
+    </div>
+
+</ng-container>
+</div>
 <router-outlet></router-outlet>
