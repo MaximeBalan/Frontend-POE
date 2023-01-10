@@ -28,12 +28,13 @@
           </ul>
         </li>
         <li>
-          <a [routerLink]="'/stagiaires'">Stagiaires</a>
+          <a [routerLink]="'/stagiaires'">{{ 'links.interns' | translate  }}</a>
         </li>
       </ul>
     </mat-menu>   
-    <span class="title-app">J-L-App</span>
     <span>{{'appTitle' | translate}}</span>
+    <button type="button" (click)="switchLanguage('fr')" [disabled]="intlService.language === 'fr'">FR</button>
+    <button type="button" (click)="switchLanguage('en')" [disabled]="intlService.language === 'en'">EN</button>
   </mat-toolbar>
 </header>
 

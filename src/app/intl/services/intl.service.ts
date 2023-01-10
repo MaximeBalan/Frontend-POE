@@ -18,6 +18,7 @@ export class IntlService {
   }
   set language(language: string){
     this._language = language;
+    this._switchLanguage();
   }
 
   //méthode qu'on va appeler dès qu'Angular se lance et avant l'affichage
