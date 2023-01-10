@@ -1,5 +1,8 @@
+
 <header>
+  
   <mat-toolbar>
+    
     <button mat-button [matMenuTriggerFor]="menus" mat-icon-button class="example-icon"
       aria-label="Example icon-button with menu icon">
       <mat-icon>
@@ -32,9 +35,10 @@
         </li>
       </ul>
     </mat-menu>   
-    <span>{{'appTitle' | translate}}</span>
-    <button type="button" (click)="switchLanguage('fr')" [disabled]="intlService.language === 'fr'">FR</button>
-    <button type="button" (click)="switchLanguage('en')" [disabled]="intlService.language === 'en'">EN</button>
+    <span class="title-app">J-L-App</span>
+    <h1>{{'appTitle' | translate }}</h1>
+    <button type="button" (click)="switchLanguage('fr')" [disabled]="intlService.language === 'fr'">Fr</button>
+    <button type="button" (click)="switchLanguage('en')" [disabled]="intlService.language === 'en'">En</button>
   </mat-toolbar>
 </header>
 

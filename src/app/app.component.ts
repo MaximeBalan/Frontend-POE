@@ -16,8 +16,8 @@ export class AppComponent {
     public intlService: IntlService
   ) {}
 
-  switchLanguage(language: string): void{ 
-    this.intlService.language = language;
-   }
+  switchLanguage(language: string): void{
+      this.intlService.language = language
+  }
 
 }

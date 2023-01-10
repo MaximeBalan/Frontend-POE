@@ -14,6 +14,7 @@ import { IntlModule } from '../intl/intl.module';
   declarations: [],
   imports: [
     CommonModule
+    
   ],
   //pour les modules en commun, on les exportera ici
   exports: [

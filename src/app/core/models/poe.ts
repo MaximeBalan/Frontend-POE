@@ -2,8 +2,8 @@ export class Poe{
     private _id?: number ;
     private _title: string = '';
     private _poeType: any;
-    private _beginDate!: Date | undefined;
-    private _endDate!: Date | undefined ;
+    private _beginDate!: Date ;
+    private _endDate!: Date ;
 
     get id(): number | undefined {
       return this._id
@@ -33,7 +33,7 @@ export class Poe{
       return this._beginDate
     }
     
-    set beginDate(val: Date | undefined) {
+    set beginDate(val: Date ) {
       this._beginDate = val
     }
     
@@ -41,7 +41,7 @@ export class Poe{
       return this._endDate
     }
     
-    set endDate(val: Date | undefined) {
+    set endDate(val: Date ) {
       this._endDate = val
     }
     
