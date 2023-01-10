@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UiModule } from '../ui/ui.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
+import { IntlModule } from '../intl/intl.module';
 
 
 //sert à regrouper tous les modules dont on a besoin dans les autres modules
@@ -20,7 +21,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     HttpClientModule,
     ReactiveFormsModule,
     UiModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    IntlModule
 
   ]
 })

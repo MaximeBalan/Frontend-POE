@@ -1,15 +1,18 @@
 
   <table>
+  
+    <!--<table matSort (matSortChange)="sortData($event)"></table>-->
+  
     <thead>
       <tr>
-        <th>Titre</th>
-        <th>Type</th>
-        <th>Date de début</th>
-        <th>Date de fin</th>
+        <th mat-sort-header="title">Titre</th>
+        <th mat-sort-header="poeType">Type</th>
+        <th mat-sort-header="beginDate">Date de début</th>
+        <th mat-sort-header="endDate">Date de fin</th>
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let poe of poes">
+      <ng-container *ngFor="let poe of sortedData">
         <tr>
           <td>
             {{ poe.title | uppercase}}

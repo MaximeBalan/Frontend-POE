@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import {MatDialog, MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {Sort} from '@angular/material/sort';
 
+
 @Component({
   selector: 'app-list-poe',
   templateUrl: './list.component.html',
@@ -14,6 +15,8 @@ import {Sort} from '@angular/material/sort';
 })
 export class ListComponent implements OnInit {
   public poes:Poe[]=[];
+  public sortedData: Poe[]=[];
+
   constructor(
     public dialog: MatDialog,
     private poeService: PoeService,
@@ -40,8 +43,8 @@ export class ListComponent implements OnInit {
     this.router.navigate(['/poes/update', poe.id]);
   }
 
-  /*sortData(sort: Sort) {
-    const data = this.desserts.slice();
+  sortData(sort: Sort) {
+    const data = this.poes.slice();
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;
       return;
@@ -50,23 +53,17 @@ export class ListComponent implements OnInit {
     this.sortedData = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'name':
-          return compare(a.name, b.name, isAsc);
-        case 'calories':
-          return compare(a.calories, b.calories, isAsc);
-        case 'fat':
-          return compare(a.fat, b.fat, isAsc);
-        case 'carbs':
-          return compare(a.carbs, b.carbs, isAsc);
-        case 'protein':
-          return compare(a.protein, b.protein, isAsc);
+        case 'title':
+          return compare(a.title, b.title, isAsc);
+        case 'poeType':
+          return compare(a.poeType, b.poeType, isAsc);
         default:
           return 0;
       }
     });
   }
-}*/
 }
+
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
