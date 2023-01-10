@@ -58,6 +58,10 @@ export class ListComponent implements OnInit {
           return compare(a.title, b.title, isAsc);
         case 'poeType':
           return compare(a.poeType, b.poeType, isAsc);
+          case 'beginDate':
+            return compare(a.beginDate, b.beginDate, isAsc);
+            case 'endDate':
+              return compare(a.endDate, b.endDate, isAsc);
         default:
           return 0;
       }
@@ -65,7 +69,7 @@ export class ListComponent implements OnInit {
   }
 }
 
-function compare(a: number | string, b: number | string, isAsc: boolean) {
+function compare(a: number | string | Date, b: number | string | Date, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
 
