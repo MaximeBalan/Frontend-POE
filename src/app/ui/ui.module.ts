@@ -10,7 +10,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import {MatSortModule} from '@angular/material/sort';
 @NgModule({
   declarations: [],
   imports: [
@@ -33,7 +33,8 @@ export class UiModule {
     MatDatepickerModule,
     MatToolbarModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSortModule
     
   ]
 

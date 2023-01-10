@@ -6,12 +6,12 @@
       <tr>
         <th mat-sort-header="title">Titre</th>
         <th mat-sort-header="poeType">Type</th>
-        <th mat-sort-header="beginDate">Date de début</th>
-        <th mat-sort-header="endDate">Date de fin</th>
+        <th>Date de début</th>
+        <th>Date de fin</th>
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let poe of sortedData">
+      <ng-container *ngFor="let poe of poes">
         <tr>
           <td>
             {{ poe.title | uppercase}}

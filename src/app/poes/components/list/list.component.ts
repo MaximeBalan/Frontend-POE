@@ -15,8 +15,7 @@ import {Sort} from '@angular/material/sort';
 })
 export class ListComponent implements OnInit {
   public poes:Poe[]=[];
-  public sortedData: Poe[]=[];
-
+ 
   constructor(
     public dialog: MatDialog,
     private poeService: PoeService,
@@ -24,7 +23,6 @@ export class ListComponent implements OnInit {
     private router: Router
   ) {
 
-    this.sortedData= this.poes.slice();
   }
 
 
@@ -49,11 +47,11 @@ export class ListComponent implements OnInit {
   sortData(sort: Sort) {
     const data = this.poes.slice();
     if (!sort.active || sort.direction === '') {
-      this.sortedData = data;
+      this.poes = data;
       return;
     }
 
-    this.sortedData = data.sort((a, b) => {
+    this.poes = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'title':
