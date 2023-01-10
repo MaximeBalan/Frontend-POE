@@ -22,7 +22,10 @@ export class ListComponent implements OnInit {
     private poeService: PoeService,
     private snackBar: MatSnackBar,
     private router: Router
-  ) {}
+  ) {
+
+    this.sortedData= this.poes.slice();
+  }
 
 
   ngOnInit(): void {
