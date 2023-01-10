@@ -13,6 +13,7 @@ import { MatNativeDateModule } from '@angular/material/core';
   declarations: [],
   imports: [
     CommonModule
+    
   ],
   //pour les modules en commun, on les exportera ici
   exports: [

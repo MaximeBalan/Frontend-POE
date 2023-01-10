@@ -14,7 +14,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    
   ],
   exports:[
     ...UiModule.materials //...spread operator => convertit un tableau en une liste d'éléments
@@ -33,6 +34,7 @@ export class UiModule {
     MatToolbarModule,
     MatMenuModule,
     MatDialogModule
+    
   ]
 
 }
