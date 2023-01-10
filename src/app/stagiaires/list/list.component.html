@@ -26,12 +26,12 @@
         <td>
           <span [ngClass]="{'bubble': true, 'male': stagiaire.gender === 'M', 'female': stagiaire.gender === 'F'}"
             (click)="goToDetail(stagiaire.id)">
-            {{ stagiaire | initials }}
+            {{ stagiaire | initials | uppercase }}
           </span>
         </td>
         <td>
           <!--on va passer les valeurs des paramètres pour la pipe-->
-          {{ stagiaire | initials :false :true }}
+          {{ stagiaire | initials :false :true | uppercase}}
         </td>
         <td>
           {{ stagiaire.lastName | uppercase}}
