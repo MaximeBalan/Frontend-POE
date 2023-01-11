@@ -33,6 +33,8 @@ export class ListComponent implements OnInit {
     });
   }
 
+  public findByType(poe)
+
   openDialog(poe: Poe): void {
     this.dialog.open(DialogAnimationsExampleDialog, {
       data: poe 
