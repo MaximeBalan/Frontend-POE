@@ -15,6 +15,7 @@ import {Sort} from '@angular/material/sort';
 })
 export class ListComponent implements OnInit {
   public poes:Poe[]=[];
+  public showLi: string = 'A';
  
   constructor(
     public dialog: MatDialog,
@@ -29,11 +30,10 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.poeService.findAll()
     .subscribe((poes: Poe[])=> {
-      this.poes = poes;
+      this.poes = poes.filter((p:Poe)=> p.poeType === 'POEC');
     });
   }
 
-  public findByType(poe)
 
   openDialog(poe: Poe): void {
     this.dialog.open(DialogAnimationsExampleDialog, {
@@ -45,6 +45,8 @@ export class ListComponent implements OnInit {
     console.log(`Got ${poe.id} from list and ready to update`);
     this.router.navigate(['/poes/update', poe.id]);
   }
+
+  
 
   sortData(sort: Sort) {
     const data = this.poes.slice();

@@ -35,6 +35,7 @@ export class ListComponent implements OnInit {
       this.showLi = 'M';
     }
   }
+  
   public count():number{
     let sum = 0;
     for(let stagiaire of this.stagiaires){
