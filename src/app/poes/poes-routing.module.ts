@@ -18,7 +18,11 @@ export class PoesRoutingModule {
       pathMatch: 'full'
     },
     {
-      path: 'list',
+      path: 'list', 
+      component: ListComponent
+    },
+    {
+      path: 'list/:type', // ce qu'il y a derriere les : sera mis en parametres de l'activated route 
       component: ListComponent
     },
     {

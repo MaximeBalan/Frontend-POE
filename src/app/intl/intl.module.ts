@@ -20,13 +20,13 @@ import { HttpClient } from '@angular/common/http';
         ]
       }
     }
-    ) //pour que le token soit fourni à la racine de l'application
+    )
   ],
-  exports:[
+  exports: [
     TranslateModule
   ],
-  providers: [
-    intlProvider //on rajoute un fournisseur
+  providers : [
+    intlProvider
   ]
 })
 export class IntlModule { }
