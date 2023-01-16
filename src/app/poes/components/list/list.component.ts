@@ -3,9 +3,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Poe } from 'src/app/core/models/poe';
 import { PoeService } from 'src/app/poes/services/poe/poe.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {MatDialog, MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {Sort} from '@angular/material/sort';
+import { combineLatest } from 'rxjs';
 
 
 @Component({
@@ -16,25 +17,32 @@ import {Sort} from '@angular/material/sort';
 export class ListComponent implements OnInit {
   public poes:Poe[]=[];
   public showLi: string = 'A';
+  public poeType: string | null = '';
  
   constructor(
     public dialog: MatDialog,
-    private poeService: PoeService,
+    private poeService: PoeService, // quand on veut utiliser un service dans un composant il faut l'ajouter comme ça. C'est que les methodes des classes static qu'on importe
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
-
   }
 
+  // combineLatest permet de combiner le resultat de 2 observables pour avoir les deux reponses en meme temps 
 
   ngOnInit(): void {
-    this.poeService.findAll()
-    .subscribe((poes: Poe[])=> {
-      this.poes = poes.filter((p:Poe)=> p.poeType === 'POEC');
+    combineLatest([this.route.paramMap, this.poeService.findAll()]).subscribe(([routeParam, poes]) => {
+      if (routeParam.get('type') != null) {
+        this.poeType = routeParam.get('type'); // permet de recuperer POEI ou POEC d'apres l'uri et le fichier de routing via "type"
+        this.poes = poes.filter((p:Poe)=> p.poeType === this.poeType);
+      } else {
+        this.poes = poes;
+      }
     });
   }
 
-
+  
+  
   openDialog(poe: Poe): void {
     this.dialog.open(DialogAnimationsExampleDialog, {
       data: poe 
