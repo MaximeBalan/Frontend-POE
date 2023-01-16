@@ -11,6 +11,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatSortModule} from '@angular/material/sort';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -34,7 +36,8 @@ export class UiModule {
     MatToolbarModule,
     MatMenuModule,
     MatDialogModule,
-    MatSortModule
+    MatSortModule,
+    MatExpansionModule
     
   ]
 

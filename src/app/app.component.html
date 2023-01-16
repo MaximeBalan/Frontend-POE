@@ -1,47 +1,60 @@
-
 <header>
-  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+<!-- TOOLBAR -->
   <mat-toolbar>
-    
     <button mat-button [matMenuTriggerFor]="menus" mat-icon-button class="example-icon"
       aria-label="Example icon-button with menu icon">
       <mat-icon>
         menu
       </mat-icon>
     </button>
-
-    <button class="btn-home">
-      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home">
-        <a [routerLink]="'/home'">home</a>
+    <button mat-button mat-icon-button fontIcon="home">
+      <mat-icon aria-label="Example home icon" [routerLink]="'/home'">
+        home
       </mat-icon>
     </button>
+      <!-- MENU -->
     <button mat-button [matMenuTriggerFor]="menus"></button>
-    <mat-menu #menus="matMenu" class="menu-content-list"> 
+    <mat-menu #menus="matMenu" class="menu-content-list">
       <ul class="inner-content">
-        <li><a [routerLink]="'/poes/list'">POEC's</a>
+        <li><a [routerLink]="'/poes/list'" [queryParams]="{pt:'all'}">POE's</a></li>
+        <li><a [routerLink]="'/poes/list'" [queryParams]="{pt:'POEC'}">POEC's</a>
           <ul>
             <li>Java Fullstack</li>
             <li>DevOps</li>
           </ul>
         </li>
-        <li><a [routerLink]="'/poes/list'">POEI's</a>
+        <li><a [routerLink]="'/poes/list'" [queryParams]="{pt:'POEI'}">POEI's</a>
           <ul>
             <li>Java Fullstack</li>
             <li>ABAP</li>
           </ul>
         </li>
         <li>
-          <a [routerLink]="'/stagiaires'">{{ 'links.interns' | translate  }}</a>
+          <a [routerLink]="'/stagiaires'">{{ 'links.interns' | translate }}</a>
         </li>
       </ul>
-    </mat-menu>   
-    <span class="title-app">J-L-App</span>
+    </mat-menu>
+    <!-- <span class="title-app">J-L-App</span> -->
     <h1>{{'appTitle' | translate }}</h1>
     <button type="button" (click)="switchLanguage('fr')" [disabled]="intlService.language === 'fr'">Fr</button>
     <button type="button" (click)="switchLanguage('en')" [disabled]="intlService.language === 'en'">En</button>
+    <!-- BOUTONS A DROITE -->
+    <span class="example-spacer"></span>
+     <button mat-button mat-icon-button>
+      <span class="material-symbols-outlined">
+        search
+      </span>
+    </button>
+    <button mat-button mat-icon-button>
+      <span class="material-symbols-outlined">
+        login
+      </span>
+    </button>
   </mat-toolbar>
 </header>
-
 <!--Etagère à routes: router-outlet-->
 <!--quand on va cliquer sur un des liens router, ça va accueillir les routes
 et charger les components, le contenu-->
