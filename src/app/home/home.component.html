@@ -7,16 +7,17 @@
 
     <div class="grid-child {{poe.id}}">
       <h1>
-        {{ this.poe.title}} {{ this.poe.poeType}}
+        <a  (click)="goToDetail(poe.id)">{{ this.poe.title}} {{ this.poe.poeType}}</a>
+        
     </h1>
     <p>Date début : {{this.poe.beginDate | date :'dd/MM/YYYY'}}</p>
     <p>Date fin : {{this.poe.endDate | date :'dd/MM/YYYY'}}</p>
     <hr class="solid">
 
     <div class="buttonscontainer">
-    <button class="buttons" type="button" (click)="goToList()">1</button>
-    <button class="buttons" type="button" (click)="goToList()">6</button>
-    <button class="buttons" type="button" (click)="goToList()">12</button>
+    <button class="buttons" type="button" >1</button>
+    <button class="buttons" type="button" >6</button>
+    <button class="buttons" type="button" >12</button>
     </div>
     </div>
 

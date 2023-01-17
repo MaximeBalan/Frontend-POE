@@ -5,13 +5,16 @@ import { UiModule } from '../ui/ui.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { IntlModule } from '../intl/intl.module';
+import { InitialsPipe } from '../stagiaires/pipes/initials.pipe';
 
 
 //sert à regrouper tous les modules dont on a besoin dans les autres modules
 //on aura plus qu'à importer ce module, contenant tous les modules mis à disposition pour les autres modules
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    InitialsPipe
+  ],
   imports: [
     CommonModule
     
@@ -23,7 +26,8 @@ import { IntlModule } from '../intl/intl.module';
     UiModule,
     //@TODO move to UiModule
     MatNativeDateModule,
-    IntlModule
+    IntlModule,
+    InitialsPipe
 
   ]
 })

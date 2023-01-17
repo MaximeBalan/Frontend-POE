@@ -5,6 +5,8 @@ import { AddComponent } from './components/add/add.component';
 import { DialogAnimationsExampleDialog, ListComponent } from './components/list/list.component';
 import { SharedModule } from '../shared/shared.module';
 import { UpdateComponent } from './components/update/update.component';
+import { PoedetailComponent } from './components/poedetail/poedetail.component';
+import { InitialsPipe } from '../stagiaires/pipes/initials.pipe';
 
 
 
@@ -13,7 +15,8 @@ import { UpdateComponent } from './components/update/update.component';
     AddComponent,
     ListComponent,
     UpdateComponent,
-    DialogAnimationsExampleDialog
+    DialogAnimationsExampleDialog,
+    PoedetailComponent
   ],
   imports: [
     CommonModule,

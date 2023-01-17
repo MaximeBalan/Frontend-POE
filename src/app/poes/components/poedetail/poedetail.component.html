@@ -1,0 +1,64 @@
+  
+  <table>
+    <thead>
+      <tr>
+        <th>&nbsp;</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Genre</th>
+        <th>Date de naissance</th>
+        <th>POE</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let stagiaire of stagiaires">
+      <ng-container *ngIf="(stagiaire.poe.id == poeId)">
+
+        <tr *ngIf="(showLi === 'A') ? true: stagiaire.gender ===showLi">
+          <td>
+            <span [ngClass]="{'bubble': true, 'male': stagiaire.gender === 'M', 'female': stagiaire.gender === 'F'}">
+              {{ stagiaire  | initials}}
+            </span>
+          </td>
+          <td>
+            {{ stagiaire.lastName | uppercase}}
+          </td>
+          <td>
+            {{ stagiaire.firstName }}
+          </td>
+          <td>
+            {{ stagiaire.gender }}
+          </td>
+          <td>
+            {{ stagiaire.birthDate | date:'dd/MM/YYYY' }}
+          </td>
+          <td>
+            {{ stagiaire.poe.title }}
+          </td>
+          <button mat-mini-fab class="btnEdit" mat-button [matMenuTriggerFor]="menu">
+            <mat-icon>edit</mat-icon>
+          </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="update(stagiaire)">Modifier</button>
+    <button mat-menu-item >Désactiver</button>
+    <button mat-menu-item (click)="onDelete(stagiaire)">Supprimer</button>
+  </mat-menu>
+        </tr>
+      </ng-container>
+    </ng-container>
+    </tbody>
+  
+    <tfoot>
+      <td colspan="5">
+        Total = {{ displayNumber() }}/{{count()}}
+        <!--on peut aussi mettre stagiaires.length à la place de count()-->
+      </td>
+    </tfoot>
+  </table>
+  
+  
+  <a [routerLink]="'/stagiaire/add'" class="btn btn-primary">
+    Ajouter un stagiaire
+  </a>
+  

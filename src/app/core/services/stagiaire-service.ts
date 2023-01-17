@@ -18,7 +18,7 @@ export class StagiaireService {
     //pour switcher entre fakeApi et api
     private static readonly CONTROLLER_PATH: string = `${environment.api}trainees`;
     //private static readonly CONTROLLER_PATH: string = `${environment.fakeApi}stagiaires`;
-
+    private traineesOfPoe:[]=[];
     public constructor(
         //service qui permet d'envoyer de la requete http
         private httpClient: HttpClient
@@ -39,6 +39,7 @@ export class StagiaireService {
             }) //transforme un Observable(ici O<any[]>) en un autre Observable (O<StagiaireModel[]>)
         ) //pipeline
     }
+
 
     public findOne(id: number): Observable<StagiaireModel> {
         return this.httpClient.get<any>(
@@ -137,8 +138,8 @@ export class StagiaireService {
         stagiaire.birthDate = new Date (anyStagiaire.birthdate);
         stagiaire.gender = anyStagiaire.gender;
         stagiaire.phoneNumber = anyStagiaire.phoneNumber;
-        stagiaire.email = anyStagiaire.email
-
+        stagiaire.email = anyStagiaire.email;
+        stagiaire.poe = anyStagiaire.poe
         return stagiaire;
     }
 //du front vers le back

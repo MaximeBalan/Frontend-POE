@@ -37,6 +37,7 @@ export class PoeService implements Icrud<Poe>{
     .pipe(
       take(1),
       map((anyPoe: any) => {
+        console.log(anyPoe)
         return this.deserializeFromJson(anyPoe);
       })
     )
@@ -89,6 +90,7 @@ public deserializeFromJson(anyPoe: ApiPoeType): Poe {
   poe.beginDate = new Date (anyPoe.beginDate);
   poe.endDate = new Date (anyPoe.endDate);
   poe.poeType= anyPoe.poeType;
+  poe.stagiaires= anyPoe.stagiaires
   return poe;
 }
 
@@ -99,6 +101,7 @@ public serializeJson(anyPoe: any): ApiPoeType {
     beginDate : new Date (anyPoe.beginDate),
     endDate : new Date (anyPoe.endDate),
     poeType: anyPoe.poeType,
+    stagiaires: anyPoe.stagiaires,
   }
   console.log("POE à envoyer au back: ", poe)
   return poe;

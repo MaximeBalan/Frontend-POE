@@ -8,15 +8,15 @@
   Display All
 </button>
 
-<table>
+<table matSort (matSortChange)="sortData($event)">
   <thead>
     <tr>
       <th>&nbsp;</th>
-      <th>Initials</th>
-      <th>Name</th>
-      <th>FirstName</th>
-      <th>Gender</th>
-      <th>Birthdate</th>
+      <th mat-sort-header="lastName">Nom</th>
+      <th mat-sort-header="firstName">Prénom</th>
+      <th>Genre</th>
+      <th>Date de naissance</th>
+      <th>POE</th>
       <th>&nbsp;</th>
     </tr>
   </thead>
@@ -28,10 +28,6 @@
             (click)="goToDetail(stagiaire.id)">
             {{ stagiaire | initials | uppercase }}
           </span>
-        </td>
-        <td>
-          <!--on va passer les valeurs des paramètres pour la pipe-->
-          {{ stagiaire | initials :false :true | uppercase}}
         </td>
         <td>
           {{ stagiaire.lastName | uppercase}}
@@ -46,15 +42,17 @@
           {{ stagiaire.birthDate | date:'dd/MM/YYYY' }}
         </td>
         <td>
-          <button mat-mini-fab color="warn" (click)="onDelete(stagiaire)">
-            <mat-icon>delete</mat-icon>
-          </button>
+          {{ stagiaire.poe.title }}
         </td>
-        <td>
-          <button mat-mini-fab class="btnEdit" (click)="update(stagiaire)">
-            <mat-icon>edit</mat-icon>
-          </button>
-        </td>
+        <button mat-mini-fab class="btnEdit" mat-button [matMenuTriggerFor]="menu">
+          <mat-icon>edit</mat-icon>
+        </button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="update(stagiaire)">Modifier</button>
+  <button mat-menu-item >Désactiver</button>
+  <button mat-menu-item (click)="onDelete(stagiaire)">Supprimer</button>
+</mat-menu>
+       
       </tr>
     </ng-container>
   </tbody>

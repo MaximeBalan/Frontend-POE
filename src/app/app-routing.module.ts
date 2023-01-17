@@ -5,6 +5,7 @@ import { DetailComponent } from './stagiaires/detail/detail.component';
 import { AddComponent } from './stagiaires/add/add.component';
 import { UpdateComponent } from './stagiaires/update/update.component';
 import { HomeComponent } from './home/home.component';
+import { PoedetailComponent } from './poes/components/poedetail/poedetail.component';
 
 
 //comme on est en objet, pas besoin de ce bout de code:
@@ -35,6 +36,11 @@ public static routes: Routes = [
   {
     path:'detail/:id',
     component:DetailComponent
+
+  },
+  {
+    path:'detailPoe/:id',
+    component:PoedetailComponent
 
   },
   {
