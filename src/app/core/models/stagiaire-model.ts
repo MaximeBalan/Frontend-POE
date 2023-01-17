@@ -1,3 +1,6 @@
+import { Poe } from "./poe";
+
+
 export class StagiaireModel {
     private _id: number = 0;
     private _lastName: string = '';
@@ -7,6 +10,17 @@ export class StagiaireModel {
     private _birthDate?: Date | undefined;
     private _phoneNumber: string = '';
     private _email: string = '';
+    private _poe!: Poe;
+
+
+    get poe() {
+      return this._poe
+    }
+    
+    set poe(val: Poe) {
+      this._poe = val
+    }
+
 
     get id() {
       return this._id
@@ -63,6 +77,5 @@ export class StagiaireModel {
     set email(val: string) {
       this._email = val
     }
-
-
-}
+  
+  }

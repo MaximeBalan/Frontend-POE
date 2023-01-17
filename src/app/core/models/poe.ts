@@ -1,15 +1,27 @@
+import { StagiaireModel } from "./stagiaire-model";
+
 export class Poe{
-    private _id?: number ;
+    private _id!: number ;
     private _title: string = '';
     private _poeType: any;
     private _beginDate!: Date ;
     private _endDate!: Date ;
+    private _stagiaires!: StagiaireModel;
 
-    get id(): number | undefined {
+    get stagiaires(){
+      return this._stagiaires
+    }
+    
+    set stagiaires(val: StagiaireModel) {
+      this._stagiaires = val
+    }
+
+
+    get id(): number {
       return this._id
     }
     
-    set id(val: number | undefined) {
+    set id(val: number) {
       this._id = val
     }
     

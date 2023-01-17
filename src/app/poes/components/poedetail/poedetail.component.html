@@ -1,0 +1,76 @@
+  
+  <table>
+    <thead>
+      <tr>
+        <th>&nbsp;</th>
+        <th>Initials</th>
+        <th>Name</th>
+        <th>FirstName</th>
+        <th>Gender</th>
+        <th>Birthdate</th>
+        <th>POE</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let stagiaire of stagiaires">
+      <ng-container *ngIf="(stagiaire.poe.id == poeId)">
+
+        <tr *ngIf="(showLi === 'A') ? true: stagiaire.gender ===showLi">
+          <td>
+            <span [ngClass]="{'bubble': true, 'male': stagiaire.gender === 'M', 'female': stagiaire.gender === 'F'}">
+              {{ stagiaire  | initials}}
+            </span>
+          </td>
+          <td>
+            <!--on va passer les valeurs des paramètres pour la pipe-->
+            {{ stagiaire | initials :false :true| uppercase }}
+          </td>
+          <td>
+            {{ stagiaire.lastName | uppercase}}
+          </td>
+          <td>
+            {{ stagiaire.firstName }}
+          </td>
+          <td>
+            {{ stagiaire.gender }}
+          </td>
+          <td>
+            {{ stagiaire.birthDate | date:'dd/MM/YYYY' }}
+          </td>
+          <td>
+            {{ stagiaire.poe.title }}
+          </td>
+          <td>
+           <!--
+            {{ stagiaire.poe}}
+           --> 
+          </td>
+          <td>
+            <button mat-mini-fab color="warn" (click)="onDelete(stagiaire)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+          <td>
+            <button mat-mini-fab class="btnEdit" (click)="update(stagiaire)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </ng-container>
+    </ng-container>
+    </tbody>
+  
+    <tfoot>
+      <td colspan="5">
+        Total = {{ displayNumber() }}/{{count()}}
+        <!--on peut aussi mettre stagiaires.length à la place de count()-->
+      </td>
+    </tfoot>
+  </table>
+  
+  
+  <a [routerLink]="'/stagiaire/add'" class="btn btn-primary">
+    Ajouter un stagiaire
+  </a>
+  

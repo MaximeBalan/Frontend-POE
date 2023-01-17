@@ -17,6 +17,7 @@
       <th>FirstName</th>
       <th>Gender</th>
       <th>Birthdate</th>
+      <th>POE</th>
       <th>&nbsp;</th>
     </tr>
   </thead>
@@ -31,7 +32,7 @@
         </td>
         <td>
           <!--on va passer les valeurs des paramètres pour la pipe-->
-          {{ stagiaire | initials :false :true }}
+          {{ stagiaire | initials :false :true| uppercase }}
         </td>
         <td>
           {{ stagiaire.lastName | uppercase}}
@@ -44,6 +45,14 @@
         </td>
         <td>
           {{ stagiaire.birthDate | date:'dd/MM/YYYY' }}
+        </td>
+        <td>
+          {{ stagiaire.poe.title }}
+        </td>
+        <td>
+         <!--
+          {{ stagiaire.poe}}
+         --> 
         </td>
         <td>
           <button mat-mini-fab color="warn" (click)="onDelete(stagiaire)">

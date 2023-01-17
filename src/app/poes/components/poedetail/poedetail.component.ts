@@ -1,33 +1,44 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { combineLatest } from 'rxjs';
 import { StagiaireModel } from 'src/app/core/models/stagiaire-model';
 import { StagiaireService } from 'src/app/core/services/stagiaire-service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { PoeService } from '../../services/poe/poe.service';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  selector: 'app-poedetail',
+  templateUrl: './poedetail.component.html',
+  styleUrls: ['./poedetail.component.scss']
 })
-export class ListComponent implements OnInit {
+export class PoedetailComponent implements OnInit {
   public stagiaires:StagiaireModel[] = [];
   public showLi: string = 'A';
+  public poeId: any | null='';
  
 
   //injection des dépendances (les services que l'on veut) dans les paramètres du constructeur
   constructor(
     private router: Router, // DI => Dependency Injection
     private stagiaireService: StagiaireService,
-    private snackBar: MatSnackBar
+    private poeService: PoeService,
+    private snackBar: MatSnackBar,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.stagiaireService.findAll()
-      .subscribe((stagiaires: StagiaireModel[])=> {
-        this.stagiaires = stagiaires;
-      }); 
+
+      combineLatest([this.route.paramMap, this.stagiaireService.findAll()]).subscribe(([routeParam, stagiaires]) => {
+        if (routeParam.get('id') != null) {
+          this.poeId = routeParam.get('id'); // permet de recuperer POEI ou POEC d'apres l'uri et le fichier de routing via "type"
+          this.stagiaires = stagiaires.filter((p:StagiaireModel)=> p.poe.id == this.poeId);
+          console.log(this.poeId);
+          
+        } else {
+          this.stagiaires = stagiaires;
+        }
+      });
   }
 
   public changeGender(): void {
@@ -63,11 +74,7 @@ export class ListComponent implements OnInit {
    * 
    */
 
-  public goToDetail(id:number):void{
-    //pour naviguer vers une autre page
-    console.log(`Got ${id} from list`);
-    this.router.navigate(['/detail', id]);
-  }
+
 
   public onDelete(stagiaire: StagiaireModel):void{
     this.stagiaireService.delete(stagiaire)
@@ -93,3 +100,4 @@ export class ListComponent implements OnInit {
   }
 
 }
+

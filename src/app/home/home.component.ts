@@ -24,8 +24,8 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  public goToList():void{
-    this.router.navigate(['/poes']);
+  public goToDetail(id:number):void{
+    this.router.navigate(['/detailPoe', id]);
   }
 
 
