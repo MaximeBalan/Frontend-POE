@@ -14,11 +14,12 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatExpansionModule} from '@angular/material/expansion';
 
 
+
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    
+
   ],
   exports:[
     ...UiModule.materials //...spread operator => convertit un tableau en une liste d'éléments
@@ -39,7 +40,6 @@ export class UiModule {
     MatDialogModule,
     MatSortModule,
     MatExpansionModule
-    
   ]
 
 }

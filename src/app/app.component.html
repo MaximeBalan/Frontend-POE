@@ -39,6 +39,8 @@
             </ng-container>
           </ul>
         </li>
+        <li><a [routerLink]="['/poes/add']">Créer une POE</a>
+        </li>
         <li>
           <a [routerLink]="'/stagiaires'">{{ 'links.interns' | translate }}</a>
         <li><a [routerLink]="['/home']">Formulaire 1 mois</a>
@@ -63,7 +65,7 @@
         <mat-icon>
            login
         </mat-icon>
-       
+
       </span>
     </button>
   </mat-toolbar>
