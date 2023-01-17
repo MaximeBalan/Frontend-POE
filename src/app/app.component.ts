@@ -32,6 +32,4 @@ export class AppComponent {
       this.intlService.language = language
   }
 
-  
-
 }
