@@ -16,6 +16,9 @@ header {
         color: $default-color;
     }
 }
+button{
+    cursor: pointer;
+}
 
 ul {
     &.inner-content {

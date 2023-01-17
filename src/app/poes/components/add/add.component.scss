@@ -26,9 +26,13 @@ form{
     }
     button{
         margin-top: 0.5em;
+        cursor: pointer;
+        
     }
 }
 a{
+    cursor:pointer;
+    
     &.btn{ //pour rajouter une classe supplémentaire
         display: block; 
         text-decoration: none;

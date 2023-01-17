@@ -16,12 +16,12 @@ p{
 
 button {
     border: none;
-
     background-color: $button-background-color;
     color: $button-inactive-color;
     width: 5em;
     height: fit-content;
     margin: 0.5em;
+    cursor: pointer;
 
     &.is-selected {
         border-radius: 0.4em;
