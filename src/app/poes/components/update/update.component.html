@@ -1,4 +1,5 @@
 <h1>Modifier une POE</h1>
+<ng-container *ngIf="poe">
 <form [formGroup]="addPoeForm" (ngSubmit)="onSubmit()">
     <!--[formGroup]="addStagiaireForm" => permet de lier le form au component correspondant dans le .ts-->
     <!--form fields go here-->
@@ -62,6 +63,7 @@
 
 
 </form>
+</ng-container>
 
 <a [routerLink]="'/poes'" class="btn btn-primary">
     Retour à la liste
