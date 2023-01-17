@@ -25,16 +25,13 @@
           <td>
           {{ poe.endDate | date:'dd/MM/YYYY' }}
           </td>
-          <td>    
-            <button mat-mini-fab color="warn" (click)="openDialog(poe)">
-              <mat-icon>Supprimer</mat-icon>
-            </button>
-          </td>
-          <td>
-            <button mat-mini-fab class="btnEdit" (click)="update(poe)">
-              <mat-icon>Modifier</mat-icon>
-            </button>
-          </td>
+          <button mat-mini-fab class="btnEdit" mat-button [matMenuTriggerFor]="menu">
+            <mat-icon>edit</mat-icon>
+          </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="update(poe)">Modifier</button>
+    <button mat-menu-item (click)="openDialog(poe)">Supprimer</button>
+  </mat-menu>
         </tr>
       </ng-container>
     </tbody>

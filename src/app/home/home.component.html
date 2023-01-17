@@ -7,7 +7,7 @@
 
     <div class="grid-child {{poe.id}}">
       <h1>
-        <button class="buttons" type="button" (click)="goToDetail(poe.id)">{{ this.poe.title}} {{ this.poe.poeType}}</button>
+        <a  (click)="goToDetail(poe.id)">{{ this.poe.title}} {{ this.poe.poeType}}</a>
         
     </h1>
     <p>Date début : {{this.poe.beginDate | date :'dd/MM/YYYY'}}</p>

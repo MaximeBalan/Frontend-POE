@@ -44,21 +44,15 @@
         <td>
           {{ stagiaire.poe.title }}
         </td>
-        <td>
-         <!--
-          {{ stagiaire.poe}}
-         --> 
-        </td>
-        <td>
-          <button mat-mini-fab color="warn" (click)="onDelete(stagiaire)">
-            <mat-icon>Supprimer</mat-icon>
-          </button>
-        </td>
-        <td>
-          <button mat-mini-fab class="btnEdit" (click)="update(stagiaire)">
-            <mat-icon>Modifier</mat-icon>
-          </button>
-        </td>
+        <button mat-mini-fab class="btnEdit" mat-button [matMenuTriggerFor]="menu">
+          <mat-icon>edit</mat-icon>
+        </button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="update(stagiaire)">Modifier</button>
+  <button mat-menu-item >Désactiver</button>
+  <button mat-menu-item (click)="onDelete(stagiaire)">Supprimer</button>
+</mat-menu>
+       
       </tr>
     </ng-container>
   </tbody>

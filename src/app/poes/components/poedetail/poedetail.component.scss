@@ -22,6 +22,7 @@ button {
     width: 5em;
     height: fit-content;
     margin: 0.5em;
+    cursor: pointer;
 
     &.is-selected {
         border-radius: 0.4em;
@@ -31,7 +32,7 @@ button {
     }
 
     &.btnEdit {
-      background-color: rgb(243, 156, 18 );
+      background-color: rgb(44,62,80  );
     }
 }
 
@@ -102,12 +103,12 @@ table {
                         text-align: center;
                         font-weight: 700;
                         &.male { // table tbody tr td:first-child span.male {...}
-                            background-color: rgb(20, 20, 225);
+                            background-color: rgb(27,79,114);
                             color: $button-font-color;
                         }
 
                         &.female {
-                            background-color: rgb(243, 81, 227);
+                            background-color: rgb(91,44,111);
                             color: $button-font-color;
                         }
                     }
