@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { StagiaireModel } from 'src/app/core/models/stagiaire-model';
 import { StagiaireService } from 'src/app/core/services/stagiaire-service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Sort } from '@angular/material/sort';
 
 
 @Component({
@@ -91,5 +92,30 @@ export class ListComponent implements OnInit {
     console.log(`Got ${stagiaire.id} from list and ready to update`);
     this.router.navigate(['/stagiaires/update', stagiaire.id]);
   }
+
+  sortData(sort: Sort) {
+    const data = this.stagiaires.slice();
+    if (!sort.active || sort.direction === '') {
+      this.stagiaires = data;
+      return;
+    }
+
+    this.stagiaires = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'lastName':
+          return compare(a.lastName, b.lastName, isAsc);
+        case 'firstName':
+          return compare(a.firstName, b.firstName, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+}
+
+function compare(a: number | string | Date, b: number | string | Date, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+
 
 }

@@ -8,15 +8,14 @@
   Display All
 </button>
 
-<table>
+<table matSort (matSortChange)="sortData($event)">
   <thead>
     <tr>
       <th>&nbsp;</th>
-      <th>Initials</th>
-      <th>Name</th>
-      <th>FirstName</th>
-      <th>Gender</th>
-      <th>Birthdate</th>
+      <th mat-sort-header="lastName">Nom</th>
+      <th mat-sort-header="firstName">Prénom</th>
+      <th>Genre</th>
+      <th>Date de naissance</th>
       <th>POE</th>
       <th>&nbsp;</th>
     </tr>
@@ -29,10 +28,6 @@
             (click)="goToDetail(stagiaire.id)">
             {{ stagiaire | initials }}
           </span>
-        </td>
-        <td>
-          <!--on va passer les valeurs des paramètres pour la pipe-->
-          {{ stagiaire | initials :false :true| uppercase }}
         </td>
         <td>
           {{ stagiaire.lastName | uppercase}}
@@ -56,12 +51,12 @@
         </td>
         <td>
           <button mat-mini-fab color="warn" (click)="onDelete(stagiaire)">
-            <mat-icon>delete</mat-icon>
+            <mat-icon>Supprimer</mat-icon>
           </button>
         </td>
         <td>
           <button mat-mini-fab class="btnEdit" (click)="update(stagiaire)">
-            <mat-icon>edit</mat-icon>
+            <mat-icon>Modifier</mat-icon>
           </button>
         </td>
       </tr>
