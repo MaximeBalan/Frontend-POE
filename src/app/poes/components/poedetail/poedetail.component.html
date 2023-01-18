@@ -1,4 +1,4 @@
-  
+
   <table>
     <thead>
       <tr>
@@ -8,6 +8,9 @@
         <th>Genre</th>
         <th>Date de naissance</th>
         <th>POE</th>
+        <th>1 mois</th>
+        <th>6 mois</th>
+        <th>12 mois</th>
         <th>&nbsp;</th>
       </tr>
     </thead>
@@ -34,7 +37,16 @@
             {{ stagiaire.birthDate | date:'dd/MM/YYYY' }}
           </td>
           <td>
-            {{ stagiaire.poe.title }}
+            {{ stagiaire.poe.title }} {{stagiaire.poe.endDate}}
+          </td>
+          <td>
+            <mat-icon class="thumbUp">thumb_up</mat-icon>
+          </td>
+          <td>
+            <mat-icon class="thumbDown">thumb_down</mat-icon>
+          </td>
+          <td>
+            <mat-icon class="thumbDown">thumb_down</mat-icon>
           </td>
           <button mat-mini-fab class="btnEdit" mat-button [matMenuTriggerFor]="menu">
             <mat-icon>edit</mat-icon>
@@ -48,7 +60,7 @@
       </ng-container>
     </ng-container>
     </tbody>
-  
+
     <tfoot>
       <td colspan="5">
         Total = {{ displayNumber() }}/{{count()}}
@@ -56,9 +68,8 @@
       </td>
     </tfoot>
   </table>
-  
-  
+
+
   <a [routerLink]="'/stagiaire/add'" class="btn btn-primary">
     Ajouter un stagiaire
   </a>
-  

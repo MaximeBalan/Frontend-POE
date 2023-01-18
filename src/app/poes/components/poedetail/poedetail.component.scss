@@ -19,7 +19,6 @@ button {
 
     background-color: $button-background-color;
     color: $button-inactive-color;
-    width: 5em;
     height: fit-content;
     margin: 0.5em;
     cursor: pointer;
@@ -34,6 +33,14 @@ button {
     &.btnEdit {
       background-color: rgb(44,62,80  );
     }
+}
+
+.thumbUp {
+  color: rgb(40, 180, 99);
+}
+
+.thumbDown {
+  color: rgb(192, 57, 43);
 }
 
 a{
