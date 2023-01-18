@@ -1,26 +1,46 @@
 <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
-  
+
 
   <div class="grid-container">
-  <ng-container *ngFor="let poe of poes"> 
+  <ng-container *ngFor="let poe of poes">
+    <ng-container *ngIf="getmonth(this.poe.endDate) > 0 && getmonth(this.poe.endDate) < 18">
     <!-- ctrol oblique a reprendre pour faire la liste des types de poe en dynamique -->
 
     <div class="grid-child {{poe.id}}">
       <h1>
         <a  (click)="goToDetail(poe.id)">{{ this.poe.title}} {{ this.poe.poeType}}</a>
-        
+
     </h1>
     <p>Date début : {{this.poe.beginDate | date :'dd/MM/YYYY'}}</p>
     <p>Date fin : {{this.poe.endDate | date :'dd/MM/YYYY'}}</p>
     <hr class="solid">
 
-    <div class="buttonscontainer">
-    <button class="buttons" type="button" >1</button>
-    <button class="buttons" type="button" >6</button>
-    <button class="buttons" type="button" >12</button>
-    </div>
+    <ng-container *ngIf="getmonth(this.poe.endDate) >= 1 && getmonth(this.poe.endDate) < 6">
+      <div class="buttonscontainer">
+      <button class="buttons" type="button" [disabled]="false" (click)="goToDetail(poe.id)">1</button>
+      <button class="buttons" type="button" [disabled]="true" (click)="goToDetail(poe.id)">6</button>
+      <button class="buttons" type="button" [disabled]="true" (click)="goToDetail(poe.id)">12</button>
+      </div>
+      </ng-container>
+
+      <ng-container *ngIf="getmonth(this.poe.endDate)>=6 && getmonth(this.poe.endDate) <12">
+        <div class="buttonscontainer">
+        <button class="buttons" type="button" [disabled]="true" (click)="goToDetail(poe.id)">1</button>
+        <button class="buttons" type="button" [disabled]="false" (click)="goToDetail(poe.id)">6</button>
+        <button class="buttons" type="button" [disabled]="true" (click)="goToDetail(poe.id)">12</button>
+        </div>
+        </ng-container>
+
+        <ng-container *ngIf="getmonth(this.poe.endDate)>=12">
+          <div class="buttonscontainer">
+          <button class="buttons" type="button" [disabled]="true" (click)="goToDetail(poe.id)">1</button>
+          <button class="buttons" type="button" [disabled]="true" (click)="goToDetail(poe.id)">6</button>
+          <button class="buttons" type="button" [disabled]="false" (click)="goToDetail(poe.id)">12</button>
+          </div>
+          </ng-container>
     </div>
 
+</ng-container>
 </ng-container>
 </div>
 <router-outlet></router-outlet>
