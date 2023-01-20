@@ -53,6 +53,12 @@ public static routes: Routes = [
 
   },
   {
+    path: 'surveys',
+    component:ListComponent
+  },
+
+
+  {
     path:'poes',
     loadChildren: () => import('./poes/poes.module')
     .then((m)=> m.PoesModule),
