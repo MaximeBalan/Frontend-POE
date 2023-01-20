@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { StagiaireModel } from "../models/stagiaire-model";
 import { environment } from "./../../../environments/environment";
 import { map, take } from 'rxjs/operators';
-import { Question } from "../models/question";
+import { QuestionModel } from "../models/question";
 
 
 
@@ -27,7 +27,7 @@ export class QuestionService {
     ){  }
 
     //CRUD methods: Create, Read, Update, Delete
-    public findAll():Observable<Question[]>{
+    public findAll():Observable<QuestionModel[]>{
         return this.httpClient.get<any[]>(
             QuestionService.CONTROLLER_PATH
         )
@@ -42,7 +42,7 @@ export class QuestionService {
     }
 
 
-    public findOne(id: number): Observable<Question> {
+    public findOne(id: number): Observable<QuestionModel> {
         return this.httpClient.get<any>(
             `${QuestionService.CONTROLLER_PATH}/${id}` // http://localhost:3000/questions/2
         )
@@ -55,12 +55,12 @@ export class QuestionService {
 
     }
 
-    public create(datas: any): Observable<Question> {
+    public create(datas: any): Observable<QuestionModel> {
         // console.log(Values received by service : ${JSON.stringify(datas)});
         console.log("Values received by service:", datas);
 
         // POST the stagiaire completed
-        return this.httpClient.post<Question>(
+        return this.httpClient.post<QuestionModel>(
             QuestionService.CONTROLLER_PATH,
             this.serializeJson(datas)
             //datas
@@ -73,9 +73,9 @@ export class QuestionService {
         )
     }
 
-    public update(data:Question): Observable<Question>{
+    public update(data:QuestionModel): Observable<QuestionModel>{
       console.log("Values received by service:", data.id);
-      return this.httpClient.put<Question>(
+      return this.httpClient.put<QuestionModel>(
         `${QuestionService.CONTROLLER_PATH}/${data.id}`,
         this.serializeJson(data)
         )
@@ -88,7 +88,7 @@ export class QuestionService {
 
     }
 
-    public delete(datas:Question):Observable<HttpResponse<any>>{
+    public delete(datas:QuestionModel):Observable<HttpResponse<any>>{
         return this.httpClient.delete<any>(
             `${QuestionService.CONTROLLER_PATH}/${datas.id}`,
             {
@@ -97,8 +97,8 @@ export class QuestionService {
         )
     }
 //du back vers le front
-    public deserializeFromJson(anyQuestion: any): Question {
-        const question: Question = new Question();
+    public deserializeFromJson(anyQuestion: any): QuestionModel {
+        const question: QuestionModel = new QuestionModel();
         question.id = anyQuestion.id;
         question.title = anyQuestion.title;
         question.questionType = anyQuestion.questionType;
@@ -115,8 +115,8 @@ export class QuestionService {
         return question;
     }
 //du formulaire au service
-    public deserializeFromForm(anyQuestion: any): Question {
-        const question: Question = new Question();
+    public deserializeFromForm(anyQuestion: any): QuestionModel {
+        const question: QuestionModel = new QuestionModel();
         question.id = anyQuestion.id;
         question.title = anyQuestion.title;
         question.questionType = anyQuestion.questionType;

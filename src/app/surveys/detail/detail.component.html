@@ -1,18 +1,44 @@
-<p>detail works!</p>
 
-<!-- <tbody>
+<ng-container *ngIf="survey">
     <h1>
         {{ this.survey.title}}
-    </h1>  
-<ng-container *ngFor="let question of survey">
+    </h1> 
+    
+    <ng-container *ngIf="this.survey.questions">
+
+        <ng-container *ngFor="let question of this.survey.questions">
+            <h2> 
+                 {{ this.question.title}}
+             </h2>  
+
+             <container-element [ngSwitch]="this.question.questionType">
+                <!-- the same view can be shown in more than one case -->
+                <li *ngSwitchCase="'YES_NO'">   
+                    <h3> 
+                        Oui
+                    </h3>   
+                    <h3> 
+                        Non
+                    </h3> 
+                </li>
+
+                <li *ngSwitchCase="'FREE_RESPONSE'"> 
+                    champ libre
+                </li>
+
+                <li *ngSwitchCase="'QCM'"> 
+                    <ng-container *ngFor="let proposal of question.choices">
+                        {{ proposal.name }}
+                    </ng-container>
+                </li>
+                    
+              </container-element>   
+
+    </ng-container>
+</ng-container>
+
+    <!-- <ng-container *ngFor="let question of survey">
     <ng-container *ngIf="survey">
     <div class="container">
-        
-
-        <p>{{this.question.title}}</p> --> 
-        <!-- TODO : conditionner l'affichage des reponses possibles selon
-        le type de questions -->  
-    <!-- </div>
-</ng-container>    
-</tbody> -->
-
+ <p>{{this.question.title}}</p>
+  </div> -->

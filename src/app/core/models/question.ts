@@ -1,12 +1,12 @@
+import { ChoiceModel } from "./choice";
 
-export class Question{
+export class QuestionModel{
     private _id!: number ;
     private _title: string = '';
     private _questionType: any;
-    //private _choices!: Set<Choice>;
+    private _choices!: Set<ChoiceModel>;
 
-
-    get id(): number {
+    get id() {
       return this._id
     }
     
@@ -30,4 +30,13 @@ export class Question{
       this._questionType = val
     }
     
+    get choices() {
+      return this._choices
+    }
+    
+    set choices(val: Set<ChoiceModel>) {
+      this._choices = val
+    }
+
+
 }
