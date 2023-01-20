@@ -8,6 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { ListComponent } from './surveys/list/list.component';
 import { UpdateComponent } from './surveys/update/update.component';
+import { DetailComponent } from './src/app/core/surveys/detail/detail.component';
 
 
 
@@ -18,6 +19,7 @@ import { UpdateComponent } from './surveys/update/update.component';
     HomeComponent,
     ListComponent,
     UpdateComponent,
+    DetailComponent,
 
 
   ],

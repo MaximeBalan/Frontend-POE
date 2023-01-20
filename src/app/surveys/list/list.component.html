@@ -1,1 +1,37 @@
-<p>list works!</p>
+<table matSort (matSortChange)="sortData($event)">
+  <thead>
+    <tr>
+      <th>&nbsp;</th>
+      <th mat-sort-header="title">Titre</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let survey of surveys">
+        <td>
+          <span (click)="goToDetail(survey.id)">
+            {{ survey | initials | uppercase }}
+          </span>
+        </td>
+        <td>
+          {{ survey.title }}
+        </td>
+        <button mat-mini-fab class="btnEdit" mat-button [matMenuTriggerFor]="menu">
+          <mat-icon>edit</mat-icon>
+        </button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="update(survey)">Modifier</button>
+  <button mat-menu-item (click)="onDelete(survey)">Supprimer</button>
+</mat-menu>
+    </ng-container>
+  </tbody>
+  <tfoot>
+    
+  </tfoot>
+</table>
+
+
+<a [routerLink]="'/surveys/add'" class="btn btn-primary">
+  Créer un formulaire
+</a>
+
