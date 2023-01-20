@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './stagiaires/list/list.component';
 import { DetailComponent } from './stagiaires/detail/detail.component';
+import { DetailComponent as SurveyDetailComponent} from './surveys/detail/detail.component';
 import { AddComponent } from './stagiaires/add/add.component';
 import { UpdateComponent } from './stagiaires/update/update.component';
 import { HomeComponent } from './home/home.component';
@@ -36,6 +37,10 @@ public static routes: Routes = [
   {
     path:'detail/:id',
     component:DetailComponent
+  },
+  {
+    path:'survey/detail/:id',
+    component:SurveyDetailComponent
 
   },
   {

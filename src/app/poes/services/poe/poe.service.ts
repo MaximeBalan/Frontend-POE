@@ -4,14 +4,14 @@ import { Observable } from 'rxjs';
 import { Poe } from 'src/app/core/models/poe';
 import { environment } from "./../../../../environments/environment";
 import { map, take } from 'rxjs/operators';
-import { Icrud } from './../../../core/interfaces/i_crud';
 import { ApiPoeType } from 'src/app/core/types/api-poe-type';
+import { ICrud } from 'src/app/core/interfaces/i-crud';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class PoeService implements Icrud<Poe>{
+export class PoeService implements ICrud<Poe>{
 
   private static readonly CONTROLLER_PATH: string = `${environment.api}poe`;
   constructor(

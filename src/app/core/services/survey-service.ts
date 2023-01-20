@@ -112,10 +112,7 @@ export class SurveyService {
         survey.id = anySurvey.id;
         survey.title = anySurvey.title;
         survey.questions = anySurvey.questions
-
         return survey;
     }
-
-
 }
 
