@@ -1,4 +1,4 @@
-import { Question } from "./question-model";
+import { Question } from "./question";
 
 
 export class SurveyModel{
@@ -27,7 +27,7 @@ export class SurveyModel{
     return this._questions
   }
 
-  set questions(val: QuestionModel) {
+  set questions(val: Question) {
     this._questions = val
   }
 }

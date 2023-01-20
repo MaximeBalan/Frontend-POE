@@ -19,7 +19,7 @@ export class QuestionService {
     //pour switcher entre fakeApi et api
     private static readonly CONTROLLER_PATH: string = `${environment.api}questions`;
     //private static readonly CONTROLLER_PATH: string = `${environment.fakeApi}stagiaires`;
-   
+
     public constructor(
         //service qui permet d'envoyer de la requete http
         private httpClient: HttpClient
@@ -34,8 +34,8 @@ export class QuestionService {
         .pipe(
             take(1), //prends le 1er résultat et arrête d'observer
             map((httpResponseBody: any[]) => {
-                return httpResponseBody.map((anyStagiaire: any) => {
-                    return this.deserializeFromJson(anyStagiaire)
+                return httpResponseBody.map((anyQuestion: any) => {
+                    return this.deserializeFromJson(anyQuestion)
                 }) // transforme un tableau en un autre tableau
             }) //transforme un Observable(ici O<any[]>) en un autre Observable (O<StagiaireModel[]>)
         ) //pipeline
@@ -48,8 +48,8 @@ export class QuestionService {
         )
         .pipe(
             take(1), //récupère l'objet qui vient de l'API
-            map((anyQuestions: any) => { // transforme le any en 
-                    return this.deserializeFromJson(anyQuestions); 
+            map((anyQuestions: any) => { // transforme le any en
+                    return this.deserializeFromJson(anyQuestions);
                 })
         )
 
@@ -67,7 +67,7 @@ export class QuestionService {
         )
         .pipe(
             take(1), // Récupère l'objet qui vient de l'API
-            map((anyQuestion: any) => { 
+            map((anyQuestion: any) => {
                 return this.deserializeFromForm(anyQuestion);
             })
         )
@@ -81,7 +81,7 @@ export class QuestionService {
         )
         .pipe(
             take(1), // Récupère l'objet qui vient de l'API
-            map((anyQuestion: any) => { 
+            map((anyQuestion: any) => {
                 return this.deserializeFromForm(anyQuestion);
             })
         )
