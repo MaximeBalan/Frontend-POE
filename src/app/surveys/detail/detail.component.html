@@ -1,39 +1,41 @@
 
+<body>
+
+
 <ng-container *ngIf="survey">
-    <h1>
+    <h1 class="titreFormulaire">
         {{ this.survey.title}}
     </h1> 
     
     <ng-container *ngIf="this.survey.questions">
 
-        <ng-container *ngFor="let question of this.survey.questions">
-            <h2> 
+        <mat-card *ngFor="let question of this.survey.questions" class="eachQuestion">
+            <h2 class="titreQuestion"> 
                  {{ this.question.title}}
              </h2>  
 
-             <container-element [ngSwitch]="this.question.questionType">
+             <container-element [ngSwitch]="this.question.questionType" >
                 <!-- the same view can be shown in more than one case -->
-                <li *ngSwitchCase="'YES_NO'">   
-                    <h3> 
-                        Oui
-                    </h3>   
-                    <h3> 
-                        Non
-                    </h3> 
-                </li>
+                <div *ngSwitchCase="'YES_NO'" class="response">   
+                    <p><mat-checkbox >Oui</mat-checkbox></p>
+                    <p><mat-checkbox >Non</mat-checkbox></p>
+                </div>
 
-                <li *ngSwitchCase="'FREE_RESPONSE'"> 
-                    champ libre
-                </li>
+                <div *ngSwitchCase="'FREE_RESPONSE'" class="response"> 
+                    <mat-form-field appearance="fill">
+                        <mat-label>Input</mat-label>
+                        <input type="number" matInput>
+                    </mat-form-field>
+                </div>
 
-                <li *ngSwitchCase="'QCM'"> 
+                <div *ngSwitchCase="'QCM'" class="response"> 
                     <ng-container *ngFor="let proposal of question.choices">
-                        {{ proposal.name }}
+                        <p><mat-checkbox >{{ proposal.name }}</mat-checkbox></p>
                     </ng-container>
-                </li>
+                </div>
                     
               </container-element>   
-
+            </mat-card>
     </ng-container>
 </ng-container>
 
@@ -42,3 +44,4 @@
     <div class="container">
  <p>{{this.question.title}}</p>
   </div> -->
+</body>

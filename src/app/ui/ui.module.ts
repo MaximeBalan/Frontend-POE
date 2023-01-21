@@ -12,6 +12,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatSortModule} from '@angular/material/sort';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -39,7 +41,9 @@ export class UiModule {
     MatMenuModule,
     MatDialogModule,
     MatSortModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatCheckboxModule,
+    MatCardModule
   ]
 
 }
