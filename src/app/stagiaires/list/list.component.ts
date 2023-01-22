@@ -15,7 +15,7 @@ import { Sort } from '@angular/material/sort';
 export class ListComponent implements OnInit {
   public stagiaires:StagiaireModel[] = [];
   public showLi: string = 'A';
- 
+
 
   //injection des dépendances (les services que l'on veut) dans les paramètres du constructeur
   constructor(
@@ -28,7 +28,7 @@ export class ListComponent implements OnInit {
     this.stagiaireService.findAll()
       .subscribe((stagiaires: StagiaireModel[])=> {
         this.stagiaires = stagiaires;
-      }); 
+      });
   }
 
   public changeGender(): void {
@@ -38,7 +38,7 @@ export class ListComponent implements OnInit {
       this.showLi = 'M';
     }
   }
-  
+
   public count():number{
     let sum = 0;
     for(let stagiaire of this.stagiaires){
@@ -59,10 +59,10 @@ export class ListComponent implements OnInit {
    * for (const stagiaire of this.stagiaires){
    *    if(stagiaire.gender === this.showLi) {
    *        item +=1;
-   *    } 
+   *    }
    * }
    * return item;
-   * 
+   *
    */
 
   public goToDetail(id:number):void{

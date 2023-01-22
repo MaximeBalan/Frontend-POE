@@ -100,15 +100,6 @@ table {
                         border-radius: 50%;
                         text-align: center;
                         font-weight: 700;
-                        &.male { // table tbody tr td:first-child span.male {...}
-                            background-color: rgb(27,79,114);
-                            color: $button-font-color;
-                        }
-
-                        &.female {
-                            background-color: rgb(91,44,111);
-                            color: $button-font-color;
-                        }
                     }
                 }
             }

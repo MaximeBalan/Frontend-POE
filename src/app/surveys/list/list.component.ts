@@ -7,6 +7,7 @@ import { SurveyModel } from 'src/app/core/models/survey-model';
 import { SurveyService } from 'src/app/core/services/survey-service';
 
 
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -41,7 +42,7 @@ export class ListComponent implements OnInit {
   public goToDetail(id:number):void{
     //pour naviguer vers une autre page
     console.log(`Got ${id} from list`);
-    this.router.navigate(['/detail', id]);
+    this.router.navigate(['/survey/detail', id]);
   }
 
   public onDelete(survey: SurveyModel):void{

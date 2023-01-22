@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './stagiaires/list/list.component';
 import { DetailComponent } from './stagiaires/detail/detail.component';
 import { DetailComponent as SurveyDetailComponent} from './surveys/detail/detail.component';
+import { ListComponent  as SurveyListComponent} from './surveys/list/list.component';
 import { AddComponent } from './stagiaires/add/add.component';
 import { UpdateComponent } from './stagiaires/update/update.component';
 import { HomeComponent } from './home/home.component';
@@ -38,11 +39,7 @@ public static routes: Routes = [
     path:'detail/:id',
     component:DetailComponent
   },
-  {
-    path:'survey/detail/:id',
-    component:SurveyDetailComponent
 
-  },
   {
     path:'detailPoe/:id',
     component:PoedetailComponent
@@ -58,10 +55,20 @@ public static routes: Routes = [
 
   },
   {
-    path: 'surveys',
-    component:ListComponent
-  },
+    path:'survey/detail/:id',
+    component:SurveyDetailComponent
 
+  },
+  {
+    path:'surveys',
+    component:SurveyListComponent
+
+  },
+  {
+    path: 'surveys',
+    loadChildren: () => import('./surveys/surveys.module')
+    .then((m)=> m.SurveysModule),
+  },
 
   {
     path:'poes',
@@ -72,7 +79,7 @@ public static routes: Routes = [
     //TOUJOURS EN DERNIER!!!!!!!
     path:'**', // route fallback
     //pour emmener l'utilisateur qui veut accéder à une route qui n'existe pas par à une autre route
-    redirectTo:'stagiaires',
+    redirectTo:'home',
     pathMatch: 'full',
   }
 
