@@ -1,8 +1,9 @@
 <table matSort (matSortChange)="sortData($event)">
   <thead>
     <tr>
-      
+
       <th mat-sort-header="title">Titre</th>
+      <th>&nbsp;</th>
       <th>&nbsp;</th>
     </tr>
   </thead>
@@ -10,13 +11,15 @@
     <ng-container *ngFor="let survey of surveys">
       <tr>
          <td>
+
           {{ survey.title }}
+          <mat-icon button class="btnVisibility" (click)="goToDetail(survey.id)">visibility</mat-icon>
+
         </td>
         <button mat-mini-fab class="btnEdit" mat-button [matMenuTriggerFor]="menu">
           <mat-icon>edit</mat-icon>
         </button>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item (click)="goToDetail(survey.id)">Détail</button>
   <button mat-menu-item (click)="update(survey)">Modifier</button>
   <button mat-menu-item (click)="onDelete(survey)">Supprimer</button>
 </mat-menu>
