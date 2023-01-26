@@ -15,8 +15,7 @@ import { PoeService } from '../../services/poe/poe.service';
 export class PoedetailComponent implements OnInit {
   public stagiaires:StagiaireModel[] = [];
   public showLi: string = 'A';
-  public poeId: any | null='';
- 
+  public poeId: any | null=''; 
 
   //injection des dépendances (les services que l'on veut) dans les paramètres du constructeur
   constructor(
@@ -63,19 +62,6 @@ export class PoedetailComponent implements OnInit {
     return this.stagiaires.filter((stagiaire:any) => stagiaire.gender === this.showLi).length;
   }
 
-  /**
-   * let item: number = 0;
-   * for (const stagiaire of this.stagiaires){
-   *    if(stagiaire.gender === this.showLi) {
-   *        item +=1;
-   *    } 
-   * }
-   * return item;
-   * 
-   */
-
-
-
   public onDelete(stagiaire: StagiaireModel):void{
     this.stagiaireService.delete(stagiaire)
       .subscribe((response : HttpResponse<any>)=>{
@@ -97,6 +83,11 @@ export class PoedetailComponent implements OnInit {
   public update(stagiaire:StagiaireModel):void{
     console.log(`Got ${stagiaire.id} from list and ready to update`);
     this.router.navigate(['/stagiaires/update', stagiaire.id]);
+  }
+
+  public sendId(id:number){
+    console.log('ID:',id)
+    this.router.navigate(['/stagiaire/add', id]);
   }
 
 }

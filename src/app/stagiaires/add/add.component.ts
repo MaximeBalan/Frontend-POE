@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StagiaireModel } from 'src/app/core/models/stagiaire-model';
 import { StagiaireService } from 'src/app/core/services/stagiaire-service';
 import { DateLessThan } from 'src/app/core/validators/date-less-than';
+
 
 @Component({
   selector: 'app-add',
@@ -17,11 +18,19 @@ export class AddComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder, //permet de construire un formulaire
     private stagiaireService: StagiaireService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+   
+    
   ) { }
 
   ngOnInit(): void {
-    this.addStagiaireForm = this.formBuilder.group({
+    this.route.paramMap.subscribe(
+      (routeParams) => {
+        console.log(`Detail got ${routeParams.get('id')}`)
+      }
+    );
+    this.addStagiaireForm = this.formBuilder.group({   
       lastName: [
         '', //Default value (here empty)mais ce n'est pas un placeholder!!!
         
