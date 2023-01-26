@@ -10,14 +10,14 @@ export class StagiaireModel {
     private _birthDate?: Date | undefined;
     private _phoneNumber: string = '';
     private _email: string = '';
-    private _poe!: Poe;
+    private _poe?: Poe | undefined;
 
 
-    get poe() {
+    get poe(): Poe | undefined {
       return this._poe
     }
     
-    set poe(val: Poe) {
+    set poe(val: Poe | undefined) {
       this._poe = val
     }
 

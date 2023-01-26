@@ -16,7 +16,7 @@
     </thead>
     <tbody>
       <ng-container *ngFor="let stagiaire of stagiaires">
-      <ng-container *ngIf="(stagiaire.poe.id == poeId)">
+      
 
         <tr *ngIf="(showLi === 'A') ? true: stagiaire.gender ===showLi">
           <td>
@@ -37,7 +37,7 @@
             {{ stagiaire.birthDate | date:'dd/MM/YYYY' }}
           </td>
           <td>
-            {{ stagiaire.poe.title }} {{stagiaire.poe.endDate}}
+            {{ stagiaire.poe?.title }} {{stagiaire.poe?.endDate}}
           </td>
           <td>
             <mat-icon class="thumbUp">thumb_up</mat-icon>
@@ -58,7 +58,6 @@
   </mat-menu>
         </tr>
       </ng-container>
-    </ng-container>
     </tbody>
 
     <tfoot>

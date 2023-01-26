@@ -42,7 +42,7 @@
           {{ stagiaire.birthDate | date:'dd/MM/YYYY' }}
         </td>
         <td>
-          {{ stagiaire.poe.title }} {{stagiaire.poe.endDate}}
+          {{ stagiaire.poe?.title }} {{stagiaire.poe?.endDate}}
         </td>
         <button mat-mini-fab class="btnEdit" mat-button [matMenuTriggerFor]="menu">
           <mat-icon>edit</mat-icon>
