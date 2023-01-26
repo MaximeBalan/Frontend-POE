@@ -39,11 +39,9 @@ public static routes: Routes = [
     path:'detail/:id',
     component:DetailComponent
   },
-
   {
     path:'detailPoe/:id',
     component:PoedetailComponent
-
   },
   {
     path:'stagiaires/update/:id',
@@ -52,17 +50,14 @@ public static routes: Routes = [
   {
     path:'stagiaire/add',
     component:AddComponent
-
   },
   {
     path:'survey/detail/:id',
     component:SurveyDetailComponent
-
   },
   {
     path:'surveys',
     component:SurveyListComponent
-
   },
   {
     path: 'surveys',
