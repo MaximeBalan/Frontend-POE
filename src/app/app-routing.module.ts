@@ -52,6 +52,11 @@ public static routes: Routes = [
     component:AddComponent
   },
   {
+    path:'stagiaire/add/:id',
+    component:AddComponent
+
+  },
+  {
     path:'survey/detail/:id',
     component:SurveyDetailComponent
   },

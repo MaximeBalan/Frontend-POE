@@ -13,7 +13,7 @@ export class StagiaireModel {
     private _poe?: Poe | undefined;
 
 
-    get poe(): Poe | undefined {
+    get poe() : Poe | undefined{
       return this._poe
     }
     

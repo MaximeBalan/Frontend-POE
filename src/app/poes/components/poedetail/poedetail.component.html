@@ -16,7 +16,7 @@
     </thead>
     <tbody>
       <ng-container *ngFor="let stagiaire of stagiaires">
-      
+      <ng-container *ngIf="(stagiaire.poe?.id == poeId)">
 
         <tr *ngIf="(showLi === 'A') ? true: stagiaire.gender ===showLi">
           <td>
@@ -58,6 +58,7 @@
   </mat-menu>
         </tr>
       </ng-container>
+    </ng-container>
     </tbody>
 
     <tfoot>
@@ -69,6 +70,6 @@
   </table>
 
 
-  <a [routerLink]="'/stagiaire/add'" class="btn btn-primary">
+  <a (click)="sendId(this.poeId)" class="btn btn-primary">
     Ajouter un stagiaire
   </a>

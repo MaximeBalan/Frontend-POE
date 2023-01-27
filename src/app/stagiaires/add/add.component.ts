@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StagiaireModel } from 'src/app/core/models/stagiaire-model';
 import { StagiaireService } from 'src/app/core/services/stagiaire-service';
 import { DateLessThan } from 'src/app/core/validators/date-less-than';
+
 
 @Component({
   selector: 'app-add',
@@ -13,15 +14,25 @@ import { DateLessThan } from 'src/app/core/validators/date-less-than';
 export class AddComponent implements OnInit {
 
   public addStagiaireForm!: FormGroup; //Groupe de Contrôles de formulaire
-  
+  public poeId: any | null= null; 
+
   constructor(
     private formBuilder: FormBuilder, //permet de construire un formulaire
     private stagiaireService: StagiaireService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+   
+    
   ) { }
 
   ngOnInit(): void {
-    this.addStagiaireForm = this.formBuilder.group({
+    this.route.paramMap.subscribe(
+      (routeParams) => {
+        console.log(`Add stagiaire in POE ${routeParams.get('id')}`)
+        this.poeId = routeParams.get('id');
+      }
+    );
+    this.addStagiaireForm = this.formBuilder.group({   
       lastName: [
         '', //Default value (here empty)mais ce n'est pas un placeholder!!!
         
@@ -66,11 +77,13 @@ export class AddComponent implements OnInit {
     console.log(`Values to send : ${JSON.stringify(this.addStagiaireForm.value)}`);
     this.stagiaireService.create(this.addStagiaireForm.value)
         .subscribe((stagiaire: StagiaireModel)=>{
-          console.log("Values received from backend", stagiaire)
-          this.router.navigate(['/', 'stagiaires']);
+          this.stagiaireService.setPoeToTrainee(this.poeId, stagiaire.id)
+          .subscribe((s)=>{
+            console.log(s);
+            this.router.navigate(['/', 'detailPoe',this.poeId]);
+          });
+          
           // this.addStagiaireForm.reset();
     });
-
   }
-
 }
