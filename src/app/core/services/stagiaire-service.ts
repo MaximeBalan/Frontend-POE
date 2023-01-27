@@ -152,6 +152,7 @@ export class StagiaireService {
             gender : anyStagiaire.gender,
             phoneNumber : anyStagiaire.phoneNumber,
             email : anyStagiaire.email
+            //poeid: anyStagaire.poe
         }
         console.log("stagiaire à envoyer au back: ", stagiaire)
         return stagiaire;
@@ -166,10 +167,18 @@ export class StagiaireService {
         stagiaire.gender = anyStagiaire.gender;
         stagiaire.phoneNumber = anyStagiaire.phoneNumber;
         stagiaire.email = anyStagiaire.email
-
+        //stagiaire.poeid = anyStagiaire.poe
         return stagiaire;
     }
 
-
+    public setPoeToTrainee(poeId: number, traineeId: number):Observable<HttpResponse<any>>{
+        console.log("Stagiaire service: set poeId =", poeId, " and traineeId=", traineeId)
+        return this.httpClient.patch<any>(           
+            `${StagiaireService.CONTROLLER_PATH}/${traineeId}/setPoe/${poeId}`,
+            {
+                observe:'response' // HttpResponse {status:200etqq pour ok, redirection: 300etqq, client error: 400etqq}
+            }
+        )
+    }
 }
 

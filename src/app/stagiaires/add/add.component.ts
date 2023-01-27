@@ -14,7 +14,8 @@ import { DateLessThan } from 'src/app/core/validators/date-less-than';
 export class AddComponent implements OnInit {
 
   public addStagiaireForm!: FormGroup; //Groupe de Contrôles de formulaire
-  
+  public poeId: any | null= null; 
+
   constructor(
     private formBuilder: FormBuilder, //permet de construire un formulaire
     private stagiaireService: StagiaireService,
@@ -27,7 +28,8 @@ export class AddComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       (routeParams) => {
-        console.log(`Detail got ${routeParams.get('id')}`)
+        console.log(`Add stagiaire in POE ${routeParams.get('id')}`)
+        this.poeId = routeParams.get('id');
       }
     );
     this.addStagiaireForm = this.formBuilder.group({   
@@ -75,11 +77,13 @@ export class AddComponent implements OnInit {
     console.log(`Values to send : ${JSON.stringify(this.addStagiaireForm.value)}`);
     this.stagiaireService.create(this.addStagiaireForm.value)
         .subscribe((stagiaire: StagiaireModel)=>{
-          console.log("Values received from backend", stagiaire)
-          this.router.navigate(['/', 'stagiaires']);
+          this.stagiaireService.setPoeToTrainee(this.poeId, stagiaire.id)
+          .subscribe((s)=>{
+            console.log(s);
+            this.router.navigate(['/', 'detailPoe',this.poeId]);
+          });
+          
           // this.addStagiaireForm.reset();
     });
-
   }
-
 }

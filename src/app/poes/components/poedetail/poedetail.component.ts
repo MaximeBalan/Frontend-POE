@@ -31,7 +31,7 @@ export class PoedetailComponent implements OnInit {
       combineLatest([this.route.paramMap, this.stagiaireService.findAll()]).subscribe(([routeParam, stagiaires]) => {
         if (routeParam.get('id') != null) {
           this.poeId = routeParam.get('id'); // permet de recuperer POEI ou POEC d'apres l'uri et le fichier de routing via "type"
-          this.stagiaires = stagiaires.filter((p:StagiaireModel)=> p.poe.id == this.poeId);
+          this.stagiaires = stagiaires.filter((p:StagiaireModel)=> p.poe?.id == this.poeId);
           console.log(this.poeId);
           
         } else {

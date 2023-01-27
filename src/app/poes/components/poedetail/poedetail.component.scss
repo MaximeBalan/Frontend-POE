@@ -44,6 +44,7 @@ button {
 }
 
 a{
+    cursor: pointer;
     &.btn{ //pour rajouter une classe supplémentaire
         display: block;
         text-decoration: none;
