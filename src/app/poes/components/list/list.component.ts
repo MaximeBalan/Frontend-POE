@@ -18,7 +18,9 @@ export class ListComponent implements OnInit {
   public poes:Poe[]=[];
   public showLi: string = 'A';
   public poeType: string | null = '';
- 
+  // public searchInput : any = document.querySelector("#search");
+  // public searchResult : any = document.querySelector(".table-results");
+
   constructor(
     public dialog: MatDialog,
     private poeService: PoeService, // quand on veut utiliser un service dans un composant il faut l'ajouter comme ça. C'est que les methodes des classes static qu'on importe
@@ -28,7 +30,7 @@ export class ListComponent implements OnInit {
   ) {
   }
 
-  // combineLatest permet de combiner le resultat de 2 observables pour avoir les deux reponses en meme temps 
+  // combineLatest permet de combiner le resultat de 2 observables pour avoir les deux reponses en meme temps
 
   ngOnInit(): void {
     combineLatest([this.route.paramMap, this.poeService.findAll()]).subscribe(([routeParam, poes]) => {
@@ -41,11 +43,11 @@ export class ListComponent implements OnInit {
     });
   }
 
-  
-  
+
+
   openDialog(poe: Poe): void {
     this.dialog.open(DialogAnimationsExampleDialog, {
-      data: poe 
+      data: poe
     });
   }
 
@@ -54,7 +56,23 @@ export class ListComponent implements OnInit {
     this.router.navigate(['/poes/update', poe.id]);
   }
 
-  
+  // public filterData(e:any):any {
+
+  //   this.searchInput.addEventListener("input", this.filterData)
+
+  //   this.searchResult.innerHTML = ""
+
+  //   const searchedString = e.target.value.toLowerCase().replace(/\s/g, "");
+
+  //   const filteredArr = this.poes.filter(el =>
+  //     el.title.toLowerCase().includes(searchedString) ||
+  //     `${el.title}`.toLowerCase().replace(/\s/g, "").includes(searchedString)
+  //     )
+
+  //   return filteredArr
+  // }
+
+
 
   sortData(sort: Sort) {
     const data = this.poes.slice();
@@ -117,5 +135,11 @@ export class DialogAnimationsExampleDialog {
         )
       })
   }
+
+
+
 }
+
+
+
 

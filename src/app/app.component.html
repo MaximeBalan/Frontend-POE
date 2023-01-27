@@ -19,9 +19,9 @@
     <button mat-button [matMenuTriggerFor]="menus"></button>
     <mat-menu #menus="matMenu" class="menu-content-list">
       <ul class="inner-content">
-        <li><a [routerLink]="['/poes/list']">POE</a>
+        <li><a [routerLink]="['/poes/list']">Liste des POE</a>
         </li>
-        <li><a [routerLink]="['/poes/list', 'POEC']">POEC's</a>
+        <li><a [routerLink]="['/poes/list', 'POEC']">POEC</a>
           <ul>
             <ng-container *ngFor="let poe of poes">
               <ng-container *ngIf="(poe.poeType==='POEC')">
@@ -30,7 +30,7 @@
             </ng-container>
           </ul>
         </li>
-        <li><a [routerLink]="['/poes/list', 'POEI']">POEI's</a>
+        <li><a [routerLink]="['/poes/list', 'POEI']">POEI</a>
           <ul>
             <ng-container *ngFor="let poe of poes">
               <ng-container *ngIf="(poe.poeType==='POEI')">
@@ -45,12 +45,6 @@
           <a [routerLink]="'/stagiaires'">{{ 'links.interns' | translate }}</a>
           <li><a [routerLink]="['/surveys']">Liste des Formulaires</a>
           </li>
-        <li><a [routerLink]="['/survey/detail/', 1]">Formulaire 1 mois</a>
-        </li>
-        <li><a [routerLink]="['/survey/detail/', 2]">Formulaire 6 mois</a>
-        </li>
-        <li><a [routerLink]="['/survey/detail/', 3]">Formulaire 12 mois</a>
-        </li>
         <li><a [routerLink]="['/home']">Créer un nouveau formulaire</a>
         </li>
       </ul>
