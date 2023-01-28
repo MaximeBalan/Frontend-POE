@@ -17,25 +17,25 @@
 
     <ng-container *ngIf="getmonth(this.poe.endDate) >= 1 && getmonth(this.poe.endDate) < 6">
       <div class="buttonscontainer">
-      <button class="buttons" type="button" [disabled]="false" (click)="goToDetail(poe.id)">1</button>
-      <button class="buttons" type="button" [disabled]="true" (click)="goToDetail(poe.id)">6</button>
-      <button class="buttons" type="button" [disabled]="true" (click)="goToDetail(poe.id)">12</button>
+      <button class="buttons" type="button" [disabled]="false" (click)="sendEmail(poe.id, 1)">1</button>
+      <button class="buttons" type="button" [disabled]="true" (click)="sendEmail(poe.id, 2)">6</button>
+      <button class="buttons" type="button" [disabled]="true" (click)="sendEmail(poe.id, 3)">12</button>
       </div>
       </ng-container>
 
       <ng-container *ngIf="getmonth(this.poe.endDate)>=6 && getmonth(this.poe.endDate) <12">
         <div class="buttonscontainer">
-        <button class="buttons" type="button" [disabled]="true" (click)="goToDetail(poe.id)">1</button>
-        <button class="buttons" type="button" [disabled]="false" (click)="goToDetail(poe.id)">6</button>
-        <button class="buttons" type="button" [disabled]="true" (click)="goToDetail(poe.id)">12</button>
+        <button class="buttons" type="button" [disabled]="true" (click)="sendEmail(poe.id,1)">1</button>
+        <button class="buttons" type="button" [disabled]="false" (click)="sendEmail(poe.id,2)">6</button>
+        <button class="buttons" type="button" [disabled]="true" (click)="sendEmail(poe.id,3)">12</button>
         </div>
         </ng-container>
 
         <ng-container *ngIf="getmonth(this.poe.endDate)>=12">
           <div class="buttonscontainer">
-          <button class="buttons" type="button" [disabled]="true" (click)="goToDetail(poe.id)">1</button>
-          <button class="buttons" type="button" [disabled]="true" (click)="goToDetail(poe.id)">6</button>
-          <button class="buttons" type="button" [disabled]="false" (click)="goToDetail(poe.id)">12</button>
+          <button class="buttons" type="button" [disabled]="true" (click)="sendEmail(poe.id,1)">1</button>
+          <button class="buttons" type="button" [disabled]="true" (click)="sendEmail(poe.id,2)">6</button>
+          <button class="buttons" type="button" [disabled]="false" (click)="sendEmail(poe.id,3)">12</button>
           </div>
           </ng-container>
     </div>

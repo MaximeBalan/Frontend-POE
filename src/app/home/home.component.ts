@@ -25,16 +25,23 @@ export class HomeComponent implements OnInit {
     this.service.findAll()
       .subscribe((poes: Poe[])=> {
         this.poes = poes;
-      })
-      this.httpClient.get('http://worldtimeapi.org/api/timezone/Europe/Paris').subscribe((response) => this.info_date = response);
+      });
+
+    this.httpClient.get('http://worldtimeapi.org/api/timezone/Europe/Paris').subscribe((response) => this.info_date = response);
   }
 
   public goToDetail(id:number):void{
     this.router.navigate(['/detailPoe', id]);
   }
+
   public getmonth(endDate: Date):any{
     var today = moment([this.info_date.datetime]).format('DD/MM/YYYY');
     var result = moment(today).diff(endDate, 'months');
     return result;
     }
+
+   public sendEmail (idP:number, idS:number):void{
+    this.service.sendEmail(idP,idS).subscribe();
+   } 
+    
 }

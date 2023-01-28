@@ -29,6 +29,14 @@ export class PoeService implements ICrud<Poe>{
       })
     }))
   }
+  
+  sendEmail(idP: number, idS: number):Observable<any> {
+    console.log('la');
+    return this.httpClient.get(`${PoeService.CONTROLLER_PATH}/${idP}/mail/${idS}`);
+  }
+
+
+
 
   findOne(id: number): Observable<Poe> {
     return this.httpClient.get<any>(
