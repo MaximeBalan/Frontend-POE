@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { UpdateComponent } from './components/update/update.component';
 import { PoedetailComponent } from './components/poedetail/poedetail.component';
 import { InitialsPipe } from '../stagiaires/pipes/initials.pipe';
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -21,7 +22,8 @@ import { InitialsPipe } from '../stagiaires/pipes/initials.pipe';
   imports: [
     CommonModule,
     PoesRoutingModule,
-    SharedModule
+    SharedModule,
+    MatTableModule
   ]
 })
 export class PoesModule { }

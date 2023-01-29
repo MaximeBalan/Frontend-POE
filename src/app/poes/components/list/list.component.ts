@@ -1,5 +1,5 @@
 import { HttpResponse } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Poe } from 'src/app/core/models/poe';
 import { PoeService } from 'src/app/poes/services/poe/poe.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -7,6 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {MatDialog, MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {Sort} from '@angular/material/sort';
 import { combineLatest } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { DataSource } from '@angular/cdk/collections';
 
 
 @Component({
@@ -20,6 +23,17 @@ export class ListComponent implements OnInit {
   public poeType: string | null = '';
   // public searchInput : any = document.querySelector("#search");
   // public searchResult : any = document.querySelector(".table-results");
+
+  displayedColumns: string[] = [
+    'title',
+    'beginDate',
+    'endDate',
+    'poeType',
+    'actions'
+  ];
+
+  dataSource: MatTableDataSource<Poe> = new MatTableDataSource();
+  @ViewChild (MatSort) sort!: MatSort;
 
   constructor(
     public dialog: MatDialog,
@@ -40,7 +54,28 @@ export class ListComponent implements OnInit {
       } else {
         this.poes = poes;
       }
+
+      this.refreshDataSource();
+
     });
+  }
+
+  refreshDataSource() {
+    this.dataSource = new MatTableDataSource(this.poes);
+      // filter: default predicate search on all columns (case insensitive)
+      this.dataSource.filterPredicate = (data: Poe, filter: string) => {
+          return data.title.toLowerCase().indexOf(filter) >= 0;
+      };
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(event: any){
+    let filterValue = event.target.value.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
   }
 
 
@@ -56,25 +91,10 @@ export class ListComponent implements OnInit {
     this.router.navigate(['/poes/update', poe.id]);
   }
 
-  // public filterData(e:any):any {
-
-  //   this.searchInput.addEventListener("input", this.filterData)
-
-  //   this.searchResult.innerHTML = ""
-
-  //   const searchedString = e.target.value.toLowerCase().replace(/\s/g, "");
-
-  //   const filteredArr = this.poes.filter(el =>
-  //     el.title.toLowerCase().includes(searchedString) ||
-  //     `${el.title}`.toLowerCase().replace(/\s/g, "").includes(searchedString)
-  //     )
-
-  //   return filteredArr
-  // }
-
 
 
   sortData(sort: Sort) {
+    console.log("demande de filtre")
     const data = this.poes.slice();
     if (!sort.active || sort.direction === '') {
       this.poes = data;
@@ -96,6 +116,8 @@ export class ListComponent implements OnInit {
           return 0;
       }
     });
+
+    this.refreshDataSource();
   }
 }
 
