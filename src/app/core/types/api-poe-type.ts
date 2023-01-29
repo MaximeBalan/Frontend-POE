@@ -7,4 +7,7 @@ export type ApiPoeType = {
     endDate: Date;
     poeType: any;
     stagiaires: StagiaireModel;
+    surveySendDateOneMonth: Date ;
+    surveySendDateSixMonth: Date ;
+    surveySendDateTwelveMonth: Date ;
 }

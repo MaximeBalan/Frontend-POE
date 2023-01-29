@@ -53,7 +53,7 @@
         width: 33.33%;
         height: 100%;
         text-align: center;
-        background-color: lighten(rgb(20,20,200), 20%);
+        background-color: lighten(green, 20%);
         font-size: 20px;
       }
       // .buttons:first-child {
@@ -68,6 +68,15 @@
           cursor: pointer;
 
       }
+
+      .surveySent {
+        background-color: grey;
+      }
+
+      .notYetClickable {
+        background-color: red;
+      }
+
       // button{
       //   justify-content: space-between;
       //     border-style: none;

@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
     this.service.findAll()
       .subscribe((poes: Poe[])=> {
         this.poes = poes;
+        console.log(poes);
       });
 
     this.httpClient.get('http://worldtimeapi.org/api/timezone/Europe/Paris').subscribe((response) => this.info_date = response);

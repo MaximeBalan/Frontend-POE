@@ -99,6 +99,9 @@ public deserializeFromJson(anyPoe: ApiPoeType): Poe {
   poe.endDate = new Date (anyPoe.endDate);
   poe.poeType= anyPoe.poeType;
   poe.stagiaires= anyPoe.stagiaires
+  poe.surveySendDateOneMonth = anyPoe.surveySendDateOneMonth ? new Date (anyPoe.surveySendDateOneMonth) : null;
+  poe.surveySendDateSixMonth = anyPoe.surveySendDateSixMonth ? new Date (anyPoe.surveySendDateSixMonth) : null;
+  poe.surveySendDateTwelveMonth = anyPoe.surveySendDateTwelveMonth ? new Date (anyPoe.surveySendDateTwelveMonth) : null;
   return poe;
 }
 
@@ -110,6 +113,9 @@ public serializeJson(anyPoe: any): ApiPoeType {
     endDate : new Date (anyPoe.endDate),
     poeType: anyPoe.poeType,
     stagiaires: anyPoe.stagiaires,
+    surveySendDateOneMonth : new Date (anyPoe.surveySendDateOneMonth),
+    surveySendDateSixMonth : new Date (anyPoe.surveySendDateSixMonth),
+    surveySendDateTwelveMonth : new Date (anyPoe.surveySendDateTwelveMonth)
   }
   console.log("POE à envoyer au back: ", poe)
   return poe;

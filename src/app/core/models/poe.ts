@@ -7,17 +7,11 @@ export class Poe{
     private _beginDate!: Date ;
     private _endDate!: Date ;
     private _stagiaires!: StagiaireModel;
+    private _surveySendDateOneMonth!: Date | null ;
+    private _surveySendDateSixMonth!: Date | null;
+    private _surveySendDateTwelveMonth!: Date | null;
 
-    get stagiaires(){
-      return this._stagiaires
-    }
-    
-    set stagiaires(val: StagiaireModel) {
-      this._stagiaires = val
-    }
-
-
-    get id(): number {
+    get id() {
       return this._id
     }
     
@@ -45,7 +39,7 @@ export class Poe{
       return this._beginDate
     }
     
-    set beginDate(val: Date ) {
+    set beginDate(val: Date) {
       this._beginDate = val
     }
     
@@ -53,8 +47,40 @@ export class Poe{
       return this._endDate
     }
     
-    set endDate(val: Date ) {
+    set endDate(val: Date) {
       this._endDate = val
     }
     
+    get stagiaires() {
+      return this._stagiaires
+    }
+    
+    set stagiaires(val: StagiaireModel) {
+      this._stagiaires = val
+    }
+    
+    get surveySendDateOneMonth() {
+      return this._surveySendDateOneMonth
+    }
+    
+    set surveySendDateOneMonth(val: Date | null) {
+      this._surveySendDateOneMonth = val
+    }
+    
+    get surveySendDateSixMonth() {
+      return this._surveySendDateSixMonth
+    }
+    
+    set surveySendDateSixMonth(val: Date | null) {
+      this._surveySendDateSixMonth = val
+    }
+    
+    get surveySendDateTwelveMonth() {
+      return this._surveySendDateTwelveMonth
+    }
+    
+    set surveySendDateTwelveMonth(val: Date | null) {
+      this._surveySendDateTwelveMonth = val
+    }
+
 }
