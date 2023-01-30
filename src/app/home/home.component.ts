@@ -42,7 +42,6 @@ export class HomeComponent implements OnInit {
     }
 
    public sendEmail (idP:number, idS:number):void{
-    this.service.sendEmail(idP,idS).subscribe();
+    this.service.sendEmail(idP,idS).subscribe((() => window.location.reload()));
    } 
-    
 }

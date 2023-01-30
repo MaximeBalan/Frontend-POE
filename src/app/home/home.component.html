@@ -18,9 +18,8 @@
     <ng-container>
       <div class="buttonscontainer">
       <button class="buttons" [ngClass]="{'surveySent' : (poe.surveySendDateOneMonth != null), 'notYetClickable' : !(getmonth(this.poe.endDate) >= 1 && getmonth(this.poe.endDate) < 6)}" 
-                               
                                                       type="button" [disabled]="!(getmonth(this.poe.endDate) >= 1 && getmonth(this.poe.endDate) < 6) 
-                                                      || poe.surveySendDateOneMonth != null" (click)="sendEmail(poe.id, 1)">1</button>
+                                                      || poe.surveySendDateOneMonth != null" (click)="sendEmail(poe.id, 1)" >1</button>
       <button class="buttons" [ngClass]="{'surveySent' : (poe.surveySendDateSixMonth != null), 'notYetClickable' : !(getmonth(this.poe.endDate) >= 6 && getmonth(this.poe.endDate) < 12) }"
                                                       type="button" [disabled]="!(getmonth(this.poe.endDate) >= 6 && getmonth(this.poe.endDate) < 12) 
                                                       || poe.surveySendDateSixMonth != null" (click)="sendEmail(poe.id, 2)">6</button>
