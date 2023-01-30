@@ -27,6 +27,7 @@ export class DetailComponent implements OnInit {
           this.service.findOne(+routeParams.get('id')!)
             .subscribe((survey: SurveyModel)=> {
               this.survey = survey;
+              orderQuestionById(this.survey);
             })
           console.log(JSON.stringify(this.survey));
         } catch (error) {
@@ -38,3 +39,7 @@ export class DetailComponent implements OnInit {
     console.log('got detail of one survey');
   }
 }
+function orderQuestionById(survey: SurveyModel) {
+  survey.questions.sort((a,b) => a.id - b.id);
+}
+
