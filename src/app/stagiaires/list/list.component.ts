@@ -15,10 +15,12 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class ListComponent implements OnInit {
   public stagiaires:StagiaireModel[] = [];
+  public datas:StagiaireModel[] = [];
   public showLi: string = 'A';
+  //public stagiaire: StagiaireModel[] = [];
 
   displayedColumns: string[] = [
-    //'initial',
+   'initial',
     'lastName',
     'firstName',
     'gender',
@@ -42,19 +44,25 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.stagiaireService.findAll()
       .subscribe((stagiaires: StagiaireModel[])=> {
+        this.datas = stagiaires;
         this.stagiaires = stagiaires;
         this.refreshDataSource();
       });
+
+
+
+
   }
 
 
   refreshDataSource() {
     this.dataSource = new MatTableDataSource(this.stagiaires);
-      // filter: default predicate search on all columns (case insensitive)
-      this.dataSource.filterPredicate = (data: StagiaireModel, filter: string) => {
-          return (data.firstName.toLowerCase().indexOf(filter) >= 0 || data.lastName.toLowerCase().indexOf(filter) >= 0);
-      };
+    // filter: default predicate search on all columns (case insensitive)
+    this.dataSource.filterPredicate = (data: StagiaireModel, filter: string) => {
+      return (data.firstName.toLowerCase().indexOf(filter) >= 0 || data.lastName.toLowerCase().indexOf(filter) >= 0);
+    };
   }
+
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
@@ -65,20 +73,26 @@ export class ListComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  public changeGender(): void {
-    if (this.showLi === 'M') {
-      this.showLi = 'F';
+
+  public changeGender(gender : string ): void {
+    this.showLi = gender;
+    if (gender === 'M' || gender === 'F'){
+      this.stagiaires  = this.datas.filter((s:StagiaireModel)=> s.gender === gender);
     } else {
-      this.showLi = 'M';
+      this.stagiaires = this.datas;
     }
+
+    this.refreshDataSource();
   }
 
+
+
   public count():number{
-    let sum = 0;
-    for(let stagiaire of this.stagiaires){
-      sum +=1
-    }
-    return sum;
+    // let sum = 0;
+    // for(let stagiaire of this.stagiaires){
+    //   sum +=1
+    // }
+    return this.stagiaires.length;
   }
 
   public displayNumber():number{
@@ -86,7 +100,6 @@ export class ListComponent implements OnInit {
       return this.stagiaires.length;
     }
     return this.stagiaires.filter((stagiaire:any) => stagiaire.gender === this.showLi).length;
-
   }
 
 
