@@ -25,7 +25,7 @@ export class ListComponent implements OnInit {
   // public searchResult : any = document.querySelector(".table-results");
 
   displayedColumns: string[] = [
-    'title',
+     'title',
     'beginDate',
     'endDate',
     'poeType',

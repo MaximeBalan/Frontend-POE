@@ -24,9 +24,7 @@
       </header>
         </div>
 
-        <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort (matSortChange)="sortData($event)">
-
-
+        <mat-table [dataSource]="dataSource"  matSort (matSortChange)="sortData($event)">
 
           <ng-container matColumnDef="title">
             <th mat-header-cell *matHeaderCellDef mat-sort-header="title"> Titre </th>
