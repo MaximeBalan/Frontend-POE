@@ -1,3 +1,91 @@
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box" *ngFor="let question of questions" cdkDrag>{{question}}</div>
+
+<div cdkDropListGroup>
+  <div class="container">
+    <h2>Questions</h2>
+    <table mat-table #table [cdkDropListData]="questionAvailable" class="mat-elevation-z8"
+
+      id="available"
+      cdkDropList
+      [cdkDropListData]="questionAvailable"
+      cdkDropListConnectedTo="questionSelected"
+      class ="list"
+      (cdkDropListDropped)="drop($event)"
+      >
+
+        <div class ="box" *ngFor="let question of questionAvailable" cdkDrag>{{question.title}}</div>
+  </table>
+  </div>
+
+  <div class="container">
+    <h2>Formulaire</h2>
+      <div
+      id="selected"
+      cdkDropList
+      [cdkDropListData]="questionSelected"
+      class ="list"
+      (cdkDropListDropped)="drop($event)"
+      >
+        <div class ="box" *ngFor="let question of questionSelected" cdkDrag>{{question.title}}</div>
+   </div>
+  </div>
 </div>
+<!-- <div cdkDropList>
+  <div class="box" cdkDropList
+  (cdkDropListDropped)="drop($event)">
+    <div *ngFor="let question of questionAvailable" cdkDrag>{{question.title}}</div>
+  </div>
+</div>
+</div> -->
+<!-- <table>
+  <thead>
+    <tr>
+      <th mat-sort-header="title">Titre</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let question of questions">
+      <tr>
+         <td>
+          {{ question.title }}
+        </td>
+</tr>
+</ng-container>
+  </tbody>
+  <tfoot>
+
+  </tfoot>
+</table> -->
+
+<!-- <div class="example-container">
+  <h2>Questions</h2> -->
+
+  <!-- <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="todo"
+    [cdkDropListConnectedTo]="[doneList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+  </div>
+</div> -->
+<!-- <div cdkDropList [cdkDropListData]="question" *ngFor="let question of questions" (cdkDropListDropped)="drop($event)">
+  <div cdkDrag [cdkDragData]="survey" *ngFor="let survey of surveys"></div>
+</div> -->
+
+<!-- <div class="example-container">
+  <h2>Nouveau</h2>
+
+  <div
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="done"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+  </div>
+</div> -->
+<router-outlet></router-outlet>
