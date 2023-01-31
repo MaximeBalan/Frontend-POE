@@ -1,70 +1,107 @@
-<button type="button" (click)="showLi = 'F'" [ngClass]="{'is-selected': showLi === 'F'}">
-  Filles
-</button>
-<button type="button" (click)="showLi = 'M'" [ngClass]="{'is-selected': showLi === 'M'}">
-  Garçons
-</button>
-<button type="button" (click)="showLi = 'A'" [ngClass]="{'is-selected': showLi === 'A'}">
-  Display All
-</button>
 
-<table matSort (matSortChange)="sortData($event)">
-  <thead>
-    <tr>
-      <th>&nbsp;</th>
-      <th mat-sort-header="lastName">Nom</th>
-      <th mat-sort-header="firstName">Prénom</th>
-      <th>Genre</th>
-      <th>Date de naissance</th>
-      <th>POE</th>
-      <th>&nbsp;</th>
-    </tr>
-  </thead>
-  <tbody>
-    <ng-container *ngFor="let stagiaire of stagiaires">
-      <tr *ngIf="(showLi === 'A') ? true: stagiaire.gender ===showLi">
-        <td>
-          <span [ngClass]="{'bubble': true, 'male': stagiaire.gender === 'M', 'female': stagiaire.gender === 'F'}"
-            (click)="goToDetail(stagiaire.id)">
-            {{ stagiaire | initials | uppercase }}
-          </span>
-        </td>
-        <td>
-          {{ stagiaire.lastName | uppercase}}
-        </td>
-        <td>
-          {{ stagiaire.firstName }}
-        </td>
-        <td>
-          {{ stagiaire.gender }}
-        </td>
-        <td>
-          {{ stagiaire.birthDate | date:'dd/MM/YYYY' }}
-        </td>
-        <td>
-          {{ stagiaire.poe?.title }} {{stagiaire.poe?.endDate}}
-        </td>
-        <button mat-mini-fab class="btnEdit" mat-button [matMenuTriggerFor]="menu">
-          <mat-icon>edit</mat-icon>
-        </button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item (click)="update(stagiaire)">Modifier</button>
-  <button mat-menu-item >Désactiver</button>
-  <button mat-menu-item (click)="onDelete(stagiaire)">Supprimer</button>
-</mat-menu>
+  <!--<table>-->
 
-      </tr>
-    </ng-container>
-  </tbody>
 
-  <tfoot>
-    <td colspan="5">
-      Total = {{ displayNumber() }}/{{count()}}
-      <!--on peut aussi mettre stagiaires.length à la place de count()-->
-    </td>
-  </tfoot>
-</table>
+    <ng-container *ngIf="stagiaires else loading">
 
+      <div>
+        <header>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <button mat-button mat-icon-button class="searchIcon">
+              <span class="material-symbols-outlined">
+                <mat-icon>
+                  search
+                </mat-icon>
+              </span>
+            </button>
+      </mat-expansion-panel-header>
+        <mat-form-field class="example-full-width">
+          <mat-label>Recherche</mat-label>
+          <input type="text" matInput (keyup)="applyFilter($event)" placeholder="Ex. DUPONT Martin">
+        </mat-form-field>
+      </mat-expansion-panel>
+    </header>
+      </div>
+
+      <button type="button" (click)="changeGender('F')" [ngClass]="{'is-selected': showLi === 'F'}">
+        Filles
+      </button>
+      <button type="button" (click)="changeGender('M')" [ngClass]="{'is-selected': showLi === 'M'}">
+        Garçons
+      </button>
+      <button type="button" (click)="changeGender('A')" [ngClass]="{'is-selected': showLi === 'A'}">
+        Tous
+      </button>
+
+
+      <mat-table [dataSource]="dataSource"  matSort (matSortChange)="sortData($event)">
+
+        <ng-container matColumnDef="initial">
+          <th mat-header-cell *matHeaderCellDef> &nbsp; </th>
+          <td *matCellDef="let stagiaire"  mat-cell >
+            <span class="initials"   [ngClass]="{'bubble': true, 'male': stagiaire.gender === 'M', 'female': stagiaire.gender === 'F'}"
+              (click)="goToDetail(stagiaire.id)">
+              {{ stagiaire | initials | uppercase }}
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="lastName"> Nom </th>
+          <td mat-cell *matCellDef="let stagiaire"> {{ stagiaire.lastName | uppercase }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="firstName"> Prénom </th>
+          <td mat-cell *matCellDef="let stagiaire"> {{ stagiaire.firstName }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="gender"> Genre </th>
+          <td mat-cell *matCellDef="let stagiaire"> {{ stagiaire.gender }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="birthDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="birtDate"> Date de Naissance </th>
+          <td mat-cell *matCellDef="let stagiaire"> {{ stagiaire.birthDate | date: 'dd-MM-YYYY'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="poe">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="poe"> POE </th>
+          <td mat-cell *matCellDef="let stagiaire"> {{ stagiaire.poe.title }} {{stagiaire.poe.endDate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>  &nbsp; </th>
+          <td mat-cell *matCellDef="let stagiaire">
+            <button mat-mini-fab class="btnEdit" mat-button [matMenuTriggerFor]="menu">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <!-- <button mat-menu-item  (click)="goToDetail(stagiaire)">Detail</button> -->
+              <button mat-menu-item  (click)="update(stagiaire)">Modifier</button>
+              <button mat-menu-item >Désactiver</button>
+              <button mat-menu-item  (click)="onDelete(stagiaire)">Supprimer</button>
+            </mat-menu>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</mat-table>
+
+<tfoot>
+  <td colspan="5">
+    Total = {{ displayNumber() }}/{{count()}}
+    <!--on peut aussi mettre stagiaires.length à la place de count()-->
+  </td>
+</tfoot>
+</ng-container>
+
+<ng-template #loading>
+Trainee's list is loading...
+</ng-template>
 
 <a [routerLink]="'/stagiaire/add'" class="btn btn-primary">
   Ajouter un stagiaire

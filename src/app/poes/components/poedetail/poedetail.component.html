@@ -56,7 +56,6 @@
     <button mat-menu-item >Désactiver</button>
     <button mat-menu-item (click)="onDelete(stagiaire)">Supprimer</button>
   </mat-menu>
-        </tr>
       </ng-container>
     </ng-container>
     </tbody>
@@ -66,6 +65,11 @@
         Total = {{ displayNumber() }}/{{count()}}
         <!--on peut aussi mettre stagiaires.length à la place de count()-->
       </td>
+      <td>&nbsp;</td>
+      <td><button mat-raised-button color="primary" type="submit" class="contactMail"><mat-icon>contact_mail</mat-icon></button></td>
+      <td><button mat-raised-button color="primary" type="submit"class="contactMail"><mat-icon>contact_mail</mat-icon></button></td>
+      <td><button mat-raised-button color="primary" type="submit"class="contactMail"><mat-icon>contact_mail</mat-icon></button></td>
+
     </tfoot>
   </table>
 
