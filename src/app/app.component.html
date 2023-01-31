@@ -1,9 +1,9 @@
-<header>
+<header *ngIf="currentUser">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
   <!-- TOOLBAR -->
-  <mat-toolbar>
+  <mat-toolbar >
     <button mat-button [matMenuTriggerFor]="menus" mat-icon-button class="example-icon"
       aria-label="Example icon-button with menu icon">
       <mat-icon>
@@ -62,14 +62,9 @@
     <span class="example-spacer"></span>
     <button type="button" (click)="switchLanguage('fr')" [disabled]="intlService.language === 'fr'">Fr</button>
     <button type="button" (click)="switchLanguage('en')" [disabled]="intlService.language === 'en'">En</button>
-    <button mat-button mat-icon-button>
-      <span class="material-symbols-outlined">
-        <mat-icon>
-           login
-        </mat-icon>
-
-      </span>
-    </button>
+    <button mat-button mat-icon-button class="btn btn-link nav-item nav-link" (click)="logout()">
+    Logout</button>
+  
   </mat-toolbar>
 
 

@@ -8,6 +8,9 @@ import { AddComponent } from './stagiaires/add/add.component';
 import { UpdateComponent } from './stagiaires/update/update.component';
 import { HomeComponent } from './home/home.component';
 import { PoedetailComponent } from './poes/components/poedetail/poedetail.component';
+import { AuthGuard } from './core/helpers/auth.guard';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 //comme on est en objet, pas besoin de ce bout de code:
@@ -26,6 +29,9 @@ public static routes: Routes = [
     //obligatoire quand il y a un redirectTo
     pathMatch: 'full' //Angular va analyser l'intégralité de la route pour matcher avec le path de l'url
   },
+  { path: '', component: HomeComponent ,canActivate: [AuthGuard]},
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   {
   path: 'home',
   component: HomeComponent
