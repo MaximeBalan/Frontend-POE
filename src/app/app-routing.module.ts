@@ -28,46 +28,55 @@ public static routes: Routes = [
     redirectTo: 'home',
     //obligatoire quand il y a un redirectTo
     pathMatch: 'full' //Angular va analyser l'intégralité de la route pour matcher avec le path de l'url
+   
   },
-  { path: '', component: HomeComponent ,canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {
   path: 'home',
+  canActivate: [AuthGuard],
   component: HomeComponent
   },
   {
     path:'stagiaires',
+    canActivate: [AuthGuard],
     //quand Angular trouve le path, il chargera le component
     component: ListComponent
   },
   {
     path:'detail/:id',
+    canActivate: [AuthGuard],
     component:DetailComponent
   },
   {
     path:'detailPoe/:id',
+    canActivate: [AuthGuard],
     component:PoedetailComponent
   },
   {
     path:'stagiaires/update/:id',
+    canActivate: [AuthGuard],
     component:UpdateComponent
   },
   {
     path:'stagiaire/add',
+    canActivate: [AuthGuard],
     component:AddComponent
   },
   {
     path:'stagiaire/add/:id',
+    canActivate: [AuthGuard],
     component:AddComponent
 
   },
   {
     path:'survey/detail/:id',
+    canActivate: [AuthGuard],
     component:SurveyDetailComponent
   },
   {
     path:'surveys',
+    canActivate: [AuthGuard],
     component:SurveyListComponent
   },
   {

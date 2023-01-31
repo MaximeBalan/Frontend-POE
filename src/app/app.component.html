@@ -63,8 +63,13 @@
     <button type="button" (click)="switchLanguage('fr')" [disabled]="intlService.language === 'fr'">Fr</button>
     <button type="button" (click)="switchLanguage('en')" [disabled]="intlService.language === 'en'">En</button>
     <button mat-button mat-icon-button class="btn btn-link nav-item nav-link" (click)="logout()">
-    Logout</button>
-  
+      <span class="material-symbols-outlined">
+        <mat-icon>
+          logout
+        </mat-icon>
+      </span>
+    </button>
+
   </mat-toolbar>
 
 

@@ -14,15 +14,15 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './core/helpers/jwt.interceptor';
 import { ErrorInterceptor } from './core/helpers/error.interceptor';
 import { fakeBackendProvider } from './core/helpers/fake-backend';
-import { AlertComponent } from './alert/alert.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent,
-    AlertComponent
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
