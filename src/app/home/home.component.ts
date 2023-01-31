@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   }
 
   public getmonth(endDate: Date):any{
-    var today = moment([this.info_date.datetime]).format('DD/MM/YYYY');
+    var today = moment([this.info_date.datetime!]).format('DD/MM/YYYY');
     var result = moment(today).diff(endDate, 'months');
     return result;
     }
