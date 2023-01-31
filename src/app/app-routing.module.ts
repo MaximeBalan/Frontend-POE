@@ -30,8 +30,8 @@ public static routes: Routes = [
     pathMatch: 'full' //Angular va analyser l'intégralité de la route pour matcher avec le path de l'url
    
   },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path:'login', component: LoginComponent },
+  { path:'register', component: RegisterComponent },
   {
   path: 'home',
   canActivate: [AuthGuard],
