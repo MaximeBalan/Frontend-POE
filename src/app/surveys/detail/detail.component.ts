@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ChoiceModel } from 'src/app/core/models/choice';
+import { QuestionModel } from 'src/app/core/models/question';
 import { SurveyModel } from 'src/app/core/models/survey-model';
 import { SurveyService } from 'src/app/core/services/survey-service';
 
@@ -10,7 +12,9 @@ import { SurveyService } from 'src/app/core/services/survey-service';
 })
 export class DetailComponent implements OnInit {
 
-  public survey: SurveyModel |null = null;
+  public survey: SurveyModel | null = null;
+  public question: QuestionModel | null = null;
+  public choices: ChoiceModel | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,7 +31,14 @@ export class DetailComponent implements OnInit {
           this.service.findOne(+routeParams.get('id')!)
             .subscribe((survey: SurveyModel)=> {
               this.survey = survey;
-            })
+              orderQuestionById(this.survey);
+              for(let question of this.survey.questions){
+                orderChoiceById(question);
+              }
+              
+            }
+            )
+                        
           console.log(JSON.stringify(this.survey));
         } catch (error) {
           this.router.navigate(['/', 'home']);
@@ -37,4 +48,11 @@ export class DetailComponent implements OnInit {
     )
     console.log('got detail of one survey');
   }
+}
+function orderQuestionById(survey:SurveyModel){
+  survey.questions.sort((a,b)=> a.id - b.id);
+ 
+}
+function orderChoiceById(question:QuestionModel){
+  question.choices.sort((a,b)=> a.id - b.id);
 }

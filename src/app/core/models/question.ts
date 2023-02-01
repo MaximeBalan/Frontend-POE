@@ -4,7 +4,7 @@ export class QuestionModel{
     private _id!: number ;
     private _title: string = '';
     private _questionType: any;
-    private _choices!: Set<ChoiceModel>;
+    private _choices!: ChoiceModel[];
 
     get id() {
       return this._id
@@ -34,7 +34,7 @@ export class QuestionModel{
       return this._choices
     }
     
-    set choices(val: Set<ChoiceModel>) {
+    set choices(val: ChoiceModel[]) {
       this._choices = val
     }
 
