@@ -69,12 +69,12 @@
 
       }
 
-      .surveySent {
+      button:disabled {
         background-color: grey;
       }
 
-      .notYetClickable {
-        background-color: red;
+      button.notYetClickable:disabled  {
+        background-color: red!important;
       }
 
       // button{

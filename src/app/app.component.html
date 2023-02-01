@@ -1,9 +1,9 @@
-<header>
+<header *ngIf="currentUser">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
   <!-- TOOLBAR -->
-  <mat-toolbar>
+  <mat-toolbar >
     <button mat-button [matMenuTriggerFor]="menus" mat-icon-button class="example-icon"
       aria-label="Example icon-button with menu icon">
       <mat-icon>
@@ -19,9 +19,9 @@
     <button mat-button [matMenuTriggerFor]="menus"></button>
     <mat-menu #menus="matMenu" class="menu-content-list">
       <ul class="inner-content">
-        <li><a [routerLink]="['/poes/list']">POE</a>
+        <li><a [routerLink]="['/poes/list']">Liste des POE</a>
         </li>
-        <li><a [routerLink]="['/poes/list', 'POEC']">POEC's</a>
+        <li><a [routerLink]="['/poes/list', 'POEC']">POEC</a>
           <ul>
             <ng-container *ngFor="let poe of poes">
               <ng-container *ngIf="(poe.poeType==='POEC')">
@@ -30,7 +30,7 @@
             </ng-container>
           </ul>
         </li>
-        <li><a [routerLink]="['/poes/list', 'POEI']">POEI's</a>
+        <li><a [routerLink]="['/poes/list', 'POEI']">POEI</a>
           <ul>
             <ng-container *ngFor="let poe of poes">
               <ng-container *ngIf="(poe.poeType==='POEI')">
@@ -45,13 +45,7 @@
           <a [routerLink]="'/stagiaires'">{{ 'links.interns' | translate }}</a>
           <li><a [routerLink]="['/surveys']">Liste des Formulaires</a>
           </li>
-        <li><a [routerLink]="['/survey/detail/', 1]">Formulaire 1 mois</a>
-        </li>
-        <li><a [routerLink]="['/survey/detail/', 2]">Formulaire 6 mois</a>
-        </li>
-        <li><a [routerLink]="['/survey/detail/', 3]">Formulaire 12 mois</a>
-        </li>
-        <li><a [routerLink]="['/home']">Créer un nouveau formulaire</a>
+        <li><a [routerLink]="['/survey/add']">Créer un nouveau formulaire</a>
         </li>
       </ul>
     </mat-menu>
@@ -62,20 +56,20 @@
     <span class="example-spacer"></span>
     <button type="button" (click)="switchLanguage('fr')" [disabled]="intlService.language === 'fr'">Fr</button>
     <button type="button" (click)="switchLanguage('en')" [disabled]="intlService.language === 'en'">En</button>
-    <button mat-button mat-icon-button>
+    <button mat-button mat-icon-button class="btn btn-link nav-item nav-link" (click)="logout()">
       <span class="material-symbols-outlined">
         <mat-icon>
-           login
+          logout
         </mat-icon>
-
       </span>
     </button>
+
   </mat-toolbar>
 
 
   <!-- ESSAI SEARCHBAR -->
 
-  <mat-expansion-panel hideToggle>
+  <!-- <mat-expansion-panel hideToggle>
     <mat-expansion-panel-header>
       <button mat-button mat-icon-button class="searchIcon">
         <span class="material-symbols-outlined">
@@ -89,7 +83,7 @@
       <mat-label>Recherche</mat-label>
       <input matInput placeholder="Ex. POEC" value="">
     </mat-form-field>
-  </mat-expansion-panel>
+  </mat-expansion-panel>-->
 </header>
 
 <!--Etagère à routes: router-outlet-->

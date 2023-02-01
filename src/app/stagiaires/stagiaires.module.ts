@@ -6,6 +6,7 @@ import { DetailComponent } from './detail/detail.component';
 import { SharedModule } from '../shared/shared.module';
 import { AddComponent } from './add/add.component';
 import { UpdateComponent } from './update/update.component';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { UpdateComponent } from './update/update.component';
   imports: [
     CommonModule,
     StagiairesRoutingModule,
-    SharedModule
+    SharedModule,
+    MatTableModule
   ]
 })
 export class StagiairesModule { }

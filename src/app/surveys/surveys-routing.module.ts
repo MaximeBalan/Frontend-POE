@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../core/helpers/auth.guard';
 import { AddComponent } from './add/add.component';
 import { DetailComponent } from './detail/detail.component';
 import { ListComponent } from './list/list.component';
@@ -17,25 +18,30 @@ export class SurveysRoutingModule {
     {
       path:'',
       redirectTo: 'list',
+      canActivate: [AuthGuard],
       pathMatch: 'full'
     },
     {
       path: 'list',
-      component: ListComponent
+      component: ListComponent,
+      canActivate: [AuthGuard]
     },
 
     {
       path:'add',
-      component: AddComponent
+      component: AddComponent,
+      canActivate: [AuthGuard]
     },
 
     {
       path:'update/:id',
-      component: UpdateComponent
+      component: UpdateComponent,
+      canActivate: [AuthGuard]
     },
     {
       path:'detail/:id',
-      component:DetailComponent
+      component:DetailComponent,
+      canActivate: [AuthGuard]
 
     },
 

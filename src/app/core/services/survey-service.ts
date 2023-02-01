@@ -4,6 +4,8 @@ import { Observable } from "rxjs";
 import { environment } from "./../../../environments/environment";
 import { map, take } from 'rxjs/operators';
 import { SurveyModel } from "../models/survey-model";
+import { QuestionModel } from "../models/question";
+import { ChoiceModel } from "../models/choice";
 
 
 
@@ -52,25 +54,27 @@ export class SurveyService {
 
     }
 
-    public create(datas: any): Observable<SurveyModel> {
-        console.log("Values received by service:", datas);
+    public create(title: string, questions:QuestionModel[]): Observable<SurveyModel> {
+        console.log("Values received by service:");
+        console.log("values title", title)
         return this.httpClient.post<SurveyModel>(
             SurveyService.CONTROLLER_PATH,
-            this.serializeJson(datas)
+            this.buildSurveyJson(title,questions)
         )
         .pipe(
             take(1),
             map((anySurvey: any) => {
-                return this.deserializeFromForm(anySurvey);
+              console.log("reponse reçu du back", anySurvey)
+                return this.deserializeFromJson(anySurvey);
             })
         )
     }
 
-    public update(data:SurveyModel): Observable<SurveyModel>{
+    public update(data:SurveyModel, title: string): Observable<SurveyModel>{
       console.log("Values received by service:", data.id);
       return this.httpClient.put<SurveyModel>(
         `${SurveyService.CONTROLLER_PATH}/${data.id}`,
-        this.serializeJson(data)
+        this.serializeJson(data, title)
         )
         .pipe(
             take(1),
@@ -95,13 +99,15 @@ export class SurveyService {
         survey.id = anySurvey.id;
         survey.title = anySurvey.title;
         survey.questions = anySurvey.questions
+        console.log("retour: ", survey)
         return survey;
     }
 //du front vers le back
-    public serializeJson(anySurvey: any): any {
+    public serializeJson(anySurvey: any, title: string): any {
         const survey: any = {
             id : anySurvey.id,
-            title : anySurvey.title,
+            title : title,
+            questions: anySurvey.questions
         }
         console.log("survey à envoyer au back: ", survey)
         return survey;
@@ -112,7 +118,29 @@ export class SurveyService {
         survey.id = anySurvey.id;
         survey.title = anySurvey.title;
         survey.questions = anySurvey.questions
+
         return survey;
     }
+    public buildSurveyJson( title: string,questions: QuestionModel[]): SurveyModel {
+      const survey: any = {
+          title: title,
+          questions :
+          questions.map((q:QuestionModel)=>{
+            return {
+            id: q.id,
+            title: q.title,
+            questionType: q.questionType,
+      //       choices:
+      //       q.choices.map((c:ChoiceModel)=>{ return {
+      //         id: c.id,
+      //         name: c.name
+      //       }})
+
+      }})
+        }
+
+      console.log("survey à envoyer au back: ", survey)
+      return survey;
+  }
 }
 

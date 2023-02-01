@@ -1,10 +1,11 @@
 import { HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { StagiaireModel } from 'src/app/core/models/stagiaire-model';
 import { StagiaireService } from 'src/app/core/services/stagiaire-service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Sort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 @Component({
@@ -14,7 +15,23 @@ import { Sort } from '@angular/material/sort';
 })
 export class ListComponent implements OnInit {
   public stagiaires:StagiaireModel[] = [];
+  public datas:StagiaireModel[] = [];
   public showLi: string = 'A';
+  //public stagiaire: StagiaireModel[] = [];
+
+  displayedColumns: string[] = [
+   'initial',
+    'lastName',
+    'firstName',
+    'gender',
+    'birthDate',
+    'poe',
+    'actions'
+  ];
+
+  dataSource: MatTableDataSource<StagiaireModel> = new MatTableDataSource();
+  @ViewChild (MatSort) sort!: MatSort;
+
 
 
   //injection des dépendances (les services que l'on veut) dans les paramètres du constructeur
@@ -27,24 +44,55 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.stagiaireService.findAll()
       .subscribe((stagiaires: StagiaireModel[])=> {
+        this.datas = stagiaires;
         this.stagiaires = stagiaires;
+        this.refreshDataSource();
       });
+
+
+
+
   }
 
-  public changeGender(): void {
-    if (this.showLi === 'M') {
-      this.showLi = 'F';
-    } else {
-      this.showLi = 'M';
-    }
+
+  refreshDataSource() {
+    this.dataSource = new MatTableDataSource(this.stagiaires);
+    // filter: default predicate search on all columns (case insensitive)
+    this.dataSource.filterPredicate = (data: StagiaireModel, filter: string) => {
+      return (data.firstName.toLowerCase().indexOf(filter) >= 0 || data.lastName.toLowerCase().indexOf(filter) >= 0);
+    };
   }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(event: any){
+    let filterValue = event.target.value.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
+  }
+
+
+  public changeGender(gender : string ): void {
+    this.showLi = gender;
+    if (gender === 'M' || gender === 'F'){
+      this.stagiaires  = this.datas.filter((s:StagiaireModel)=> s.gender === gender);
+    } else {
+      this.stagiaires = this.datas;
+    }
+
+    this.refreshDataSource();
+  }
+
+
 
   public count():number{
-    let sum = 0;
-    for(let stagiaire of this.stagiaires){
-      sum +=1
-    }
-    return sum;
+    // let sum = 0;
+    // for(let stagiaire of this.stagiaires){
+    //   sum +=1
+    // }
+    return this.stagiaires.length;
   }
 
   public displayNumber():number{
@@ -53,6 +101,7 @@ export class ListComponent implements OnInit {
     }
     return this.stagiaires.filter((stagiaire:any) => stagiaire.gender === this.showLi).length;
   }
+
 
   /**
    * let item: number = 0;
@@ -104,14 +153,16 @@ export class ListComponent implements OnInit {
     this.stagiaires = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'lastName':
-          return compare(a.lastName, b.lastName, isAsc);
         case 'firstName':
           return compare(a.firstName, b.firstName, isAsc);
+          case 'lastName':
+          return compare(a.lastName, b.lastName, isAsc);
         default:
           return 0;
       }
     });
+
+    this.refreshDataSource();
   }
 }
 

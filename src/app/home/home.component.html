@@ -17,16 +17,15 @@
 
     <ng-container>
       <div class="buttonscontainer">
-      <button class="buttons" [ngClass]="{'surveySent' : (poe.surveySendDateOneMonth != null), 'notYetClickable' : !(getmonth(this.poe.endDate) >= 1 && getmonth(this.poe.endDate) < 6)}" 
-                               
+      <button class="buttons" [ngClass]="{'notYetClickable' : !(getmonth(this.poe.endDate) >= 1 && getmonth(this.poe.endDate) < 6)}" 
                                                       type="button" [disabled]="!(getmonth(this.poe.endDate) >= 1 && getmonth(this.poe.endDate) < 6) 
-                                                      || poe.surveySendDateOneMonth != null" (click)="sendEmail(poe.id, 1)">1</button>
-      <button class="buttons" [ngClass]="{'surveySent' : (poe.surveySendDateSixMonth != null), 'notYetClickable' : !(getmonth(this.poe.endDate) >= 6 && getmonth(this.poe.endDate) < 12) }"
+                                                      || poe.surveySendDateOneMonth != null" (click)="sendEmail(poe.id, 1); disableButton($event)" >1</button>
+      <button class="buttons" [ngClass]="{'notYetClickable' : !(getmonth(this.poe.endDate) >= 6 && getmonth(this.poe.endDate) < 12) }"
                                                       type="button" [disabled]="!(getmonth(this.poe.endDate) >= 6 && getmonth(this.poe.endDate) < 12) 
-                                                      || poe.surveySendDateSixMonth != null" (click)="sendEmail(poe.id, 2)">6</button>
-      <button class="buttons" [ngClass]="{'surveySent' : (poe.surveySendDateTwelveMonth != null), 'notYetClickable' : !(getmonth(this.poe.endDate) >= 12)}"
+                                                      || poe.surveySendDateSixMonth != null" (click)="sendEmail(poe.id, 2); disableButton($event)">6</button>
+      <button class="buttons" [ngClass]="{'notYetClickable' : !(getmonth(this.poe.endDate) >= 12)}"
                                                       type="button" [disabled]="!(getmonth(this.poe.endDate) >= 12) 
-                                                      || poe.surveySendDateTwelveMonth != null" (click)="sendEmail(poe.id, 3)">12</button>
+                                                      || poe.surveySendDateTwelveMonth != null" (click)="sendEmail(poe.id, 3); disableButton($event)">12</button>
       </div>
       </ng-container>
     </div>

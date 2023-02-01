@@ -28,7 +28,7 @@
         <mat-hint>DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
-        <mat-error *ngIf="addPoeForm.controls['beginDate'].errors 
+        <mat-error *ngIf="addPoeForm.controls['beginDate'].errors
         && addPoeForm.controls['beginDate'].touched">
             <!--touched => l'utilisateur a au moins touché une fois le formulaire-->
             <span *ngIf="addPoeForm.controls['beginDate'].hasError('required')">
@@ -45,7 +45,7 @@
         <mat-hint>DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
-        <mat-error *ngIf="addPoeForm.controls['endDate'].errors 
+        <mat-error *ngIf="addPoeForm.controls['endDate'].errors
         && addPoeForm.controls['endDate'].touched">
             <!--touched => l'utilisateur a au moins touché une fois le formulaire-->
             <span *ngIf="addPoeForm.controls['endDate'].hasError('required')">
@@ -56,9 +56,9 @@
 
     <br>
     <button mat-raised-button color="primary" type="submit" [disabled]="addPoeForm.invalid">
-        Add
+        Ajouter
     </button>
-  
+
 
 
 </form>

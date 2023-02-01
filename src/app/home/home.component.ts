@@ -12,6 +12,7 @@ import * as moment from 'moment';
 })
 export class HomeComponent implements OnInit {
 
+
   public poes:Poe[] = [];
   public info_date: any;
   constructor(
@@ -36,13 +37,16 @@ export class HomeComponent implements OnInit {
   }
 
   public getmonth(endDate: Date):any{
-    var today = moment([this.info_date.datetime]).format('DD/MM/YYYY');
+    var today = moment([this.info_date.datetime!]).format('DD/MM/YYYY');
     var result = moment(today).diff(endDate, 'months');
     return result;
     }
 
    public sendEmail (idP:number, idS:number):void{
-    this.service.sendEmail(idP,idS).subscribe();
+    this.service.sendEmail(idP,idS).subscribe((() => window.location.reload()));
    } 
-    
+
+   public disableButton(event: any) {
+      event.target.disabled = true;
+    }
 }

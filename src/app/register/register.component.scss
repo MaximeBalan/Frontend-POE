@@ -1,0 +1,20 @@
+body
+{
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(120deg, rgb(36, 127, 245), rgb(0, 247, 255));
+}
+#formR
+{
+  width: 350px;
+  background-color: white;
+  padding: 3rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+}
+
+img {
+  margin: auto;
+  width: 150px;
+}
