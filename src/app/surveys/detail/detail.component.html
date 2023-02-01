@@ -5,43 +5,49 @@
 <ng-container *ngIf="survey">
     <h1 class="titreFormulaire">
         {{ this.survey.title}}
-    </h1> 
-    
+    </h1>
+
     <ng-container *ngIf="this.survey.questions">
 
         <mat-card *ngFor="let question of this.survey.questions" class="eachQuestion">
-            <h2 class="titreQuestion"> 
+            <h2 class="titreQuestion">
                  {{ this.question.title}}
-             </h2>  
+             </h2>
 
              <container-element [ngSwitch]="this.question.questionType" >
                 <!-- the same view can be shown in more than one case -->
-                <div *ngSwitchCase="'YES_NO'" class="response">   
-                    <p><mat-checkbox >Oui</mat-checkbox></p>
-                    <p><mat-checkbox >Non</mat-checkbox></p>
+                <div *ngSwitchCase="'YES_NO'" class="response">
+                      <mat-radio-group aria-label="Select an option">
+                      <mat-radio-button value="1">Oui</mat-radio-button><br>
+                      <mat-radio-button value="2">Non</mat-radio-button><br>
+                    </mat-radio-group>
+
                 </div>
 
-                <div *ngSwitchCase="'FREE_RESPONSE'" class="response"> 
+                <div *ngSwitchCase="'FREE_RESPONSE'" class="response">
                     <mat-form-field appearance="fill">
                         <mat-label>Input</mat-label>
                         <input type="number" matInput>
                     </mat-form-field>
                 </div>
 
-                <div *ngSwitchCase="'QCM'" class="response"> 
+                <div *ngSwitchCase="'QCM'" class="response">
                     <ng-container *ngFor="let proposal of question.choices">
-                        <p><mat-checkbox >{{ proposal.name }}</mat-checkbox></p>
+                      <p><mat-radio-button aria-label="Select an option">
+                        {{ proposal.name }}
+                     </mat-radio-button></p>
+
                     </ng-container>
                 </div>
-                    
-              </container-element>   
+
+              </container-element>
             </mat-card>
     </ng-container>
 </ng-container>
 
+</body>
     <!-- <ng-container *ngFor="let question of survey">
     <ng-container *ngIf="survey">
     <div class="container">
  <p>{{this.question.title}}</p>
   </div> -->
-</body>
