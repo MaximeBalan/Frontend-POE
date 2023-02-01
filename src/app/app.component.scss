@@ -1,34 +1,53 @@
-//variables
-$default-color: rgb(23, 23, 22);
-$menu-font-color: rgb(255, 255, 255);
-$purple: lighten(rgb(20, 20, 200), 30%);
+
+//variables:
+$bleu: #2daee1;
+$orange: #f39200;
+$rose: #c01466;
+$gris: #494948;
+
 
 header {
     mat-toolbar {
-        background-color: $purple;
+        background-color: lighten($bleu,30%);
     }
 
-    .title-app {
-        color: $menu-font-color;
+    h1 {
+
+        font-size: 25px;
+        color: $gris;
     }
 
     mat-icon {
-        color: $default-color;
+        color: $gris;
+    }
+    img{
+        width:3vw;
     }
 }
+
 button{
     cursor: pointer;
 }
 
+
 ul {
+  background-color: lighten($bleu,30%);
+
     &.inner-content {
         padding-right: 2.5vw;
     }
 
     li {
         list-style: none;
+        color: $gris;
+        font-weight: bold;
+        font-size: 17px;
     }
 }
+
+
+
+
 
 .example-spacer {
     flex: 1 1 auto;
@@ -41,7 +60,7 @@ ul {
         'wght' 400,
         'GRAD' 0,
         'opsz' 48;
-    color: $menu-font-color;
+
 }
 
 .mat-mdc-form-field+.mat-mdc-form-field {

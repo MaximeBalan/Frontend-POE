@@ -1,4 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-
+$bleu: #2daee1;
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.cdk-overlay-pane{
+  .mat-menu-panel{
+      .mat-menu-content{
+        background-color: lighten($bleu,30%)!important;
+      }
+  }
+}
