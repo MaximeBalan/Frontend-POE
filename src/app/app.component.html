@@ -45,7 +45,7 @@
           <a [routerLink]="'/stagiaires'">{{ 'links.interns' | translate }}</a>
           <li><a [routerLink]="['/surveys']">Liste des Formulaires</a>
           </li>
-        <li><a [routerLink]="['/home']">Créer un nouveau formulaire</a>
+        <li><a [routerLink]="['/survey/add']">Créer un nouveau formulaire</a>
         </li>
       </ul>
     </mat-menu>
@@ -84,7 +84,7 @@
       <input matInput placeholder="Ex. POEC" value="">
     </mat-form-field>
   </mat-expansion-panel>-->
-</header> 
+</header>
 
 <!--Etagère à routes: router-outlet-->
 <!--quand on va cliquer sur un des liens router, ça va accueillir les routes

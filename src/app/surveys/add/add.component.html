@@ -1,1 +1,93 @@
-<p>add works!</p>
+
+<div cdkDropListGroup>
+  <div class="container">
+    <h2>Questions</h2>
+    <table mat-table #table cdkDragData="questionAvailable" class="mat-elevation-z8"
+
+      id="available"
+      cdkDropList
+      [cdkDropListData]="questionAvailable"
+      cdkDropListConnectedTo="questionSelected"
+      class ="list"
+      (cdkDropListDropped)="drop($event)"
+      >
+
+
+        <div class ="box" *ngFor="let question of questionAvailable" cdkDrag>{{question.title}}</div>
+  </table>
+  </div>
+  <div class="container">
+
+
+    <h2>Formulaire</h2>
+    <mat-form-field>
+      <input matInput required [(ngModel)]="titre" type="text" placeholder="Titre formulaire" >
+  </mat-form-field>
+
+    <table mat-table #table [cdkDropListData]="questionSelected" class="mat-elevation-z8"
+      id="selected"
+      cdkDropList
+      [cdkDropListData]="questionSelected"
+      cdkDropListConnectedTo="questionAvailable"
+      class ="list"
+      (cdkDropListDropped)="drop($event)"
+      >
+        <div class ="box" *ngFor="let question of questionSelected" cdkDrag>{{question.title}}</div>
+
+        </table>
+        <div class="add-button">
+          <button mat-raised-button (click)="onClick($event)">Ajouter ce formulaire</button>
+          </div>
+   </div>
+
+
+
+  </div>
+
+  <router-outlet></router-outlet>
+
+
+
+
+
+<!-- <div id="myModal" class="modal" *ngIf="display">
+
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close" (click)="display=false;">&times;</span>
+      <h2>Input properties updater</h2>
+    </div>
+    <div class="modal-body">
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      Place holder: <input type="text" [(ngModel)]="modalPopupObject.placeholder" name="placeholder"/><br/><br/><br/>
+      <button type="submit" class="btn btn-success" [disabled]="!f.form.valid">Submit</button>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <h3>Modal Footer</h3>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+
+	<div class="col-sm-3">
+		<div class="card card-outline-success mb-3">
+			<div class="card-header card-inverse card-success">
+				Questions
+			</div>
+			<div class="card-block scroll-list">
+				<div #formData class="list-group">
+					<li class="list-group-item list-group-item-action list-group-item-success" [draggable] *ngFor="let question of questionAvailable" dragClass="'active'"
+					 dragData="question" dragScope="question.title" dragEnabled="dragEnabled">
+						{{question.title}}
+					</li>
+				</div>
+			</div>
+    </div>
+	</div>
+  </div> -->
+
+
+

@@ -5,6 +5,7 @@ import { DetailComponent } from './stagiaires/detail/detail.component';
 import { DetailComponent as SurveyDetailComponent} from './surveys/detail/detail.component';
 import { ListComponent  as SurveyListComponent} from './surveys/list/list.component';
 import { AddComponent } from './stagiaires/add/add.component';
+import { AddComponent as SurveyAddComponent } from './surveys/add/add.component';
 import { UpdateComponent } from './stagiaires/update/update.component';
 import { HomeComponent } from './home/home.component';
 import { PoedetailComponent } from './poes/components/poedetail/poedetail.component';
@@ -68,6 +69,10 @@ public static routes: Routes = [
     canActivate: [AuthGuard],
     component:AddComponent
 
+  },
+  {
+    path:'survey/add',
+    component: SurveyAddComponent
   },
   {
     path:'survey/detail/:id',
