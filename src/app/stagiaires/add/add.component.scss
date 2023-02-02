@@ -1,50 +1,63 @@
-//creation d'une variable:
-$default-color: rgb(23,23,22);
-$button-font-color: rgb(255,255,255);
-$button-inactive-color: rgb(20,20,200);
+//variables:
+$bleu: #2daee1;
+$orange: #f39200;
+$rose: #c01466;
+$gris: #494948;
+
 
 h1{
+    margin: 10vh auto 5vh auto;
     text-align: center;
 }
 form{
     
     margin: auto;
     padding: 0.5em ;
-    border: 0.15em solid grey;
-    background-color:  lighten(rgb(20,20,200),50%);
+    border: 0.15em solid lighten($gris,30%);
     border-radius: 10%;
     width: fit-content;
     text-align: center;
-    mat-form-field{
-        margin:0.5em;
-    
-    }   
-    mat-radio-group{
-        mat-radio-button{
-            margin: 0.5em;
+    font-size: large;
+        mat-form-field{
+            margin:2em;
+        }   
+        mat-radio-group{
+            mat-radio-button{
+                margin:2em;
+            }
         }
-    }
-    button{
-        margin-top: 0.5em;
-        cursor: pointer;
+        button{
+            margin-bottom: 2.5vh;
+            
+            cursor: pointer;
+                
+        }
+}
+
+a{
+    cursor:pointer;
+    &.btn{ //pour rajouter une classe supplémentaire
+        &.btn-primary{
+            display: block; 
+            text-decoration: none;
+            padding:0.5em;
+            border-radius: 0.4em;
+            width: fit-content;
+            margin:1vh auto;
+            text-align: center;
+            text-transform: uppercase;
+            background-color:lighten($rose,25%);
+            color: white;
+            
+        }
     }
 }
-a{
-    cursor: pointer;
-    
-    &.btn{ //pour rajouter une classe supplémentaire
-        display: block; 
-        text-decoration: none;
-        padding:0.5em;
-        border-radius: 0.4em;
-        width: fit-content;
-        margin:auto;
-        text-align: center;
-        text-transform: uppercase;
-        &.btn-primary{
-            background-color:$button-inactive-color;
-            color: $button-font-color;
-        }
-    }
+
+
+
+h1{
+    text-align: center;
+    color: $gris;
+    font-size: 25px;
 }
 

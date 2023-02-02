@@ -23,6 +23,9 @@
         </mat-expansion-panel>
       </header>
         </div>
+        <a [routerLink]="'/poes/add'" class="btn btn-primary">
+          Ajouter une Poe
+        </a>
 
         <mat-table [dataSource]="dataSource"  matSort (matSortChange)="sortData($event)">
 
@@ -68,6 +71,4 @@
   POE's list is loading...
 </ng-template>
 
-  <a [routerLink]="'/poes/add'" class="btn btn-primary">
-    Ajouter une Poe
-  </a>
+

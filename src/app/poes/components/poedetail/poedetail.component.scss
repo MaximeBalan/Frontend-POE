@@ -3,6 +3,12 @@ $default-color: rgb(23,23,22);
 $button-font-color: rgb(255,255,255);
 $button-background-color: transparent ;
 $button-inactive-color: rgb(20,20,200);
+//variables:
+$bleu: #2daee1;
+$orange: #f39200;
+$rose: #c01466;
+$gris: #494948;
+
 
 /**
 SCSS Rules
@@ -60,11 +66,11 @@ a{
         padding:0.5em;
         border-radius: 0.4em;
         width: fit-content;
-        margin:auto;
+        margin: 1em;
         text-align: center;
         text-transform: uppercase;
         &.btn-primary{
-            background-color:rgb(44,62,80);
+            background-color:$orange;
             color: $button-font-color;
         }
     }
@@ -72,14 +78,14 @@ a{
 
 @keyframes coolAppear {
     0%{
-        background-color: lighten($button-inactive-color, 80%);
+        background-color: lighten($orange, 80%);
     }
     50%{
-        background-color: lighten($button-inactive-color, 40%);
+        background-color: lighten($orange, 40%);
         transform: translateX(25%);
     }
     100%{
-        background-color:$button-inactive-color;
+        background-color:$orange;
         transform: translateX(25%);
     }
 }
@@ -95,7 +101,7 @@ table {
     margin-bottom: 1em;
     thead {
         border-bottom-style: solid;
-        border-bottom-color: $button-inactive-color;
+        border-bottom-color: $orange;
         height: 3em;
         th {
             text-align: left;
@@ -104,8 +110,8 @@ table {
     tbody {
         tr {
             &:nth-child(even) {
-                background-color: lighten($button-inactive-color, 30%);
-                color: $button-font-color;
+                background-color: lighten($orange, 30%);
+                color: $default-color;
             }
             td {
                 &:first-child {
@@ -135,9 +141,9 @@ table {
     }
     tfoot {
         border-top-style: solid;
-        border-top-color: $button-inactive-color;
+        border-top-color: $orange;
         border-bottom-style: solid;
-        border-bottom-color: $button-inactive-color;
+        border-bottom-color: $orange;
         height: 3em;
 
         td {

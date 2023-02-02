@@ -33,8 +33,11 @@
       <button type="button" (click)="changeGender('A')" [ngClass]="{'is-selected': showLi === 'A'}">
         Tous
       </button>
-
-
+      
+      <a [routerLink]="'/stagiaire/add'" class="btn btn-primary">
+        Ajouter un stagiaire
+      </a>
+      
       <mat-table [dataSource]="dataSource"  matSort (matSortChange)="sortData($event)">
 
         <ng-container matColumnDef="initial">
@@ -103,6 +106,3 @@
 Trainee's list is loading...
 </ng-template>
 
-<a [routerLink]="'/stagiaire/add'" class="btn btn-primary">
-  Ajouter un stagiaire
-</a>

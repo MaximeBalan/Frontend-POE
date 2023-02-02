@@ -12,18 +12,13 @@
             Le nom du stagiaire est obligatoire !
         </mat-error>
     </mat-form-field>
-
-    <br>
-
     <mat-form-field>
         <input matInput type="text" placeholder="Prénom du stagiaire" formControlName="firstName">
         <mat-error *ngIf="addStagiaireForm.controls['firstName'].errors">
             Le prénom du stagiaire est obligatoire !
         </mat-error>
     </mat-form-field>
-
     <br>
-
     <mat-form-field appearance="fill">
         <mat-label>Choose a date</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="birthDate">
@@ -51,8 +46,6 @@
         </mat-error>
     </mat-form-field>
 
-    <br>
-
     <mat-form-field>
         <input matInput type="text" placeholder="Phone number" formControlName="phoneNumber">
     </mat-form-field>
@@ -61,7 +54,7 @@
 
     <mat-radio-group formControlName="gender">
         <mat-radio-button value="M">Masculin</mat-radio-button>
-        <br>
+        
         <mat-radio-button value="F">Féminin</mat-radio-button>
     </mat-radio-group>
 
@@ -69,8 +62,6 @@
     <button mat-raised-button color="primary" type="submit" [disabled]="addStagiaireForm.invalid">
         Ajouter
     </button>
-
-
 
 </form>
 
