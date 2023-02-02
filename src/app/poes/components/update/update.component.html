@@ -14,7 +14,6 @@
         </mat-error>
     </mat-form-field>
 
-    <br>
     <mat-form-field>
         <input matInput type="text" placeholder="Type de Poe" formControlName="poeType">
         <mat-error *ngIf="addPoeForm.controls['poeType'].errors">
@@ -37,9 +36,6 @@
             </span>
         </mat-error>
     </mat-form-field>
-
-    <br>
-
     <mat-form-field appearance="fill">
         <mat-label>Date de fin</mat-label>
         <input matInput [matDatepicker]="picker2" formControlName="endDate">
@@ -59,8 +55,6 @@
     <button mat-raised-button color="primary" type="submit" [disabled]="addPoeForm.invalid">
         Modifier
     </button>
-
-
 
 </form>
 </ng-container>

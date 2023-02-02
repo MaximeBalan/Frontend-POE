@@ -33,8 +33,11 @@
       <button type="button" (click)="changeGender('A')" [ngClass]="{'is-selected': showLi === 'A'}">
         Tous
       </button>
-
-
+      
+      <a [routerLink]="'/stagiaire/add'" class="btn btn-primary">
+        Ajouter un stagiaire
+      </a>
+      
       <mat-table [dataSource]="dataSource"  matSort (matSortChange)="sortData($event)">
 
         <ng-container matColumnDef="initial">
@@ -81,7 +84,7 @@
             <mat-menu #menu="matMenu">
               <!-- <button mat-menu-item  (click)="goToDetail(stagiaire)">Detail</button> -->
               <button mat-menu-item  (click)="update(stagiaire)">Modifier</button>
-              <button mat-menu-item >Désactiver</button>
+              <!-- <button mat-menu-item >Désactiver</button> -->
               <button mat-menu-item  (click)="onDelete(stagiaire)">Supprimer</button>
             </mat-menu>
           </td>
@@ -103,6 +106,3 @@
 Trainee's list is loading...
 </ng-template>
 
-<a [routerLink]="'/stagiaire/add'" class="btn btn-primary">
-  Ajouter un stagiaire
-</a>

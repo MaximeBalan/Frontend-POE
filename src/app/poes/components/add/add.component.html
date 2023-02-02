@@ -13,7 +13,6 @@
         </mat-error>
     </mat-form-field>
 
-    <br>
     <mat-form-field>
         <input matInput type="text" placeholder="Type de Poe" formControlName="poeType">
         <mat-error *ngIf="addPoeForm.controls['poeType'].errors">
@@ -21,7 +20,6 @@
         </mat-error>
     </mat-form-field>
     <br>
-
     <mat-form-field appearance="fill">
         <mat-label>Date de début</mat-label>
         <input matInput [matDatepicker]="picker1" formControlName="beginDate">
@@ -36,9 +34,7 @@
             </span>
         </mat-error>
     </mat-form-field>
-
-    <br>
-
+   
     <mat-form-field appearance="fill">
         <mat-label>Date de fin</mat-label>
         <input matInput [matDatepicker]="picker2" formControlName="endDate">
@@ -53,16 +49,12 @@
             </span>
         </mat-error>
     </mat-form-field>
-
     <br>
     <button mat-raised-button color="primary" type="submit" [disabled]="addPoeForm.invalid">
         Ajouter
     </button>
-
-
-
 </form>
-
+<br>
 <a [routerLink]="'/poes'" class="btn btn-primary">
     Retour à la liste
 </a>

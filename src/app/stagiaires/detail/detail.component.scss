@@ -1,18 +1,30 @@
+//variables:
+$bleu: #2daee1;
+$orange: #f39200;
+$rose: #c01466;
+$gris: #494948;
+
+
 .container{
-    margin: auto;
+    margin: 10vh auto 5vh auto;
     padding: 2.5em;
     align-items: center;
     width: fit-content;
     height: fit-content;
-    border: 0.1em solid grey;
+    border: 0.15em solid lighten($gris,30%);
     border-radius: 2.5%;
+
         h1{
-            border-bottom: 0.1em solid lighten(rgb(20,20,200), 20%);
-            color:lighten(rgb(20,20,200), 20%);
+            border-bottom: 0.1em solid lighten($gris, 20%);
+            color:lighten($gris, 20%);
             text-align: center;
+            font-size: 4vh;
+            padding:10px;
         }
+    
         p{
-            margin: 0;
+            margin: 0.5em;
+            font-size: 2.5vh;
         }
         button{
             border-style: none;
@@ -22,5 +34,29 @@
             border-radius: 5%;
             cursor: pointer;
         }
+        .solid{
+            height: 0.15em;
+            background-color:lighten($gris, 20%) ;
+        }
       
+}
+
+
+a{
+    cursor:pointer;
+    &.btn{ //pour rajouter une classe supplémentaire
+        &.btn-primary{
+            display: block; 
+            text-decoration: none;
+            padding:0.5em;
+            border-radius: 0.4em;
+            width: fit-content;
+            margin:1vh auto;
+            text-align: center;
+            text-transform: uppercase;
+            background-color:lighten($rose,25%);
+            color: white;
+            
+        }
+    }
 }
