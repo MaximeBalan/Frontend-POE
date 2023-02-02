@@ -85,7 +85,7 @@ public static routes: Routes = [
     component:SurveyListComponent
   },
   {
-    path: 'surveys',
+    path:'surveys',
     loadChildren: () => import('./surveys/surveys.module')
     .then((m)=> m.SurveysModule),
   },

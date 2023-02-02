@@ -34,7 +34,8 @@ onClick(event: Event) {
   /*
   méthode pour ajouter un survey
   */
- this.surveyService.create( this.titre,this.questionSelected).subscribe(()=>console.log("survey posted"));
+ this.surveyService.create( this.titre,this.questionSelected).subscribe(()=>
+ this.router.navigate(['/', 'surveys']));
 }
 
 
