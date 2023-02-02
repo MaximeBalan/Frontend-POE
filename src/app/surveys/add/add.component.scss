@@ -5,9 +5,9 @@
   //font-weight: bold;
 }
 
-.mat-form-field-infix{
-  color: rgb(254, 249, 231)!important;
-}
+// .mat-form-field-infix{
+//   color: red;//rgb(254, 249, 231)!important;
+// }
 
 
 .container { //container titre question et formulaire
@@ -18,11 +18,11 @@
   border-radius: 5%;
   display: inline-block;
   vertical-align: top;
-  background-color: rgb(84, 110, 122);// rgb(38, 50, 56
+  background-color: lighten(rgb(84, 110, 122), 50%);// rgb(38, 50, 56
 
 
   h2{// titre question et formulaire
-    color: rgb(224, 247, 250);
+    color: rgb(84, 110, 122);
     font-weight: bold;
     font-size: 1.4em;
     text-transform: uppercase;
@@ -69,7 +69,7 @@ input::placeholder{
   justify-content: space-between;
   box-sizing: border-box;
   cursor: move;
-  background-color: rgb(254, 249, 231);
+  background-color: lighten(rgb(254, 249, 231),2%);
   font-size: 14px;
 
 }
@@ -194,4 +194,8 @@ color: white;
 padding: 2px 16px;
 background-color: #5cb85c;
 color: white;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+  color: white;
 }
