@@ -10,6 +10,10 @@
         <p>Mail : {{this.stagiaire.email}}</p>
         <p>Phone Number : {{this.stagiaire.phoneNumber}}</p>
         <hr class="solid">
-        <button type="button" (click)="goToList()">Back</button>
+        
     </div>
 </ng-container>
+
+<a [routerLink]="'/stagiaires'" class="btn btn-primary">
+    Retour à la liste
+</a>
