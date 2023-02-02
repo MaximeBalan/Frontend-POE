@@ -1,28 +1,28 @@
 
-<div cdkDropListGroup>
+<div class= "general" cdkDropListGroup>
   <div class="container">
     <h2>Questions</h2>
-    <table mat-table #table cdkDragData="questionAvailable" class="mat-elevation-z8"
+      <table mat-table #table cdkDragData="questionAvailable" class="mat-elevation-z8"
 
-      id="available"
-      cdkDropList
-      [cdkDropListData]="questionAvailable"
-      cdkDropListConnectedTo="questionSelected"
-      class ="list"
-      (cdkDropListDropped)="drop($event)"
-      >
+id="available"
+cdkDropList
+[cdkDropListData]="questionAvailable"
+cdkDropListConnectedTo="questionSelected"
+class ="list"
+(cdkDropListDropped)="drop($event)"
+>
 
 
-        <div class ="box" *ngFor="let question of questionAvailable" cdkDrag>{{question.title}}</div>
-  </table>
+      <div class ="box" *ngFor="let question of questionAvailable" cdkDrag>{{question.title}}</div>
+    </table>
   </div>
-  <div class="container">
+<div class="container">
 
 
     <h2>Formulaire</h2>
     <mat-form-field>
-      <input matInput required [(ngModel)]="titre" type="text" placeholder="Titre formulaire" >
-  </mat-form-field>
+      <input matInput required [(ngModel)]="titre" type="text" placeholder="Titre formulaire" id="titre">
+    </mat-form-field>
 
     <table mat-table #table [cdkDropListData]="questionSelected" class="mat-elevation-z8"
       id="selected"
@@ -36,7 +36,7 @@
 
         </table>
         <div class="add-button">
-          <button mat-raised-button (click)="onClick($event)">Ajouter ce formulaire</button>
+          <button mat-raised-button (click)="onClick($event)" id="bouton">Ajouter ce formulaire</button>
           </div>
    </div>
 
