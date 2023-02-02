@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { fakeBackendProvider } from './core/helpers/fake-backend';
+import { AnswerComponent } from './answer/answer/answer.component';
 
 
 
@@ -22,7 +23,8 @@ import { fakeBackendProvider } from './core/helpers/fake-backend';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AnswerComponent
   ],
   imports: [
     BrowserModule,
