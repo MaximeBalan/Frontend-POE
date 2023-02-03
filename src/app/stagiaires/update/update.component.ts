@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { combineLatest } from 'rxjs';
+import { Poe } from 'src/app/core/models/poe';
 import { StagiaireModel } from 'src/app/core/models/stagiaire-model';
 import { StagiaireService } from 'src/app/core/services/stagiaire-service';
 import { DateLessThan } from 'src/app/core/validators/date-less-than';
+import { PoeService } from 'src/app/poes/services/poe/poe.service';
 
 @Component({
   selector: 'app-update',
@@ -15,17 +18,16 @@ export class UpdateComponent implements OnInit {
   public stagiaire: StagiaireModel |null = null;
   public addStagiaireForm!: FormGroup; //Groupe de Contrôles de formulaire
   private id: any; // pour recup id dans onsubmit
-
+  
   constructor(
     private formBuilder: FormBuilder, //permet de construire un formulaire
     private stagiaireService: StagiaireService,
     private router: Router,
     private route: ActivatedRoute,
-    private service: StagiaireService
+    private service: StagiaireService,
   ) { }
 
   ngOnInit(): void {
-
       //pour récupérer des détails/données d'une autre page
       this.route.paramMap.subscribe(
         (routeParams) => {
@@ -94,7 +96,7 @@ export class UpdateComponent implements OnInit {
     this.stagiaireService.update(data)
         .subscribe((stagiaire: StagiaireModel)=>{
           console.log("Values received from backend", stagiaire)
-          this.router.navigate(['/', 'stagiaires']);
+          this.router.navigate(['/', 'home']);
           // this.addStagiaireForm.reset();
     });
   }

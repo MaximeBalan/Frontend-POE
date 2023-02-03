@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 
+
 //comme on est en objet, pas besoin de ce bout de code:
 //const routes: Routes = [];
 
@@ -79,6 +80,7 @@ public static routes: Routes = [
     canActivate: [AuthGuard],
     component:SurveyDetailComponent
   },
+  
   {
     path:'surveys',
     canActivate: [AuthGuard],
